@@ -1,0 +1,1625 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Trip — 25/04 → 01/05/2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1410;
+    --paper: #faf7f2;
+    --cream: #f2ece0;
+    --amber: #c8873a;
+    --amber-light: #e8b96a;
+    --amber-pale: #f5e8d0;
+    --muted: #8a7d6e;
+    --border: #ddd4c0;
+    --red: #b84040;
+    --green: #3d7a56;
+    --blue: #2e5c8a;
+    --white: #ffffff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* HEADER */
+  .hero {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 64px 40px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '中国';
+    position: absolute;
+    right: -20px;
+    top: -20px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 220px;
+    font-weight: 300;
+    color: rgba(200,135,58,0.08);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+  .hero-flag { font-size: 36px; margin-bottom: 16px; }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 52px;
+    font-weight: 300;
+    letter-spacing: -1px;
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+  .hero h1 em { color: var(--amber-light); font-style: italic; }
+  .hero-sub {
+    font-size: 13px;
+    color: rgba(250,247,242,0.5);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 300;
+  }
+  .hero-meta {
+    display: flex;
+    gap: 32px;
+    margin-top: 32px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  .meta-item { }
+  .meta-label { font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; color: rgba(250,247,242,0.4); margin-bottom: 4px; }
+  .meta-val { font-size: 15px; color: var(--amber-light); font-weight: 400; }
+
+  /* NAV TABS */
+  .nav-wrap {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--ink);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .nav {
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding: 0 40px;
+    gap: 0;
+  }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav-btn {
+    flex-shrink: 0;
+    padding: 14px 20px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    color: rgba(250,247,242,0.45);
+    background: none;
+    border: none;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .nav-btn:hover { color: rgba(250,247,242,0.8); }
+  .nav-btn.active { color: var(--amber-light); border-bottom-color: var(--amber); }
+  .nav-btn.special { color: rgba(232,185,106,0.6); }
+  .nav-btn.special.active { color: var(--amber-light); }
+
+  /* MAIN LAYOUT */
+  .main { max-width: 860px; margin: 0 auto; padding: 48px 40px; }
+  .day-panel { display: none; }
+  .day-panel.visible { display: block; }
+
+  /* DAY HEADER */
+  .day-head {
+    display: flex;
+    align-items: flex-end;
+    gap: 20px;
+    margin-bottom: 36px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+  .day-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 72px;
+    font-weight: 300;
+    color: var(--border);
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .day-info { flex: 1; }
+  .day-date { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--muted); margin-bottom: 4px; }
+  .day-title { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 400; line-height: 1.2; color: var(--ink); }
+  .day-title em { color: var(--amber); font-style: italic; }
+  .day-subtitle { font-size: 12px; color: var(--muted); margin-top: 6px; }
+  .day-badge {
+    font-size: 10px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase;
+    padding: 4px 10px; border-radius: 20px; flex-shrink: 0;
+  }
+  .badge-new { background: #e8f5ee; color: var(--green); }
+  .badge-updated { background: var(--amber-pale); color: var(--amber); }
+
+  /* TIMELINE */
+  .timeline { position: relative; padding-left: 28px; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 8px;
+    bottom: 0;
+    width: 1px;
+    background: var(--border);
+  }
+
+  .entry {
+    position: relative;
+    margin-bottom: 0;
+    padding-bottom: 24px;
+  }
+  .entry::before {
+    content: '';
+    position: absolute;
+    left: -25px;
+    top: 6px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--paper);
+    border: 1.5px solid var(--border);
+  }
+  .entry.hl::before { background: var(--amber); border-color: var(--amber); }
+  .entry.ok::before { background: var(--green); border-color: var(--green); }
+  .entry.warn::before { background: var(--amber-light); border-color: var(--amber); }
+  .entry.hot::before { background: var(--red); border-color: var(--red); }
+  .entry.food::before { background: var(--green); border-color: var(--green); }
+  .entry.cafe::before { background: #8B5E3C; border-color: #8B5E3C; }
+  .entry.transport::before { background: var(--blue); border-color: var(--blue); }
+
+  .entry-inner { display: grid; grid-template-columns: 88px 1fr; gap: 16px; }
+  .e-time { font-size: 11px; color: var(--muted); padding-top: 3px; line-height: 1.4; font-weight: 400; }
+  .e-body { }
+  .e-title { font-size: 14px; font-weight: 500; color: var(--ink); line-height: 1.4; }
+  .e-detail { font-size: 12px; color: var(--muted); margin-top: 3px; line-height: 1.55; }
+  .tags { margin-top: 6px; display: flex; flex-wrap: wrap; gap: 4px; }
+  .tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: 20px;
+    letter-spacing: 0.3px;
+  }
+  .t-cost { background: #fef3e2; color: #92520d; }
+  .t-transport { background: #e8f0fb; color: #1e4d8c; }
+  .t-tip { background: #ede8fb; color: #5040a0; }
+  .t-hotel { background: #e8f5ee; color: #1e6640; }
+  .t-urgent { background: #fde8e8; color: #8b2020; }
+  .t-food { background: #e8f5ee; color: #2a6640; }
+  .t-cafe { background: #f5ede5; color: #6b3e20; }
+
+  /* FOOD CALLOUT */
+  .food-callout {
+    background: var(--cream);
+    border-left: 2px solid var(--green);
+    border-radius: 0 6px 6px 0;
+    padding: 8px 12px;
+    margin-top: 8px;
+    font-size: 12px;
+    line-height: 1.6;
+  }
+  .food-callout strong { color: var(--ink); font-weight: 500; }
+  .food-callout span { color: var(--muted); }
+  .cafe-callout {
+    background: var(--cream);
+    border-left: 2px solid #8B5E3C;
+    border-radius: 0 6px 6px 0;
+    padding: 8px 12px;
+    margin-top: 8px;
+    font-size: 12px;
+    line-height: 1.6;
+  }
+  .cafe-callout strong { color: var(--ink); font-weight: 500; }
+  .cafe-callout span { color: var(--muted); }
+
+  .tri { display: block; font-size: 10.5px; color: var(--muted); font-weight: 400; margin-top: 3px; letter-spacing: 0.2px; line-height: 1.6; }
+  .tri .sep { color: var(--border); margin: 0 4px; }
+  .tri .lang-zh { color: var(--amber); }
+
+  /* NOTE BOX */
+  .note {
+    background: var(--amber-pale);
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-top: 16px;
+    font-size: 12px;
+    color: #6b4a1a;
+    line-height: 1.6;
+    border-left: 3px solid var(--amber);
+  }
+  .note strong { color: var(--ink); font-weight: 500; }
+
+  .route-note {
+    background: #e8f0fb;
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-bottom: 28px;
+    font-size: 12px;
+    color: #1e3d6b;
+    line-height: 1.6;
+    border-left: 3px solid var(--blue);
+  }
+  .route-note strong { font-weight: 500; }
+
+  /* SECTION DIVIDER */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 28px 0 20px;
+  }
+  .divider-line { flex: 1; height: 1px; background: var(--border); }
+  .divider-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--muted);
+    font-weight: 400;
+  }
+
+  /* BOOKING & EATERY GRID */
+  .card-grid { display: flex; flex-direction: column; gap: 12px; }
+  .card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+  }
+  .card-head { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+  .card-icon {
+    width: 38px; height: 38px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 600; flex-shrink: 0;
+  }
+  .ic-d { background: #ede8fb; color: #4535b0; }
+  .ic-p { background: var(--amber-pale); color: var(--amber); }
+  .ic-w { background: #e8f5ee; color: var(--green); }
+  .ic-m { background: #e8f0fb; color: var(--blue); }
+  .ic-j { background: #fde8e8; color: var(--red); }
+  .ic-f { background: var(--cream); color: var(--ink); }
+  .ic-c { background: #f5ede5; color: #6b3e20; }
+  .ic-sh { background: var(--cream); color: var(--ink); }
+  .card-name { font-size: 14px; font-weight: 500; color: var(--ink); }
+  .card-meta { font-size: 11px; color: var(--muted); margin-top: 1px; }
+  .card-rows { border-top: 1px solid var(--border); padding-top: 10px; }
+  .card-row { display: flex; justify-content: space-between; padding: 4px 0; font-size: 12px; gap: 12px; }
+  .c-label { color: var(--muted); flex-shrink: 0; }
+  .c-val { color: var(--ink); font-weight: 500; text-align: right; }
+  .c-urgent { color: var(--red); font-weight: 500; }
+  .c-warn { color: #92520d; font-weight: 500; }
+  .c-link { color: var(--blue); font-weight: 500; }
+
+  .section-head {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--muted);
+    margin: 24px 0 12px;
+    font-weight: 400;
+  }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 40px;
+    font-size: 11px;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    letter-spacing: 0.5px;
+  }
+
+  @media (max-width: 600px) {
+    .hero { padding: 40px 20px 32px; }
+    .hero h1 { font-size: 36px; }
+    .hero-meta { gap: 20px; flex-wrap: wrap; }
+    .main { padding: 32px 20px; }
+    .nav { padding: 0 20px; }
+    .entry-inner { grid-template-columns: 72px 1fr; gap: 10px; }
+    .day-num { font-size: 52px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-flag">🇨🇳</div>
+  <h1>Thượng Hải,<br><em>Hàng Châu & Ô Trấn</em></h1>
+  <div class="hero-sub">Lịch trình chi tiết · 2026</div>
+  <div class="hero-meta">
+    <div class="meta-item"><div class="meta-label">Khởi hành</div><div class="meta-val">25/04/2026</div></div>
+    <div class="meta-item"><div class="meta-label">Về nước</div><div class="meta-val">01/05/2026</div></div>
+    <div class="meta-item"><div class="meta-label">Tổng ngày</div><div class="meta-val">7 ngày</div></div>
+    <div class="meta-item"><div class="meta-label">Sân bay</div><div class="meta-val">PVG Pudong</div></div>
+  </div>
+</div>
+
+<div class="nav-wrap">
+  <nav class="nav">
+    <button class="nav-btn active" onclick="show(0)">26/04 CN</button>
+    <button class="nav-btn" onclick="show(1)">27/04 T2 — Disney</button>
+    <button class="nav-btn" onclick="show(2)">28/04 T3</button>
+    <button class="nav-btn" onclick="show(3)">29/04 T4</button>
+    <button class="nav-btn" onclick="show(4)">30/04 T5</button>
+    <button class="nav-btn" onclick="show(5)">01/05 CN</button>
+    <button class="nav-btn special" onclick="show(6)">Đặt vé trước</button>
+    <button class="nav-btn special" onclick="show(7)">Eatery & Cafe</button>
+    <button class="nav-btn special" onclick="show(8)">📍 Địa điểm</button>
+  </nav>
+</div>
+
+<main class="main">
+
+  <!-- ===== 26/04 ===== -->
+  <div class="day-panel visible" id="p0">
+    <div class="day-head">
+      <div class="day-num">01</div>
+      <div class="day-info">
+        <div class="day-date">Chủ nhật · 26/04/2026</div>
+        <div class="day-title">Shanghai — <em>Ngày đầu tiên</em></div>
+        <div class="day-subtitle">Pod Inn → HomeInn Selected → Nam Kinh → The Bund → Lujiazui → Ăn tối</div>
+      </div>
+    </div>
+
+    <div class="route-note">
+      <strong>Lộ trình hôm nay:</strong> Sân bay khu Pudong (đông) → nghỉ sáng gần sân bay → vào trung tâm → Nanjing Rd → The Bund → Lujiazui → ăn tối khu Ningbo Rd (ngay cạnh Nanjing/Bund) → về Pudong. Không ngược đường.
+    </div>
+
+    <div class="timeline">
+      <div class="entry transport">
+        <div class="entry-inner">
+          <div class="e-time">02:00 – 03:00</div>
+          <div class="e-body">
+            <div class="e-title">Sân bay Pudong → Pod Inn
+              <span class="tri"><span class="lang-en">Pudong International Airport</span><span class="sep">·</span><span class="lang-zh">浦东国际机场</span></span>
+            </div>
+            <div class="e-detail">Khách sạn có dịch vụ đưa đón tận sân bay, 8.4km</div>
+            <div class="tags"><span class="tag t-cost">410.000đ</span><span class="tag t-hotel">Đưa đón sân bay</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-inner">
+          <div class="e-time">03:00 – 07:30</div>
+          <div class="e-body">
+            <div class="e-title">Nghỉ ngơi tại Pod Inn</div>
+            <div class="e-detail">Ngủ bù sau chuyến bay đêm dài từ VN</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry hl">
+        <div class="entry-inner">
+          <div class="e-time">07:30 – 08:30</div>
+          <div class="e-body">
+            <div class="e-title">Ăn sáng tại Pod Inn</div>
+            <div class="e-detail">Vệ sinh cá nhân, chuẩn bị đồ trước khi checkout</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry cafe">
+        <div class="entry-inner">
+          <div class="e-time">08:30 – 09:15</div>
+          <div class="e-body">
+            <div class="e-title">Blue Bottle Coffee — PVG Terminal 2
+              <span class="tri"><span class="lang-en">Blue Bottle Coffee · Pudong Airport T2</span><span class="sep">·</span><span class="lang-zh">蓝瓶咖啡 · 浦东机场T2</span></span>
+            </div>
+            <div class="e-detail">Taxi ~5 phút từ Pod Inn. Cà phê ngon, view nhìn ra đường băng — rất chill sau đêm bay</div>
+            <div class="tags"><span class="tag t-cost">~50–80 tệ</span><span class="tag t-tip">View máy bay</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry food">
+        <div class="entry-inner">
+          <div class="e-time">09:15 – 10:30</div>
+          <div class="e-body">
+            <div class="e-title">Ăn sáng local — Yong He Dou Jiang
+              <span class="tri"><span class="lang-en">Yong He Soy Milk King</span><span class="sep">·</span><span class="lang-zh">永和豆浆</span></span>
+            </div>
+            <div class="e-detail">400 Nanquan Bei Lu, near Century Ave, Pudong — chuỗi ăn sáng local Shanghai nổi tiếng, taxi ~10 phút từ Pod Inn. Không cần xếp hàng, phục vụ nhanh, phù hợp khi còn mệt sau đêm bay</div>
+            <div class="food-callout"><strong>Yong He Dou Jiang 永和豆浆</strong> — <span>Must order: Doujiang (sữa đậu nành nóng), Youtiao (quẩy chiên vàng), Fantuan (cơm nắm nhân thịt), Shengjian · ~15–25 tệ/người</span></div>
+            <div class="tags"><span class="tag t-cost">~15–25 tệ</span><span class="tag t-tip">Đặc trưng sáng Thượng Hải!</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry warn">
+        <div class="entry-inner">
+          <div class="e-time">11:00 – 11:30</div>
+          <div class="e-body">
+            <div class="e-title">Checkout Pod Inn</div>
+            <div class="e-detail">Thu dọn hành lý, trả phòng</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry transport">
+        <div class="entry-inner">
+          <div class="e-time">11:30 – 12:30</div>
+          <div class="e-body">
+            <div class="e-title">Pod Inn → HomeInn Selected (No.1 Yaohan)
+              <span class="tri"><span class="lang-en">Homeinn Selected · 579 Zhangyang Rd, Pudong</span><span class="sep">·</span><span class="lang-zh">欢朋酒店 · 浦东张杨路579号</span></span>
+            </div>
+            <div class="e-detail">Taxi ~20 phút, ~12km. Gần ga Metro Shangcheng Rd (Line 9)</div>
+            <div class="tags"><span class="tag t-transport">Taxi ~15 phút</span><span class="tag t-cost">80.000đ</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry ok">
+        <div class="entry-inner">
+          <div class="e-time">12:30 – 15:00</div>
+          <div class="e-body">
+            <div class="e-title">Check-in HomeInn Selected (No.1 Yaohan)
+              <span class="tri"><span class="lang-en">Homeinn Selected · Shangcheng Rd Station</span><span class="sep">·</span><span class="lang-zh">欢朋酒店 · 商城路地铁站</span></span>
+            </div>
+            <div class="e-detail">Để đồ, tắm, nghỉ ngơi ngắn trước khi ra ngoài</div>
+            <div class="tags"><span class="tag t-hotel">Check-in</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry transport">
+        <div class="entry-inner">
+          <div class="e-time">15:00 – 16:00</div>
+          <div class="e-body">
+            <div class="e-title">HomeInn → Phố đi bộ Nam Kinh
+              <span class="tri"><span class="lang-en">Nanjing Road Pedestrian Street</span><span class="sep">·</span><span class="lang-zh">南京路步行街</span></span>
+            </div>
+            <div class="e-detail">Metro Line 9 từ Shangcheng Rd → Century Ave → đổi Line 2 → Nanjing East Rd Station, ~30 phút</div>
+            <div class="tags"><span class="tag t-transport">Metro Line 2 ~25 phút</span><span class="tag t-cost">15.000đ</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry hl">
+        <div class="entry-inner">
+          <div class="e-time">16:00 – 17:15</div>
+          <div class="e-body">
+            <div class="e-title">Phố đi bộ Nam Kinh
+              <span class="tri"><span class="lang-en">Nanjing Road Pedestrian Street</span><span class="sep">·</span><span class="lang-zh">南京路步行街</span></span>
+            </div>
+            <div class="e-detail">Check-in các góc nổi tiếng, mua sắm, ăn nhẹ dọc đường</div>
+            <div class="tags"><span class="tag t-cost">Free</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry transport">
+        <div class="entry-inner">
+          <div class="e-time">17:15 – 17:30</div>
+          <div class="e-body">
+            <div class="e-title">Đi bộ từ Nam Kinh → Bến Thượng Hải</div>
+            <div class="e-detail">~10 phút đi bộ xuống hướng đông. Ra tới bến lúc 17:30 — trước khi đèn lên để chọn vị trí chụp ảnh đẹp</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry hl">
+        <div class="entry-inner">
+          <div class="e-time">17:30 – 20:00</div>
+          <div class="e-body">
+            <div class="e-title">Bến Thượng Hải
+              <span class="tri"><span class="lang-en">The Bund</span><span class="sep">·</span><span class="lang-zh">外滩</span></span>
+            </div>
+            <div class="e-detail">Có mặt từ 17:30 để chọn góc đứng đẹp trước khi đông. 18:00 đèn các toà nhà phía Tây bắt đầu lên, 18:30 tháp Minh Châu Phương Đông lên đèn, 19:00 toàn bộ skyline sáng lung linh — đây là thời điểm chụp ảnh đẹp nhất. Ở lại tận hưởng đến ~20:00</div>
+            <div class="tags"><span class="tag t-cost">Free</span><span class="tag t-tip">Có mặt 17:30 để chọn góc trước khi đông!</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry food">
+        <div class="entry-inner">
+          <div class="e-time">20:00 – 21:00</div>
+          <div class="e-body">
+            <div class="e-title">Ăn tối — khu Tianjin Rd / Ningbo Rd
+              <span class="tri"><span class="lang-en">Near Nanjing East Rd & The Bund</span><span class="sep">·</span><span class="lang-zh">天津路 / 宁波路</span></span>
+            </div>
+            <div class="e-detail">Cả 3 quán trong bán kính 5 phút đi bộ từ The Bund — không ngược đường trước khi qua Lujiazui</div>
+            <div class="food-callout">
+              <strong>⭐ Lai Lai Xiao Long · 莱莱小笼</strong> — <span>506 Tianjin Rd · Michelin Bib Gourmand · XLB crab roe nổi tiếng nhất Shanghai</span>
+            </div>
+            <div class="food-callout">
+              <strong>Yang's Fried Dumpling · 小杨生煎</strong> — <span>Ningbo Rd · bánh bao chiên giòn kinh điển</span>
+            </div>
+            <div class="food-callout">
+              <strong>Zhuangshi Longxing Noodle · 状氏龙兴小笼虾面馆</strong> — <span>Zhejiang Rd (M) · mì cua lông đặc sản</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry hl">
+        <div class="entry-inner">
+          <div class="e-time">21:00 – 22:00</div>
+          <div class="e-body">
+            <div class="e-title">Lưu Gia Chuỷ
+              <span class="tri"><span class="lang-en">Lujiazui Viewpoint</span><span class="sep">·</span><span class="lang-zh">陆家嘴</span></span>
+            </div>
+            <div class="e-detail">Qua phà hoặc Bund Tunnel, ngắm The Bund từ phía đối diện. Tháp Minh Châu, SWFC, Shanghai Tower lung linh về đêm</div>
+            <div class="tags"><span class="tag t-cost">Free</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry transport">
+        <div class="entry-inner">
+          <div class="e-time">22:00 – 22:45</div>
+          <div class="e-body">
+            <div class="e-title">Về HomeInn Selected (No.1 Yaohan)
+              <span class="tri"><span class="lang-en">Back to Homeinn Selected</span><span class="sep">·</span><span class="lang-zh">回欢朋酒店</span></span>
+            </div>
+            <div class="e-detail">Metro Line 2 Lujiazui → Century Ave → đổi Line 9 → Shangcheng Rd, ~30 phút</div>
+            <div class="tags"><span class="tag t-transport">Metro Line 2 ~25 phút</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 27/04 DISNEY ===== -->
+  <div class="day-panel" id="p1">
+    <div class="day-head">
+      <div class="day-num">02</div>
+      <div class="day-info">
+        <div class="day-date">Thứ hai · 27/04/2026</div>
+        <div class="day-title">Shanghai — <em>Disneyland</em></div>
+        <div class="day-subtitle">Nguyên ngày · Mua Early Park Entry</div>
+      </div>
+    </div>
+
+    <div class="timeline">
+      <div class="entry transport">
+        <div class="entry-inner">
+          <div class="e-time">06:30 – 07:00</div>
+          <div class="e-body">
+            <div class="e-title">Ăn sáng nhanh + chuẩn bị đồ</div>
+            <div class="e-detail">Mang theo: hộ chiếu, sạc DP, bình nước 650ml, tấm lót ngồi, đồ ăn nhẹ</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry transport">
+        <div class="entry-inner">
+          <div class="e-time">07:00 – 07:30</div>
+          <div class="e-body">
+            <div class="e-title">Khách sạn → Cổng Disneyland
+              <span class="tri"><span class="lang-en">Shanghai Disneyland</span><span class="sep">·</span><span class="lang-zh">上海迪士尼乐园</span></span>
+            </div>
+            <div class="e-detail">Metro Line 9 từ Shangcheng Rd → Century Ave → đổi Line 2 → Longyang Rd → đổi Line 16 → Disney Resort Station, ~50 phút tổng</div>
+            <div class="tags"><span class="tag t-transport">Free bus / Metro</span><span class="tag t-tip">Đến trước giờ mở cửa</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry ok">
+        <div class="entry-inner">
+          <div class="e-time">07:30</div>
+          <div class="e-body">
+            <div class="e-title">Early Park Entry — vào cổng
+              <span class="tri"><span class="lang-en">Shanghai Disneyland · Early Park Entry</span><span class="sep">·</span><span class="lang-zh">上海迪士尼 · 提前入园</span></span>
+            </div>
+            <div class="e-detail">Chơi các trò hot trước khi đông: Zootopia mở lúc 8:30, Tron và Pirates vào sớm</div>
+            <div class="tags"><span class="tag t-tip">Early Park Entry +600K</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry hl">
+        <div class="entry-inner">
+          <div class="e-time">07:30 – 21:15</div>
+          <div class="e-body">
+            <div class="e-title">Vui chơi nguyên ngày
+              <span class="tri"><span class="lang-en">Shanghai Disneyland</span><span class="sep">·</span><span class="lang-zh">上海迪士尼乐园</span></span>
+            </div>
+            <div class="e-detail">Dùng app <strong>Shanghai Disney Resort</strong> để xem thời gian chờ real-time. Camp vị trí pháo hoa trước lâu đài từ ~19:00 nếu bắn lúc 21:15</div>
+            <div class="tags"><span class="tag t-urgent">Camp chỗ pháo hoa trước 2 tiếng</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry hl">
+        <div class="entry-inner">
+          <div class="e-time">21:15 – 21:30</div>
+          <div class="e-body">
+            <div class="e-title">Pháo hoa Disney
+              <span class="tri"><span class="lang-en">Disney Fireworks Show</span><span class="sep">·</span><span class="lang-zh">迪士尼烟花秀</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry transport">
+        <div class="entry-inner">
+          <div class="e-time">21:45 – 22:45</div>
+          <div class="e-body">
+            <div class="e-title">Về HomeInn Selected (No.1 Yaohan)</div>
+            <div class="e-detail">Chờ 15–20 phút sau pháo hoa rồi mới đi, tránh chen lấn cổng</div>
+            <div class="tags"><span class="tag t-tip">Chờ bớt đông rồi đi</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="note"><strong>Mua vé:</strong> Early Park Entry 900K · 1 day 1.375K. Đặt trên Klook hoặc Traveloka. Phải mua trước 7–10 ngày.</div>
+  </div>
+
+  <!-- ===== 28/04 ===== -->
+  <div class="day-panel" id="p2">
+    <div class="day-head">
+      <div class="day-num">03</div>
+      <div class="day-info">
+        <div class="day-date">Thứ ba · 28/04/2026</div>
+        <div class="day-title">Nội thành <em>Thượng Hải</em></div>
+        <div class="day-subtitle">Jing'an → French Concession → Tân Thiên Địa → Bảo tàng → Vườn Dự Viên → Jia Jia Tang Bao</div>
+      </div>
+    </div>
+
+    <div class="route-note">
+      <strong>Lộ trình tối ưu (tây → tây nam → trung tâm → đông):</strong> Zhang Shi Fu sáng (Shimen Rd, Jing'an) → Jing'an Temple → Moller → Wukang → Apoli Bakery → Din Tai Fung trưa (Xintiandi) → Bảo tàng (People's Sq) → Vườn Dự Viên (Old Town) → Jia Jia Tang Bao tối (Huanghe Rd, People's Sq) → Metro về Pudong. Không backtrack.
+    </div>
+
+    <div class="timeline">
+      <div class="entry food">
+        <div class="entry-inner">
+          <div class="e-time">07:30 – 08:30</div>
+          <div class="e-body">
+            <div class="e-title">Ăn sáng — Zhang Shi Fu
+              <span class="tri"><span class="lang-en">Zhang Shi Fu Breakfast Shop</span><span class="sep">·</span><span class="lang-zh">张师傅早餐店</span></span>
+            </div>
+            <div class="e-detail">487 Shimen 2nd Rd, Jing'an — ngay trên đường đến Jing'an Temple, mở từ 05:00. Quán sáng local nổi tiếng ~8–10 tệ/người. Đặc sản: xôi chiên, sữa đậu nành nóng, xiaolongbao tươi, shengjian</div>
+            <div class="food-callout"><strong>Zhang Shi Fu 张师傅</strong> — <span>487 Shimen 2nd Rd · Mở 05:00–12:00 · ~30.000đ/người</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry transport">
+        <div class="entry-inner">
+          <div class="e-time">08:30 – 09:00</div>
+          <div class="e-body">
+            <div class="e-title">Metro Line 2 → Chùa Tĩnh An
+              <span class="tri"><span class="lang-en">Jing'an Temple Station</span><span class="sep">·</span><span class="lang-zh">静安寺站</span></span>
+            </div>
+            <div class="e-detail">Zhang Shi Fu ngay sát Metro Shimen Rd → đi 1 trạm tới Jing'an Temple Station</div>
+            <div class="tags"><span class="tag t-transport">Metro ~5 phút</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry hl">
+        <div class="entry-inner">
+          <div class="e-time">09:00 – 10:00</div>
+          <div class="e-body">
+            <div class="e-title">Chùa Tĩnh An
+              <span class="tri"><span class="lang-en">Jing'an Temple</span><span class="sep">·</span><span class="lang-zh">静安寺</span></span>
+            </div>
+            <div class="tags"><span class="tag t-cost">150.000đ</span><span class="tag t-tip">Đặt online qua Klook</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry hl">
+        <div class="entry-inner">
+          <div class="e-time">10:00 – 11:00</div>
+          <div class="e-body">
+            <div class="e-title">Biệt thự Moller + Khách sạn Hoà Bình
+              <span class="tri"><span class="lang-en">Moller Villa · Peace Hotel</span><span class="sep">·</span><span class="lang-zh">马勒别墅 · 和平饭店</span></span>
+            </div>
+            <div class="e-detail">Đi bộ ~10 phút từ Chùa Tĩnh An. Kiến trúc cổ châu Âu độc đáo</div>
+            <div class="tags"><span class="tag t-cost">Free</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry hl">
+        <div class="entry-inner">
+          <div class="e-time">11:00 – 11:45</div>
+          <div class="e-body">
+            <div class="e-title">Tòa nhà Vũ Khang
+              <span class="tri"><span class="lang-en">Wukang Building</span><span class="sep">·</span><span class="lang-zh">武康大楼</span></span>
+            </div>
+            <div class="e-detail">Taxi ~2km về hướng nam. Góc ảnh iconic nhất Shanghai</div>
+            <div class="tags"><span class="tag t-transport">Taxi ~5 phút</span><span class="tag t-cost">Free</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry cafe">
+        <div class="entry-inner">
+          <div class="e-time">11:45 – 12:30</div>
+          <div class="e-body">
+            <div class="e-title">Apoli Ita Bakery
+              <span class="tri"><span class="lang-en">Italian Bakery · Wukang Road</span><span class="sep">·</span><span class="lang-zh">意大利烘焙 · 武康路</span></span>
+            </div>
+            <div class="e-detail">Ngay trên đường Wukang, đi bộ ra từ tòa nhà Vũ Khang. Bánh Ý kiểu Napoli, cà phê ngon, góc phố đẹp</div>
+            <div class="tags"><span class="tag t-cafe">Wukang Road</span><span class="tag t-tip">Ngay cạnh Wukang Building</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry food">
+        <div class="entry-inner">
+          <div class="e-time">12:30 – 13:30</div>
+          <div class="e-body">
+            <div class="e-title">Ăn trưa tại Tân Thiên Địa
+              <span class="tri"><span class="lang-en">Xintiandi</span><span class="sep">·</span><span class="lang-zh">新天地</span></span>
+            </div>
+            <div class="e-detail">Đi taxi ~10 phút từ Wukang về Xintiandi. 2 lựa chọn cùng khu</div>
+            <div class="food-callout"><strong>⭐ Din Tai Fung — Xintiandi branch</strong> — <span>Lane 123 Xinye Rd, Xintiandi — XLB chuẩn Đài Loan, consistent quality, tầng 2 của complex Xintiandi South Block</span></div>
+            <div class="food-callout"><strong>Hoặc: Han Xiang Noodle Bar</strong> — <span>Huahai Rd (M) — mì ngon, 500m từ Wukang, cùng khu French Concession — ghé trước khi đến Xintiandi</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-inner">
+          <div class="e-time">13:30 – 14:30</div>
+          <div class="e-body">
+            <div class="e-title">Bảo Tàng Thượng Hải
+              <span class="tri"><span class="lang-en">Shanghai Museum</span><span class="sep">·</span><span class="lang-zh">上海博物馆</span></span>
+            </div>
+            <div class="e-detail">Taxi ~2km hướng bắc về People's Square. Đặt slot qua WeChat → "上海博物馆" → 预约</div>
+            <div class="tags"><span class="tag t-cost">Free</span><span class="tag t-tip">Đặt slot WeChat trước</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry hl">
+        <div class="entry-inner">
+          <div class="e-time">14:30 – 16:30</div>
+          <div class="e-body">
+            <div class="e-title">Vườn Dự Viên
+              <span class="tri"><span class="lang-en">Yu Garden</span><span class="sep">·</span><span class="lang-zh">豫园</span></span>
+            </div>
+            <div class="e-detail">Taxi ~1.5km đông từ Bảo tàng về khu Old Town. Vườn cổ triều Minh, bazaar xung quanh</div>
+            <div class="tags"><span class="tag t-cost">156.000đ</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry transport">
+        <div class="entry-inner">
+          <div class="e-time">16:30 – 17:30</div>
+          <div class="e-body">
+            <div class="e-title">Vườn Dự Viên → People's Square
+              <span class="tri"><span class="lang-en">People's Square Metro</span><span class="sep">·</span><span class="lang-zh">人民广场</span></span>
+            </div>
+            <div class="e-detail">Taxi ~2km về hướng tây bắc. Ghé ăn tối rồi bắt Metro về Pudong ngay tại People's Square</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry food">
+        <div class="entry-inner">
+          <div class="e-time">17:30 – 19:00</div>
+          <div class="e-body">
+            <div class="e-title">Ăn tối — Jia Jia Tang Bao
+              <span class="tri"><span class="lang-en">Jia Jia Tang Bao · Soup Dumplings</span><span class="sep">·</span><span class="lang-zh">佳家汤包</span></span>
+            </div>
+            <div class="e-detail">90 Huanghe Road, Huangpu — ngay cạnh People's Square, tiện Metro về Pudong. Quán tiểu long bao 140 năm nổi tiếng nhất Shanghai, người địa phương xếp hàng mỗi ngày</div>
+            <div class="food-callout"><strong>⭐ Jia Jia Tang Bao 佳家汤包</strong> — <span>90 Huanghe Rd · Must try: XLB nhân thịt heo, XLB nhân cua · ~25–40 tệ/cage</span></div>
+            <div class="food-callout"><strong>Hoặc: De Xing Guan 德兴馆</strong> — <span>471 Zhapu Rd · 140 năm · San xian bao, guotie (bánh bao chiên giòn)</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry transport">
+        <div class="entry-inner">
+          <div class="e-time">19:00 – 20:00</div>
+          <div class="e-body">
+            <div class="e-title">Về HomeInn Selected (No.1 Yaohan)</div>
+            <div class="e-detail">Metro Line 2 từ People's Square → Century Ave → đổi Line 9 → Shangcheng Rd, ~25 phút. Nghỉ sớm, ngày mai checkout</div>
+            <div class="tags"><span class="tag t-transport">Metro Line 2 ~20 phút</span><span class="tag t-tip">Nghỉ sớm — ngày mai checkout 07:00</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 29/04 ===== -->
+  <div class="day-panel" id="p3">
+    <div class="day-head">
+      <div class="day-num">04</div>
+      <div class="day-info">
+        <div class="day-date">Thứ tư · 29/04/2026</div>
+        <div class="day-title">Shanghai → <em>Hàng Châu</em> → Ô Trấn</div>
+        <div class="day-subtitle">Gửi đồ ga HZ → Chùa Linh Ẩn → Green Tea Restaurant → Đạp xe Tây Hồ → Ô Trấn check-in tối</div>
+      </div>
+    </div>
+
+    <div class="route-note">
+      <strong>Lộ trình ngày 29:</strong> Gửi hành lý ga → taxi thẳng Chùa Linh Ẩn (điểm xa nhất, phía Tây) → ăn trưa Green Tea Restaurant giữa đồi trà Longjing → thuê xe đạp tại Yanggong Causeway → đạp Tô Đề → Bạch Đề → lấy đồ → xe khách Ô Trấn. Không kéo vali cả ngày, về Ô Trấn trước 22:00 kịp giờ vào cổng.
+    </div>
+
+    <div class="timeline">
+      <div class="entry warn">
+        <div class="entry-inner">
+          <div class="e-time">07:00 – 08:00</div>
+          <div class="e-body">
+            <div class="e-title">Ăn sáng nhanh + Checkout HomeInn Selected</div>
+            <div class="food-callout"><strong>Xiao Yang Sheng Jian · 小杨生煎</strong> — <span>97 Huanghe Rd · Shengjian nổi tiếng · mở sáng sớm · ăn nhanh trước khi ra ga</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry transport">
+        <div class="entry-inner">
+          <div class="e-time">08:00 – 09:00</div>
+          <div class="e-body">
+            <div class="e-title">HomeInn → Ga Hồng Kiều
+              <span class="tri"><span class="lang-en">Hongqiao Railway Station</span><span class="sep">·</span><span class="lang-zh">虹桥火车站</span></span>
+            </div>
+            <div class="e-detail">Metro Line 9 từ Shangcheng Rd → đổi tại Yishan Rd (Line 3) → Hongqiao Railway Station, ~50 phút. Hoặc taxi ~25km ~200K. Lên tầng 2 vào khu ga tàu</div>
+            <div class="tags"><span class="tag t-transport">Metro Line 9 + Line 3 ~50 phút</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry transport">
+        <div class="entry-inner">
+          <div class="e-time">09:09 – 10:02</div>
+          <div class="e-body">
+            <div class="e-title">G-train → Ga Đông Hàng Châu
+              <span class="tri"><span class="lang-en">Hangzhou East Railway Station</span><span class="sep">·</span><span class="lang-zh">杭州东站</span></span>
+            </div>
+            <div class="e-detail">Tàu G-class ~53 phút. Đặt vé trước trên Alipay → Di chuyển → Tàu. Tham khảo chuyến G7349: 09:09 → 10:02</div>
+            <div class="tags"><span class="tag t-transport">G-train ~53 phút</span><span class="tag t-cost">~200–300K/người</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry ok">
+        <div class="entry-inner">
+          <div class="e-time">10:05 – 10:20</div>
+          <div class="e-body">
+            <div class="e-title">Gửi hành lý locker ga
+              <span class="tri"><span class="lang-en">Luggage Locker</span><span class="sep">·</span><span class="lang-zh">储物柜</span></span>
+            </div>
+            <div class="e-detail">Tủ khóa tự phục vụ ngay trong ga, ~10–15 tệ/kiện. Giữ túi nhỏ đồ cần thiết. Nhớ chụp số tủ và mã</div>
+            <div class="tags"><span class="tag t-cost">~10–15 tệ/kiện</span><span class="tag t-tip">Tự do cả ngày không kéo vali!</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry transport">
+        <div class="entry-inner">
+          <div class="e-time">10:20 – 10:50</div>
+          <div class="e-body">
+            <div class="e-title">Didi/Taxi đến Chùa Linh Ẩn
+              <span class="tri"><span class="lang-en">Lingyin Temple</span><span class="sep">·</span><span class="lang-zh">灵隐寺</span></span>
+            </div>
+            <div class="e-detail">Từ ga, bắt Didi thẳng đến Linh Ẩn ~25–30 phút. Chùa nằm phía Tây, xa nhất — giải quyết điểm xa trước, tiết kiệm thời gian di chuyển cả ngày</div>
+            <div class="tags"><span class="tag t-transport">Didi ~25 phút</span><span class="tag t-cost">~30–40 tệ</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry hl">
+        <div class="entry-inner">
+          <div class="e-time">10:30 – 12:00</div>
+          <div class="e-body">
+            <div class="e-title">Chùa Linh Ẩn + Phi Lai Phong
+              <span class="tri"><span class="lang-en">Lingyin Temple · Flying Peak</span><span class="sep">·</span><span class="lang-zh">灵隐寺 · 飞来峰</span></span>
+            </div>
+            <div class="e-detail">Một trong những ngôi chùa Phật giáo lớn nhất Trung Quốc, nằm giữa rừng cây xanh mát. Phi Lai Phong có hàng trăm tượng Phật cổ khắc trên vách đá — rất ấn tượng. Đi bộ thoải mái trong 1.5 tiếng</div>
+            <div class="tags"><span class="tag t-cost">~45 tệ/người</span><span class="tag t-tip">Mặc kín đáo khi vào chùa</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry transport">
+        <div class="entry-inner">
+          <div class="e-time">12:15</div>
+          <div class="e-body">
+            <div class="e-title">Didi đến Green Tea Restaurant
+              <span class="tri"><span class="lang-en">Green Tea Restaurant · 83 Longjing Rd</span><span class="sep">·</span><span class="lang-zh">绿茶餐厅 · 龙井路83号</span></span>
+            </div>
+            <div class="e-detail">Từ Linh Ẩn đến Longjing Road ~10 phút Didi. Nằm giữa đồi trà, không gian cực kỳ cổ kính và chill. Có thể đặt chỗ qua Dianping trước để tránh chờ</div>
+            <div class="tags"><span class="tag t-transport">Didi ~10 phút</span><span class="tag t-tip">Đặt chỗ trước trên Dianping</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry food">
+        <div class="entry-inner">
+          <div class="e-time">12:30 – 14:00</div>
+          <div class="e-body">
+            <div class="e-title">Ăn trưa — Green Tea Restaurant
+              <span class="tri"><span class="lang-en">Green Tea Restaurant · Longjing Road</span><span class="sep">·</span><span class="lang-zh">绿茶餐厅 · 龙井路</span></span>
+            </div>
+            <div class="e-detail">Nhà hàng nổi tiếng nằm giữa đồi trà Longjing, kiến trúc truyền thống, view cực chill. Thực đơn đặc trưng Hàng Châu kết hợp trà xanh</div>
+            <div class="food-callout"><strong>⭐ Must order: Gà nướng trà xanh (绿茶烤鸡)</strong> — <span>Đặc sản nhà hàng · Also try: 面包诱惑 (bánh mì kiểu fusion), trà Longjing tại chỗ</span></div>
+            <div class="tags"><span class="tag t-cost">~100–150 tệ/người</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry transport">
+        <div class="entry-inner">
+          <div class="e-time">14:15</div>
+          <div class="e-body">
+            <div class="e-title">Ra Yanggong Causeway — thuê xe đạp
+              <span class="tri"><span class="lang-en">Yanggong Causeway · Bike Rental</span><span class="sep">·</span><span class="lang-zh">杨公堤 · 租自行车</span></span>
+            </div>
+            <div class="e-detail">Thuê xe đạp ngay gần khu Longjing hoặc bắt Didi ra bến Yanggong Causeway. Dùng app Meituan Bike / HelloBike quét mã — ~1.5 tệ/30 phút. Bắt đầu lộ trình đạp xe đẹp nhất Tây Hồ</div>
+            <div class="tags"><span class="tag t-transport">Didi ~10 phút hoặc đi bộ</span><span class="tag t-cost">~1.5 tệ/30 phút</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry hl">
+        <div class="entry-inner">
+          <div class="e-time">14:15 – 16:30</div>
+          <div class="e-body">
+            <div class="e-title">Đạp xe vòng Tây Hồ — cung đường xuyên lòng hồ
+              <span class="tri"><span class="lang-en">West Lake Cycling Route</span><span class="sep">·</span><span class="lang-zh">西湖骑行</span></span>
+            </div>
+            <div class="e-detail">Lộ trình đẹp nhất, xuyên qua lòng hồ: <strong>Yanggong Causeway (杨公堤) → Su Causeway / Đê Tô (苏堤) → Bai Causeway / Đê Bạch (白堤)</strong>. Hai đê này chạy xuyên qua mặt hồ, hai bên là liễu rủ và hoa đào (tháng 4 vẫn còn). Tổng ~8–10km, thong thả ~2 tiếng</div>
+            <div class="tags"><span class="tag t-cost">~60.000đ</span><span class="tag t-tip">Highlight Hàng Châu!</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry transport">
+        <div class="entry-inner">
+          <div class="e-time">16:30 – 17:00</div>
+          <div class="e-body">
+            <div class="e-title">Quay lại ga lấy hành lý → xe khách đi Ô Trấn</div>
+            <div class="e-detail">Taxi ~20 phút về ga, lấy đồ. Xe khách từ 杭州客运中心站 → Tongxiang → taxi vào Ô Trấn ~1.5 tiếng</div>
+            <div class="tags"><span class="tag t-transport">Xe khách ~1.5 tiếng</span><span class="tag t-cost">~40–80 tệ</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry ok">
+        <div class="entry-inner">
+          <div class="e-time">18:30 – 19:30</div>
+          <div class="e-body">
+            <div class="e-title">CHECK-IN ZELIN Viewing Pavilion Hotel (Xizha)
+              <span class="tri"><span class="lang-en">Wuzhen ZELIN Viewing Pavilion Boutique Hotel</span><span class="sep">·</span><span class="lang-zh">乌镇泽林观亭精品酒店 · 西栅</span></span>
+            </div>
+            <div class="e-detail">Khách sạn nằm <strong>bên trong</strong> khu Tây Sách — có thể bao gồm vé vào cổng, hỏi khi check-in. Báo khách sạn giờ đến trước. Taxi từ bến xe Tongxiang vào thẳng cổng Tây Sách</div>
+            <div class="tags"><span class="tag t-hotel">CHECK-IN</span><span class="tag t-tip">Báo homestay trước</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry food">
+        <div class="entry-inner">
+          <div class="e-time">19:30 – 20:30</div>
+          <div class="e-body">
+            <div class="e-title">Ăn tối trong Ô Trấn
+              <span class="tri"><span class="lang-en">Wuzhen Local Dining</span><span class="sep">·</span><span class="lang-zh">乌镇本地餐</span></span>
+            </div>
+            <div class="food-callout"><strong>Shusheng Lamb Noodle · 庶生羊肉面</strong> — <span>Nhà số 218, Tây Sách · 西栅</span></div>
+            <div class="food-callout"><strong>Wuzhen Radish Cake · 乌镇萝卜丝饼</strong> — <span>Nhà số 499, Tây Sách · 西栅</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry hl">
+        <div class="entry-inner">
+          <div class="e-time">20:30 – 22:00</div>
+          <div class="e-body">
+            <div class="e-title">Khám phá Khu Tây Sách về đêm
+              <span class="tri"><span class="lang-en">Xizha West Scenic Area · Night Scene</span><span class="sep">·</span><span class="lang-zh">西栅景区 · 夜景</span></span>
+            </div>
+            <div class="e-detail">Đèn lồng, kênh đào, kiến trúc cổ về đêm đẹp nhất. Từ ZELIN bước thẳng ra là khu cảnh quan — rất tiện. Tây Sách đóng cửa 22:00 nên cần vào trước 21:30</div>
+            <div class="tags"><span class="tag t-cost">Vé ~150 tệ khu Tây</span><span class="tag t-urgent">Vào trước 21:30!</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="note"><strong>Tips ZELIN Hotel & Tây Sách:</strong> Khách sạn nằm bên trong khu Tây Sách — hỏi khi booking xem có bao gồm vé vào cổng không, thường khách ở trong được ưu đãi. Thuyền kênh 60 tệ/người đặt tại bến. Checkout ZELIN trước 12:00, đặt taxi ra Tongxiang trước ~30 phút.</div>
+  </div>
+
+  <!-- ===== 30/04 ===== -->
+  <div class="day-panel" id="p4">
+    <div class="day-head">
+      <div class="day-num">05</div>
+      <div class="day-info">
+        <div class="day-date">Thứ năm · 30/04/2026</div>
+        <div class="day-title"><em>Ô Trấn</em> sáng → Shanghai</div>
+        <div class="day-subtitle">Chụp ảnh sáng sớm → Thuyền → Ăn sáng → Checkout → Check-in SH → Tham quan nốt</div>
+      </div>
+    </div>
+
+    <div class="timeline">
+      <div class="entry hl">
+        <div class="entry-inner">
+          <div class="e-time">06:30 – 07:30</div>
+          <div class="e-body">
+            <div class="e-title">Khu Tây Sách — dạo sáng chụp ảnh
+              <span class="tri"><span class="lang-en">Xizha West Scenic Area (Morning)</span><span class="sep">·</span><span class="lang-zh">西栅景区 · 清晨</span></span>
+            </div>
+            <div class="e-detail">Trước 7:00 gần như không có khách — ánh sáng vàng buổi sáng, sương mù trên kênh, cổ kính và yên tĩnh nhất. Đây là thời điểm đẹp nhất của Ô Trấn</div>
+            <div class="tags"><span class="tag t-tip">Thời điểm vàng chụp ảnh!</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry hl">
+        <div class="entry-inner">
+          <div class="e-time">07:30 – 08:30</div>
+          <div class="e-body">
+            <div class="e-title">Đi thuyền kênh trong Ô Trấn
+              <span class="tri"><span class="lang-en">Wupeng Boat Canal Tour</span><span class="sep">·</span><span class="lang-zh">乌篷船 · 游览</span></span>
+            </div>
+            <div class="e-detail">Đặt tại bến — nói "有乌篷船" (Yǒu wūpéng chuán). Thuyền gỗ mái vòm truyền thống, ngắm kiến trúc cổ hai bên kênh. Buổi sáng ít người, lãng mạn nhất</div>
+            <div class="tags"><span class="tag t-cost">60 tệ/người (~230K)</span><span class="tag t-hotel">Đặt trực tiếp tại bến</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry food">
+        <div class="entry-inner">
+          <div class="e-time">08:30 – 09:00</div>
+          <div class="e-body">
+            <div class="e-title">Ăn sáng cuối tại Ô Trấn</div>
+            <div class="food-callout"><strong>Shusheng Lamb Noodle · 庶生羊肉面</strong> — <span>Nhà số 218, Tây Sách — tô mì nóng trước khi rời</span></div>
+            <div class="food-callout"><strong>Wuzhen Radish Cake · 乌镇萝卜丝饼</strong> — <span>Nhà số 499, Tây Sách — mua thêm mang theo đường</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry warn">
+        <div class="entry-inner">
+          <div class="e-time">09:00 – 09:30</div>
+          <div class="e-body">
+            <div class="e-title">Checkout ZELIN Hotel</div>
+            <div class="e-detail">Checkout trước 12:00. Đặt taxi từ cổng Tây Sách ra bến xe Tongxiang trước</div>
+            <div class="tags"><span class="tag t-urgent">Báo chủ nhà tối hôm trước!</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry transport">
+        <div class="entry-inner">
+          <div class="e-time">09:30 – 12:00</div>
+          <div class="e-body">
+            <div class="e-title">Ô Trấn → Shanghai</div>
+            <div class="e-detail">Xe khách thẳng từ cổng Tây Sách về Shanghai ~3 tiếng. Hoặc taxi → ga Đồng Hương (Tongxiang) → tàu cao tốc về Hồng Kiều nhanh hơn</div>
+            <div class="tags"><span class="tag t-transport">Xe khách ~3 tiếng</span><span class="tag t-cost">~500.000đ</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry food">
+        <div class="entry-inner">
+          <div class="e-time">12:00 – 13:30</div>
+          <div class="e-body">
+            <div class="e-title">Gửi đồ + ăn trưa gần khách sạn mới</div>
+            <div class="food-callout"><strong>Yang's Fried Dumpling · 小杨生煎</strong> — <span>Ningbo Rd, Shanghai</span></div>
+            <div class="food-callout"><strong>Hoặc: Zhuangshi Longxing Noodle · 状氏龙兴小笼虾面馆</strong> — <span>Zhejiang Rd (M) · mì cua lông</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry ok">
+        <div class="entry-inner">
+          <div class="e-time">13:30 – 14:30</div>
+          <div class="e-body">
+            <div class="e-title">Check-in khách sạn Shanghai (đêm cuối)</div>
+            <div class="e-detail">Đêm 30/04 cần đặt thêm 1 đêm riêng (HomeInn hoặc khách sạn khác gần khu vực). Nhờ giữ hành lý nếu phòng chưa sẵn, vào phòng sau 14:00</div>
+            <div class="tags"><span class="tag t-hotel">CHECK-IN TRƯỚC KHI ĐI</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry hl">
+        <div class="entry-inner">
+          <div class="e-time">14:30 – 16:00</div>
+          <div class="e-body">
+            <div class="e-title">Thành điện ảnh Thượng Hải
+              <span class="tri"><span class="lang-en">Shanghai Film Park</span><span class="sep">·</span><span class="lang-zh">上海影视乐园</span></span>
+            </div>
+            <div class="tags"><span class="tag t-cost">Free</span><span class="tag t-transport">Taxi ~15 phút</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-inner">
+          <div class="e-time">16:00 – 18:00</div>
+          <div class="e-body">
+            <div class="e-title">Shopping — mua quà về
+              <span class="tri"><span class="lang-en">IFC Mall / Nanjing Road</span><span class="sep">·</span><span class="lang-zh">国金中心 / 南京路</span></span>
+            </div>
+            <div class="e-detail">IFC Mall Pudong, hoặc Nanjing Road</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry food">
+        <div class="entry-inner">
+          <div class="e-time">18:00 – 19:30</div>
+          <div class="e-body">
+            <div class="e-title">Bữa tối cuối tại Shanghai</div>
+            <div class="food-callout"><strong>Zhuangshi Longxing Noodle · 状氏龙兴小笼虾面馆</strong> — <span>Zhejiang Rd (M) · mì cua lông đặc sản</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry warn">
+        <div class="entry-inner">
+          <div class="e-time">19:30 – 22:00</div>
+          <div class="e-body">
+            <div class="e-title">Pack hành lý — chuẩn bị cho 01/05</div>
+            <div class="e-detail">Pin DP để trong xách tay, không ký gửi. Mỹ phẩm lỏng dưới 100ml. Không mang máy duỗi tóc</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ===== 01/05 ===== -->
+  <div class="day-panel" id="p5">
+    <div class="day-head">
+      <div class="day-num">06</div>
+      <div class="day-info">
+        <div class="day-date">Chủ nhật · 01/05/2026</div>
+        <div class="day-title">Bay về <em>Việt Nam</em></div>
+        <div class="day-subtitle">Sáng tự do · 16:00 bay PVG → VN</div>
+      </div>
+    </div>
+
+    <div class="timeline">
+      <div class="entry food">
+        <div class="entry-inner">
+          <div class="e-time">08:00 – 11:00</div>
+          <div class="e-body">
+            <div class="e-title">Ăn sáng + last shopping</div>
+            <div class="e-detail">Mua trà, bánh, snack Trung Quốc mang về. Dạo lần cuối nếu còn sức</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry warn">
+        <div class="entry-inner">
+          <div class="e-time">11:00 – 11:30</div>
+          <div class="e-body">
+            <div class="e-title">Checkout khách sạn</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry transport">
+        <div class="entry-inner">
+          <div class="e-time">11:30 – 12:30</div>
+          <div class="e-body">
+            <div class="e-title">Khách sạn → Sân bay Pudong
+              <span class="tri"><span class="lang-en">Pudong International Airport · PVG</span><span class="sep">·</span><span class="lang-zh">浦东国际机场</span></span>
+            </div>
+            <div class="e-detail">Maglev từ Longyang Rd ~8 phút (50 tệ) hoặc Taxi ~30 phút</div>
+            <div class="tags"><span class="tag t-transport">Maglev / Taxi</span><span class="tag t-cost">~170.000đ</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-inner">
+          <div class="e-time">12:30 – 16:00</div>
+          <div class="e-body">
+            <div class="e-title">Sân bay Pudong — làm thủ tục xuất cảnh
+              <span class="tri"><span class="lang-en">PVG International Departure</span><span class="sep">·</span><span class="lang-zh">浦东机场 · 出发层</span></span>
+            </div>
+            <div class="e-detail">PVG rất lớn — có mặt trước 3.5 tiếng là đủ an toàn</div>
+            <div class="tags"><span class="tag t-urgent">Buffer 3.5 tiếng</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry ok">
+        <div class="entry-inner">
+          <div class="e-time">16:00 – 22:00</div>
+          <div class="e-body">
+            <div class="e-title">PVG → Việt Nam ✈
+              <span class="tri"><span class="lang-en">Depart Pudong International → Vietnam</span><span class="sep">·</span><span class="lang-zh">浦东机场出发 → 越南</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== ĐẶT VÉ ===== -->
+  <div class="day-panel" id="p6">
+    <div class="day-head">
+      <div class="day-num" style="font-size:48px; color: var(--amber);">!</div>
+      <div class="day-info">
+        <div class="day-date">Booking checklist</div>
+        <div class="day-title">Đặt vé <em>trước</em></div>
+        <div class="day-subtitle">Dịp lễ 30/4 — đặt sớm để không hết chỗ</div>
+      </div>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-head"><div class="card-icon ic-d">D</div><div><div class="card-name">Shanghai Disneyland</div><div class="card-meta">27/04 T2 · Early Park Entry</div></div></div>
+        <div class="card-rows">
+          <div class="card-row"><span class="c-label">Đặt trước</span><span class="c-val c-urgent">Ngay bây giờ! Trước 7–10 ngày</span></div>
+          <div class="card-row"><span class="c-label">Nền tảng</span><span class="c-val">Klook hoặc Traveloka</span></div>
+          <div class="card-row"><span class="c-label">Early Park Entry</span><span class="c-val">+600K — vào trước 9:00</span></div>
+          <div class="card-row"><span class="c-label">Giá tham khảo</span><span class="c-val">Early 900K · 1 day 1.375K</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><div class="card-icon ic-p" style="background:#e8f5ee;color:#1e6640;">林</div><div><div class="card-name">Chùa Linh Ẩn + Phi Lai Phong</div><div class="card-meta">29/04 T4 · Sáng 10:30 · Không cần đặt trước</div></div></div>
+        <div class="card-rows">
+          <div class="card-row"><span class="c-label">Đặt trước</span><span class="c-val" style="color:var(--green)">Không bắt buộc — mua tại cổng</span></div>
+          <div class="card-row"><span class="c-label">Nền tảng</span><span class="c-val">Mua tại cổng hoặc Klook</span></div>
+          <div class="card-row"><span class="c-label">Giá vào cổng</span><span class="c-val">~45 tệ/người (~170K)</span></div>
+          <div class="card-row"><span class="c-label">Lưu ý</span><span class="c-val">Mặc kín đáo khi vào chùa · Didi từ ga ~25 phút</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><div class="card-icon ic-f">🍵</div><div><div class="card-name">Green Tea Restaurant — Đặt bàn</div><div class="card-meta">29/04 T4 · Trưa 12:30 · 83 Longjing Rd, Hangzhou</div></div></div>
+        <div class="card-rows">
+          <div class="card-row"><span class="c-label">Đặt trước</span><span class="c-val c-warn">Nên đặt qua Dianping để tránh chờ</span></div>
+          <div class="card-row"><span class="c-label">Nền tảng</span><span class="c-val">Dianping (大众点评) hoặc walk-in</span></div>
+          <div class="card-row"><span class="c-label">Địa chỉ TQ</span><span class="c-val">绿茶餐厅·龙井路83号</span></div>
+          <div class="card-row"><span class="c-label">Giá tham khảo</span><span class="c-val">~100–150 tệ/người (~380–570K)</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><div class="card-icon ic-w">烏</div><div><div class="card-name">Ô Trấn — Vé vào cổng</div><div class="card-meta">29–30/04 · ZELIN Hotel inside Xizha · Dịp lễ rất đông</div></div></div>
+        <div class="card-rows">
+          <div class="card-row"><span class="c-label">Đặt trước</span><span class="c-val c-warn">Nên đặt trước 2–3 ngày</span></div>
+          <div class="card-row"><span class="c-label">Vé khu Tây (Xizha)</span><span class="c-val">150 tệ/người (~570K)</span></div>
+          <div class="card-row"><span class="c-label">Thuyền trong trấn</span><span class="c-val">60 tệ/người — đặt tại bến</span></div>
+          <div class="card-row"><span class="c-label">Lưu ý</span><span class="c-val">ZELIN nằm trong Xizha — hỏi khi booking có bao gồm vé cổng không</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><div class="card-icon ic-m">博</div><div><div class="card-name">Bảo Tàng Thượng Hải</div><div class="card-meta">28/04 · Miễn phí nhưng cần đăng ký slot</div></div></div>
+        <div class="card-rows">
+          <div class="card-row"><span class="c-label">Cách đặt</span><span class="c-val">WeChat → "上海博物馆" → 预约</span></div>
+          <div class="card-row"><span class="c-label">Giá</span><span class="c-val">Free</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><div class="card-icon ic-j">静</div><div><div class="card-name">Chùa Tĩnh An</div><div class="card-meta">28/04 · Không bắt buộc đặt trước</div></div></div>
+        <div class="card-rows">
+          <div class="card-row"><span class="c-label">Nền tảng</span><span class="c-val">Klook hoặc mua tại cổng</span></div>
+          <div class="card-row"><span class="c-label">Giá</span><span class="c-val">~150.000đ/người</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== EATERY ===== -->
+  <div class="day-panel" id="p7">
+    <div class="day-head">
+      <div class="day-num" style="font-size:48px; color: var(--green);">✦</div>
+      <div class="day-info">
+        <div class="day-date">Food & Cafe guide</div>
+        <div class="day-title">Eatery <em>& Cafe</em></div>
+        <div class="day-subtitle">Danh sách đầy đủ + gợi ý đi ngày nào</div>
+      </div>
+    </div>
+
+    <div class="section-head">Shanghai — Ăn sáng</div>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-head"><div class="card-icon ic-sh" style="font-size:11px">☀</div><div><div class="card-name">Zhang Shi Fu <span class="tri" style="display:inline;font-size:10px;color:var(--amber);">张师傅早餐店</span></div><div class="card-meta">Quán sáng local, mở 05:00 — Jing'an District</div></div></div>
+        <div class="card-rows">
+          <div class="card-row"><span class="c-label">Địa chỉ</span><span class="c-val">487 Shimen 2nd Rd, Jing'an, Shanghai</span></div>
+          <div class="card-row"><span class="c-label">Giờ mở</span><span class="c-val">05:00 – 12:00</span></div>
+          <div class="card-row"><span class="c-label">Giá</span><span class="c-val">~8–10 tệ/người (~30–40K)</span></div>
+          <div class="card-row"><span class="c-label">Must order</span><span class="c-val">Xôi chiên, sữa đậu nành nóng, shengjian</span></div>
+          <div class="card-row"><span class="c-label">Đi ngày</span><span class="c-val c-link">Sáng 28/04 — ngay trên đường đến Jing'an Temple</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-head"><div class="card-icon ic-sh" style="font-size:11px">☀</div><div><div class="card-name">Xiao Yang Sheng Jian <span class="tri" style="display:inline;font-size:10px;color:var(--amber);">小杨生煎</span></div><div class="card-meta">Shengjian nổi tiếng nhất Shanghai — mở sáng sớm</div></div></div>
+        <div class="card-rows">
+          <div class="card-row"><span class="c-label">Địa chỉ</span><span class="c-val">97 Huanghe Rd, near People's Square</span></div>
+          <div class="card-row"><span class="c-label">Must order</span><span class="c-val">Shengjian (生煎包) — vỏ giòn đáy, nhân nước</span></div>
+          <div class="card-row"><span class="c-label">Đi ngày</span><span class="c-val c-link">Sáng 29/04 — ăn nhanh trước khi ra ga Hồng Kiều</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-head" style="margin-top:24px">Shanghai — Nhà hàng</div>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-head"><div class="card-icon ic-sh" style="font-size:11px">⭐</div><div><div class="card-name">Lai Lai Xiao Long <span class="tri" style="display:inline;font-size:10px;color:var(--amber);">莱莱小笼</span></div><div class="card-meta">XLB Michelin Bib Gourmand — crab roe nổi tiếng nhất Shanghai</div></div></div>
+        <div class="card-rows">
+          <div class="card-row"><span class="c-label">Địa chỉ (OG)</span><span class="c-val">506 Tianjin Rd, Huangpu (gần Nanjing East Rd)</span></div>
+          <div class="card-row"><span class="c-label">Chi nhánh Jing'an</span><span class="c-val">1726 West Beijing Rd, Jing'an</span></div>
+          <div class="card-row"><span class="c-label">Must order</span><span class="c-val">Crab roe XLB, pork-crab XLB, huntun</span></div>
+          <div class="card-row"><span class="c-label">Đi ngày</span><span class="c-val c-link">Tối 26/04 — 5 phút đi bộ từ Nanjing East Rd</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-head"><div class="card-icon ic-sh" style="font-size:11px">⭐</div><div><div class="card-name">Jia Jia Tang Bao <span class="tri" style="display:inline;font-size:10px;color:var(--amber);">佳家汤包</span></div><div class="card-meta">XLB nhân cua 140 năm — người local xếp hàng hàng ngày</div></div></div>
+        <div class="card-rows">
+          <div class="card-row"><span class="c-label">Địa chỉ</span><span class="c-val">90 Huanghe Rd, Huangpu (People's Square)</span></div>
+          <div class="card-row"><span class="c-label">Must order</span><span class="c-val">XLB nhân thịt heo + XLB nhân cua</span></div>
+          <div class="card-row"><span class="c-label">Đi ngày</span><span class="c-val c-link">Tối 28/04 — ngay trên đường về từ Vườn Dự Viên</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-head"><div class="card-icon ic-sh" style="font-size:11px">DTF</div><div><div class="card-name">Din Tai Fung <span class="tri" style="display:inline;font-size:10px;color:var(--amber);">鼎泰豐</span></div><div class="card-meta">XLB Đài Loan iconic — nhiều chi nhánh tại Shanghai</div></div></div>
+        <div class="card-rows">
+          <div class="card-row"><span class="c-label">Xintiandi branch</span><span class="c-val">Lane 123 Xinye Rd, Xintiandi South Block</span></div>
+          <div class="card-row"><span class="c-label">Must order</span><span class="c-val">XLB pork, crab roe noodle, pork chop fried rice</span></div>
+          <div class="card-row"><span class="c-label">Đi ngày</span><span class="c-val c-link">Trưa 28/04 tại Xintiandi (trên route)</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-head"><div class="card-icon ic-sh" style="font-size:11px">SH</div><div><div class="card-name">De Xing Guan <span class="tri" style="display:inline;font-size:10px;color:var(--amber);">德兴馆</span></div><div class="card-meta">140 năm — bánh bao old school Shanghai</div></div></div>
+        <div class="card-rows">
+          <div class="card-row"><span class="c-label">Địa chỉ</span><span class="c-val">471 Zhapu Rd, Hongkou (North Bund)</span></div>
+          <div class="card-row"><span class="c-label">Must order</span><span class="c-val">Tiểu long bao, San xian bao, Guotie chiên giòn</span></div>
+          <div class="card-row"><span class="c-label">Đi ngày</span><span class="c-val c-link">Option thay Jia Jia Tang Bao tối 28/04</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-head"><div class="card-icon ic-sh" style="font-size:11px">SH</div><div><div class="card-name">Zhuangshi Longxing Xiaolongxi Noodle</div><div class="card-meta">Mì cua lông — đặc sản theo mùa</div></div></div>
+        <div class="card-rows">
+          <div class="card-row"><span class="c-label">Địa chỉ</span><span class="c-val">Zhejiang Rd (M), Shanghai</span></div>
+          <div class="card-row"><span class="c-label">Đi ngày</span><span class="c-val c-link">Tối 26/04 hoặc tối 30/04</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-head"><div class="card-icon ic-sh" style="font-size:11px">SH</div><div><div class="card-name">Han Xiang Noodle Bar</div><div class="card-meta">Mì — nổi tiếng khu Huahai / French Concession</div></div></div>
+        <div class="card-rows">
+          <div class="card-row"><span class="c-label">Địa chỉ</span><span class="c-val">Huahai Rd (M), Shanghai</span></div>
+          <div class="card-row"><span class="c-label">Đi ngày</span><span class="c-val c-link">Option trưa 28/04 thay Din Tai Fung</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-head"><div class="card-icon ic-sh" style="font-size:11px">SH</div><div><div class="card-name">Yang's Fried Dumpling</div><div class="card-meta">Bánh bao chiên / Dimsum — icon Shanghai</div></div></div>
+        <div class="card-rows">
+          <div class="card-row"><span class="c-label">Địa chỉ</span><span class="c-val">Ningbo Rd, Shanghai</span></div>
+          <div class="card-row"><span class="c-label">Đi ngày</span><span class="c-val c-link">Tối 26/04 (gần Bund) hoặc trưa 30/04</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-head"><div class="card-icon ic-sh" style="font-size:11px">?</div><div><div class="card-name">Liu Shan Shan — cần xác nhận tên</div><div class="card-meta">Không tìm ra chính xác — cần confirm lại</div></div></div>
+        <div class="card-rows">
+          <div class="card-row"><span class="c-label">Lưu ý</span><span class="c-val c-urgent">Tên không tìm được — có thể nhầm với Shan Shi Liu (山石榴)?</span></div>
+          <div class="card-row"><span class="c-label">Nếu là Shan Shi Liu</span><span class="c-val">281 Maoming North Rd (French Concession)</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-head" style="margin-top:24px">Shanghai — Cafe</div>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-head"><div class="card-icon ic-c">☕</div><div><div class="card-name">Blue Bottle Coffee</div><div class="card-meta">View đường băng PVG</div></div></div>
+        <div class="card-rows">
+          <div class="card-row"><span class="c-label">Địa chỉ</span><span class="c-val">PVG Terminal 2, Pudong Airport</span></div>
+          <div class="card-row"><span class="c-label">Đi ngày</span><span class="c-val c-link">Sáng 26/04 — sau Pod Inn</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-head"><div class="card-icon ic-c">🥐</div><div><div class="card-name">Apoli Ita Bakery</div><div class="card-meta">Bánh Ý · Wukang Road</div></div></div>
+        <div class="card-rows">
+          <div class="card-row"><span class="c-label">Địa chỉ</span><span class="c-val">Wukang Road, Shanghai</span></div>
+          <div class="card-row"><span class="c-label">Đi ngày</span><span class="c-val c-link">28/04 — sau check-in Wukang Building</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-head" style="margin-top:24px">Hàng Châu</div>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-head"><div class="card-icon ic-f">🍵</div><div><div class="card-name">Green Tea Restaurant <span class="tri" style="display:inline;font-size:10px;color:var(--amber);">绿茶餐厅</span></div><div class="card-meta">Giữa đồi trà Longjing · không gian cổ kính, cực chill</div></div></div>
+        <div class="card-rows">
+          <div class="card-row"><span class="c-label">Địa chỉ</span><span class="c-val">83 Longjing Rd, Hangzhou (龙井路83号)</span></div>
+          <div class="card-row"><span class="c-label">Giờ mở</span><span class="c-val">11:00 – 21:00</span></div>
+          <div class="card-row"><span class="c-label">Must order</span><span class="c-val">Gà nướng trà xanh (绿茶烤鸡) · Bánh mì fusion · Trà Longjing tại chỗ</span></div>
+          <div class="card-row"><span class="c-label">Giá</span><span class="c-val">~100–150 tệ/người (~380–570K)</span></div>
+          <div class="card-row"><span class="c-label">Đặt chỗ</span><span class="c-val">Dianping (大众点评) — nên đặt trước</span></div>
+          <div class="card-row"><span class="c-label">Đi ngày</span><span class="c-val c-link">Trưa 29/04 — 10 phút Didi từ Linh Ẩn</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-head" style="margin-top:24px">Ô Trấn</div>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-head"><div class="card-icon ic-w" style="font-size:11px">ÔT</div><div><div class="card-name">Shusheng Lamb Noodle <span class="tri" style="display:inline;font-size:10px;color:var(--amber);">庶生羊肉面</span></div><div class="card-meta">Mì bò / cừu truyền thống</div></div></div>
+        <div class="card-rows">
+          <div class="card-row"><span class="c-label">Địa chỉ</span><span class="c-val">Nhà số 218, Tây Sách, Ô Trấn</span></div>
+          <div class="card-row"><span class="c-label">Đi ngày</span><span class="c-val c-link">Tối 29/04 (check-in Ô Trấn) + Sáng 30/04</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-head"><div class="card-icon ic-w" style="font-size:11px">ÔT</div><div><div class="card-name">Wuzhen Radish Cake <span class="tri" style="display:inline;font-size:10px;color:var(--amber);">乌镇萝卜丝饼</span></div><div class="card-meta">Bánh củ cải truyền thống</div></div></div>
+        <div class="card-rows">
+          <div class="card-row"><span class="c-label">Địa chỉ</span><span class="c-val">Nhà số 499, Tây Sách, Ô Trấn</span></div>
+          <div class="card-row"><span class="c-label">Đi ngày</span><span class="c-val c-link">Trưa 29/04 · mang theo 30/04</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-head" style="margin-top:24px">Hàng Châu</div>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-head"><div class="card-icon ic-p" style="font-size:11px">HZ</div><div><div class="card-name">Đặc sản Hàng Châu</div><div class="card-meta">Ngày 29/04 khi đi Hàng Châu</div></div></div>
+        <div class="card-rows">
+          <div class="card-row"><span class="c-label">Dongpo Pork</span><span class="c-val">Thịt kho kiểu Đông Pha — must try</span></div>
+          <div class="card-row"><span class="c-label">West Lake Vinegar Fish</span><span class="c-val">Cá giấm Tây Hồ — đặc sản nổi tiếng</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== LOCATION REFERENCE ===== -->
+  <div class="day-panel" id="p8">
+    <div class="day-head">
+      <div class="day-num" style="font-size:40px;color:var(--amber);">📍</div>
+      <div class="day-info">
+        <div class="day-date">Tra cứu nhanh</div>
+        <div class="day-title">Địa điểm <em>3 ngôn ngữ</em></div>
+        <div class="day-subtitle">Tên Việt · English · 中文 — copy thẳng vào Amap/Didi</div>
+      </div>
+    </div>
+
+    <style>
+      .loc-section { margin-bottom: 2rem; }
+      .loc-city {
+        font-size: 11px; text-transform: uppercase; letter-spacing: 2px;
+        color: var(--muted); font-weight: 400; margin-bottom: 10px;
+        padding-bottom: 6px; border-bottom: 1px solid var(--border);
+      }
+      .loc-table { width: 100%; border-collapse: collapse; }
+      .loc-table th {
+        text-align: left; font-size: 10px; text-transform: uppercase;
+        letter-spacing: 1.2px; color: var(--muted); font-weight: 500;
+        padding: 6px 10px; background: var(--cream);
+        border-bottom: 1px solid var(--border);
+      }
+      .loc-table th:first-child { border-radius: 6px 0 0 0; }
+      .loc-table th:last-child { border-radius: 0 6px 0 0; }
+      .loc-table td {
+        padding: 10px 10px; font-size: 13px; vertical-align: top;
+        border-bottom: 0.5px solid var(--border);
+        line-height: 1.4;
+      }
+      .loc-table tr:last-child td { border-bottom: none; }
+      .loc-table tr:hover td { background: var(--cream); }
+      .loc-vn { font-weight: 500; color: var(--ink); }
+      .loc-en { color: var(--muted); font-size: 12px; }
+      .loc-zh {
+        color: var(--amber); font-size: 14px; cursor: pointer;
+        user-select: all; font-weight: 400;
+      }
+      .loc-zh:hover { color: #a06020; }
+      .loc-type {
+        display: inline-block; font-size: 10px; padding: 1px 6px;
+        border-radius: 10px; margin-top: 3px; font-weight: 500;
+      }
+      .type-sight { background: #E6F1FB; color: #185FA5; }
+      .type-food { background: #EAF3DE; color: #27500A; }
+      .type-cafe { background: #f5ede5; color: #6b3e20; }
+      .type-hotel { background: #E1F5EE; color: #085041; }
+      .type-transport { background: #EEEDFE; color: #3C3489; }
+      .copy-hint { font-size: 10px; color: var(--muted); margin-bottom: 10px; font-style: italic; }
+    </style>
+
+    <p class="copy-hint">Nhấn vào tên tiếng Trung để chọn và copy vào Amap / Didi / WeChat</p>
+
+    <!-- SHANGHAI -->
+    <div class="loc-section">
+      <div class="loc-city">🏙 Thượng Hải · Shanghai · 上海</div>
+      <table class="loc-table">
+        <thead><tr><th>Địa điểm (Tiếng Việt)</th><th>English</th><th>中文 (copy vào Amap)</th></tr></thead>
+        <tbody>
+          <tr><td><span class="loc-vn">Sân bay Quốc tế Phố Đông</span><br><span class="loc-type type-transport">Sân bay</span></td><td class="loc-en">Shanghai Pudong International Airport</td><td class="loc-zh">上海浦东国际机场</td></tr>
+          <tr><td><span class="loc-vn">Khách sạn HomeInn Selected (No.1 Yaohan)</span><br><span class="loc-type type-hotel">Khách sạn 26–29/04</span></td><td class="loc-en">Homeinn Selected · 579 Zhangyang Rd, Pudong</td><td class="loc-zh">欢朋酒店·上海第一八佰伴商城路地铁站</td></tr>
+          <tr><td><span class="loc-vn">Ga Metro Thương Thành</span><br><span class="loc-type type-transport">Metro</span></td><td class="loc-en">Shangcheng Road Metro Station · Line 9</td><td class="loc-zh">商城路地铁站</td></tr>
+          <tr><td><span class="loc-vn">Phố đi bộ Nam Kinh</span><br><span class="loc-type type-sight">Tham quan</span></td><td class="loc-en">Nanjing Road Pedestrian Street</td><td class="loc-zh">南京路步行街</td></tr>
+          <tr><td><span class="loc-vn">Bến Thượng Hải</span><br><span class="loc-type type-sight">Tham quan</span></td><td class="loc-en">The Bund</td><td class="loc-zh">外滩</td></tr>
+          <tr><td><span class="loc-vn">Lưu Gia Chuỷ</span><br><span class="loc-type type-sight">Tham quan</span></td><td class="loc-en">Lujiazui Viewpoint</td><td class="loc-zh">陆家嘴</td></tr>
+          <tr><td><span class="loc-vn">Disneyland Thượng Hải</span><br><span class="loc-type type-sight">Vui chơi</span></td><td class="loc-en">Shanghai Disneyland Resort</td><td class="loc-zh">上海迪士尼乐园</td></tr>
+          <tr><td><span class="loc-vn">Chùa Tĩnh An</span><br><span class="loc-type type-sight">Tham quan</span></td><td class="loc-en">Jing'an Temple</td><td class="loc-zh">静安寺</td></tr>
+          <tr><td><span class="loc-vn">Biệt thự Moller</span><br><span class="loc-type type-sight">Tham quan</span></td><td class="loc-en">Moller Villa</td><td class="loc-zh">马勒别墅</td></tr>
+          <tr><td><span class="loc-vn">Tòa nhà Vũ Khang</span><br><span class="loc-type type-sight">Check-in</span></td><td class="loc-en">Wukang Building</td><td class="loc-zh">武康大楼</td></tr>
+          <tr><td><span class="loc-vn">Tân Thiên Địa</span><br><span class="loc-type type-sight">Tham quan</span></td><td class="loc-en">Xintiandi</td><td class="loc-zh">新天地</td></tr>
+          <tr><td><span class="loc-vn">Bảo Tàng Thượng Hải</span><br><span class="loc-type type-sight">Tham quan</span></td><td class="loc-en">Shanghai Museum</td><td class="loc-zh">上海博物馆</td></tr>
+          <tr><td><span class="loc-vn">Vườn Dự Viên</span><br><span class="loc-type type-sight">Tham quan</span></td><td class="loc-en">Yu Garden</td><td class="loc-zh">豫园</td></tr>
+          <tr><td><span class="loc-vn">Thành điện ảnh Thượng Hải</span><br><span class="loc-type type-sight">Tham quan</span></td><td class="loc-en">Shanghai Film Park</td><td class="loc-zh">上海影视乐园</td></tr>
+          <tr><td><span class="loc-vn">Ga Hồng Kiều</span><br><span class="loc-type type-transport">Ga tàu</span></td><td class="loc-en">Hongqiao Railway Station</td><td class="loc-zh">虹桥火车站</td></tr>
+          <tr><td><span class="loc-vn">Apoli Ita Bakery</span><br><span class="loc-type type-cafe">Cafe</span></td><td class="loc-en">Apoli Italian Bakery · Wukang Rd</td><td class="loc-zh">阿波利意大利烘焙·武康路</td></tr>
+          <tr><td><span class="loc-vn">Lai Lai Xiao Long</span><br><span class="loc-type type-food">Ăn uống</span></td><td class="loc-en">Lai Lai Xiao Long · 506 Tianjin Rd</td><td class="loc-zh">莱莱小笼·天津路506号</td></tr>
+          <tr><td><span class="loc-vn">Jia Jia Tang Bao</span><br><span class="loc-type type-food">Ăn uống</span></td><td class="loc-en">Jia Jia Tang Bao · 90 Huanghe Rd</td><td class="loc-zh">佳家汤包·黄河路90号</td></tr>
+          <tr><td><span class="loc-vn">Din Tai Fung (Tân Thiên Địa)</span><br><span class="loc-type type-food">Ăn uống</span></td><td class="loc-en">Din Tai Fung · Xintiandi Branch</td><td class="loc-zh">鼎泰丰·新天地店</td></tr>
+          <tr><td><span class="loc-vn">De Xing Guan</span><br><span class="loc-type type-food">Ăn uống</span></td><td class="loc-en">De Xing Guan · 471 Zhapu Rd</td><td class="loc-zh">德兴馆·乍浦路471号</td></tr>
+          <tr><td><span class="loc-vn">Yang's Fried Dumpling</span><br><span class="loc-type type-food">Ăn uống</span></td><td class="loc-en">Xiao Yang Sheng Jian · Ningbo Rd</td><td class="loc-zh">小杨生煎·宁波路</td></tr>
+          <tr><td><span class="loc-vn">Mì cua lông (Zhuangshi Longxing)</span><br><span class="loc-type type-food">Ăn uống</span></td><td class="loc-en">Zhuangshi Longxing Noodle · Zhejiang Rd</td><td class="loc-zh">状氏龙兴小笼虾面馆·浙江路</td></tr>
+          <tr><td><span class="loc-vn">Zhang Shi Fu Breakfast</span><br><span class="loc-type type-food">Ăn sáng</span></td><td class="loc-en">Zhang Shi Fu · 487 Shimen 2nd Rd</td><td class="loc-zh">张师傅早餐·石门二路487号</td></tr>
+          <tr><td><span class="loc-vn">Han Xiang Noodle Bar</span><br><span class="loc-type type-food">Ăn uống</span></td><td class="loc-en">Han Xiang Noodle Bar · Huahai Rd</td><td class="loc-zh">涵香面馆·淮海路</td></tr>
+          <tr><td><span class="loc-vn">Xiao Yang Sheng Jian (sáng 29/04)</span><br><span class="loc-type type-food">Ăn sáng</span></td><td class="loc-en">Xiao Yang Sheng Jian · 97 Huanghe Rd</td><td class="loc-zh">小杨生煎·黄河路97号</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- HANGZHOU -->
+    <div class="loc-section">
+      <div class="loc-city">🍃 Hàng Châu · Hangzhou · 杭州</div>
+      <table class="loc-table">
+        <thead><tr><th>Địa điểm (Tiếng Việt)</th><th>English</th><th>中文 (copy vào Amap)</th></tr></thead>
+        <tbody>
+          <tr><td><span class="loc-vn">Chùa Linh Ẩn</span><br><span class="loc-type type-sight">Tham quan</span></td><td class="loc-en">Lingyin Temple</td><td class="loc-zh">灵隐寺</td></tr>
+          <tr><td><span class="loc-vn">Phi Lai Phong</span><br><span class="loc-type type-sight">Tham quan</span></td><td class="loc-en">Flying Peak (Feilai Feng)</td><td class="loc-zh">飞来峰</td></tr>
+          <tr><td><span class="loc-vn">Green Tea Restaurant (Longjing Rd)</span><br><span class="loc-type type-food">Ăn uống</span></td><td class="loc-en">Green Tea Restaurant · 83 Longjing Rd</td><td class="loc-zh">绿茶餐厅·龙井路83号</td></tr>
+          <tr><td><span class="loc-vn">Đường cao Dương Công (điểm bắt đầu đạp xe)</span><br><span class="loc-type type-sight">Đạp xe</span></td><td class="loc-en">Yanggong Causeway</td><td class="loc-zh">杨公堤</td></tr>
+          <tr><td><span class="loc-vn">Ga Đông Hàng Châu</span><br><span class="loc-type type-transport">Ga tàu</span></td><td class="loc-en">Hangzhou East Railway Station</td><td class="loc-zh">杭州东站</td></tr>
+          <tr><td><span class="loc-vn">Liễu Lãng Văn Oanh</span><br><span class="loc-type type-sight">Tham quan</span></td><td class="loc-en">Liu Lang Wen Ying</td><td class="loc-zh">柳浪闻莺 (search: 新横河桥)</td></tr>
+          <tr><td><span class="loc-vn">Thang cuốn Ginka</span><br><span class="loc-type type-sight">Check-in</span></td><td class="loc-en">Ginka Escalator</td><td class="loc-zh">杭州银河·自动扶梯</td></tr>
+          <tr><td><span class="loc-vn">Ngõ Sigukui</span><br><span class="loc-type type-cafe">Cafe + Check-in</span></td><td class="loc-en">Sigukui Alley</td><td class="loc-zh">四古奎小巷</td></tr>
+          <tr><td><span class="loc-vn">Tây Hồ</span><br><span class="loc-type type-sight">Tham quan</span></td><td class="loc-en">West Lake Scenic Area</td><td class="loc-zh">西湖景区</td></tr>
+          <tr><td><span class="loc-vn">Đường Tô Đề</span><br><span class="loc-type type-sight">Đạp xe</span></td><td class="loc-en">Su Causeway</td><td class="loc-zh">苏堤</td></tr>
+          <tr><td><span class="loc-vn">Đường Bạch Đề</span><br><span class="loc-type type-sight">Đạp xe</span></td><td class="loc-en">Bai Causeway</td><td class="loc-zh">白堤</td></tr>
+          <tr><td><span class="loc-vn">Đường Nam Sơn Lộ</span><br><span class="loc-type type-sight">Đạp xe</span></td><td class="loc-en">Nanshan Road</td><td class="loc-zh">南山路</td></tr>
+          <tr><td><span class="loc-vn">Cung Tự Yến (chi nhánh Hàng Châu)</span><br><span class="loc-type type-food">Ăn uống</span></td><td class="loc-en">Royal Banquet · Hangzhou Branch</td><td class="loc-zh">宫宴·杭州店</td></tr>
+          <tr><td><span class="loc-vn">Bến xe Hàng Châu (đi Ô Trấn)</span><br><span class="loc-type type-transport">Xe khách</span></td><td class="loc-en">Hangzhou Jiubao Bus Center</td><td class="loc-zh">杭州九堡客运中心站</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Ô TRẤN -->
+    <div class="loc-section">
+      <div class="loc-city">🌊 Ô Trấn · Wuzhen · 乌镇</div>
+      <table class="loc-table">
+        <thead><tr><th>Địa điểm (Tiếng Việt)</th><th>English</th><th>中文 (copy vào Amap)</th></tr></thead>
+        <tbody>
+          <tr><td><span class="loc-vn">Bến xe Đồng Hương</span><br><span class="loc-type type-transport">Điểm đến</span></td><td class="loc-en">Tongxiang Railway/Bus Station</td><td class="loc-zh">桐乡站</td></tr>
+          <tr><td><span class="loc-vn">Khu Tây Sách — Ô Trấn</span><br><span class="loc-type type-sight">Scenic Area</span></td><td class="loc-en">Xizha West Scenic Area · Wuzhen</td><td class="loc-zh">乌镇西栅景区</td></tr>
+          <tr><td><span class="loc-vn">Khách sạn ZELIN Viewing Pavilion</span><br><span class="loc-type type-hotel">Khách sạn 29–30/04</span></td><td class="loc-en">Wuzhen ZELIN Viewing Pavilion Boutique Hotel</td><td class="loc-zh">乌镇泽林观亭精品酒店</td></tr>
+          <tr><td><span class="loc-vn">Thuyền kênh Ô Trấn</span><br><span class="loc-type type-sight">Trải nghiệm</span></td><td class="loc-en">Wupeng Boat Canal Tour</td><td class="loc-zh">乌篷船游览</td></tr>
+          <tr><td><span class="loc-vn">Mì cừu Shusheng</span><br><span class="loc-type type-food">Ăn uống</span></td><td class="loc-en">Shusheng Lamb Noodle · No.218 Xizha</td><td class="loc-zh">庶生羊肉面·西栅218号</td></tr>
+          <tr><td><span class="loc-vn">Bánh củ cải Wuzhen</span><br><span class="loc-type type-food">Ăn uống</span></td><td class="loc-en">Wuzhen Radish Cake · No.499 Xizha</td><td class="loc-zh">乌镇萝卜丝饼·西栅499号</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+</main>
+
+<footer>China Trip · 25 tháng 4 – 01 tháng 5 năm 2026 · Shanghai · Hangzhou · Wuzhen</footer>
+
+<script>
+  function show(i) {
+    document.querySelectorAll('.day-panel').forEach(p => p.classList.remove('visible'));
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('p' + i).classList.add('visible');
+    document.querySelectorAll('.nav-btn')[i].classList.add('active');
+    window.scrollTo({ top: document.querySelector('.nav-wrap').offsetHeight + document.querySelector('.hero').offsetHeight, behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>
