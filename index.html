@@ -365,6 +365,8 @@
     <button class="nav-btn special" onclick="show(6)">Đặt vé trước</button>
     <button class="nav-btn special" onclick="show(7)">Eatery & Cafe</button>
     <button class="nav-btn special" onclick="show(8)">📍 Địa điểm</button>
+    <button class="nav-btn special" onclick="show(9)">📝 Note</button>
+    <button class="nav-btn special" onclick="show(10)">💬 Hội thoại</button>
   </nav>
 </div>
 
@@ -543,8 +545,10 @@
             </div>
             <div class="e-detail">Cả 3 quán trong bán kính 5 phút đi bộ từ The Bund — không ngược đường trước khi qua Lujiazui</div>
             <div class="food-callout">
-              <strong>⭐ Lai Lai Xiao Long · 莱莱小笼</strong> — <span>506 Tianjin Rd · Michelin Bib Gourmand · XLB crab roe nổi tiếng nhất Shanghai</span>
+              <strong>⭐ Lai Lai Xiao Long · 莱莱小笼</strong> — <span>504 Tianjin Rd · Michelin Bib Gourmand · XLB crab roe nổi tiếng nhất Shanghai</span>
             </div>
+            <div class="note" style="margin-top:6px;font-size:11px;">⚠️ <strong>Địa chỉ đã thay đổi:</strong> Địa chỉ cũ là số 506 — địa chỉ mới là <strong>504 Tianjin Rd</strong>. Nhiều review cũ vẫn ghi 506.</div>
+            <div class="note" style="margin-top:6px;font-size:11px;background:#e8f5ee;border-color:var(--green);color:#1a4a28;">⏰ <strong>Timing tip:</strong> Mở ~10:00–13:00 & 16:00–19:00. Đến đúng giờ mở cửa để không phải xếp hàng lâu. Michelin Bib Gourmand nên rất đông — gọi trước nếu được.</div>
             <div class="food-callout">
               <strong>Yang's Fried Dumpling · 小杨生煎</strong> — <span>Ningbo Rd · bánh bao chiên giòn kinh điển</span>
             </div>
@@ -676,12 +680,12 @@
       <div class="day-info">
         <div class="day-date">Thứ ba · 28/04/2026</div>
         <div class="day-title">Nội thành <em>Thượng Hải</em></div>
-        <div class="day-subtitle">Jing'an → French Concession → Tân Thiên Địa → Bảo tàng → Vườn Dự Viên → Jia Jia Tang Bao</div>
+        <div class="day-subtitle">Jing'an → French Concession → Wukang → Về KS thay đồ → Trưa muộn Xintiandi → Bảo tàng → Vườn Dự Viên → Jia Jia Tang Bao (127 Huanghe Rd)</div>
       </div>
     </div>
 
     <div class="route-note">
-      <strong>Lộ trình tối ưu (tây → tây nam → trung tâm → đông):</strong> Zhang Shi Fu sáng (Shimen Rd, Jing'an) → Jing'an Temple → Moller → Wukang → Apoli Bakery → Din Tai Fung trưa (Xintiandi) → Bảo tàng (People's Sq) → Vườn Dự Viên (Old Town) → Jia Jia Tang Bao tối (Huanghe Rd, People's Sq) → Metro về Pudong. Không backtrack.
+      <strong>Lộ trình tối ưu (tây → về KS → trung tâm → đông):</strong> Zhang Shi Fu sáng (Shimen Rd, Jing'an) → Jing'an Temple → Moller → Wukang → Apoli Bakery → <strong>🏨 Taxi về Homeinn thay đồ (12:30–13:30)</strong> → Taxi ra People's Square → Trưa muộn Xintiandi/Han Xiang → Bảo tàng (People's Sq) → Vườn Dự Viên (Old Town) → Jia Jia Tang Bao tối (127 Huanghe Rd) → Metro về Pudong. <em>Về KS buổi trưa tốn ~1 tiếng nhưng tiết kiệm sức cho chiều.</em>
     </div>
 
     <div class="timeline">
@@ -762,23 +766,37 @@
         </div>
       </div>
 
-      <div class="entry food">
+      <!-- HOTEL RETURN -->
+      <div class="entry warn">
         <div class="entry-inner">
           <div class="e-time">12:30 – 13:30</div>
           <div class="e-body">
-            <div class="e-title">Ăn trưa tại Tân Thiên Địa
-              <span class="tri"><span class="lang-en">Xintiandi</span><span class="sep">·</span><span class="lang-zh">新天地</span></span>
+            <div class="e-title">🏨 Về khách sạn thay đồ · Homeinn Selected Yaohan
+              <span class="tri"><span class="lang-en">Return to Hotel · Freshen Up</span><span class="sep">·</span><span class="lang-zh">回酒店换衣服</span></span>
             </div>
-            <div class="e-detail">Đi taxi ~10 phút từ Wukang về Xintiandi. 2 lựa chọn cùng khu</div>
-            <div class="food-callout"><strong>⭐ Din Tai Fung — Xintiandi branch</strong> — <span>Lane 123 Xinye Rd, Xintiandi — XLB chuẩn Đài Loan, consistent quality, tầng 2 của complex Xintiandi South Block</span></div>
-            <div class="food-callout"><strong>Hoặc: Han Xiang Noodle Bar</strong> — <span>Huahai Rd (M) — mì ngon, 500m từ Wukang, cùng khu French Concession — ghé trước khi đến Xintiandi</span></div>
+            <div class="e-detail">Taxi từ Wukang Rd về Shangcheng Rd ~25–30 phút (~30–40 tệ). Về phòng thay đồ, nghỉ ngắn, sạc máy trước khi chiều tiếp tục</div>
+            <div class="tags"><span class="tag t-transport">🚕 Taxi ~25–30 phút · ~35 tệ</span><span class="tag t-tip">Không nên dùng metro (chuyển 2 tuyến, mất ~45 phút)</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry food">
+        <div class="entry-inner">
+          <div class="e-time">13:30 – 14:30</div>
+          <div class="e-body">
+            <div class="e-title">Ăn trưa muộn tại khu Xintiandi / People's Square
+              <span class="tri"><span class="lang-en">Late Lunch · Xintiandi or People's Sq</span><span class="sep">·</span><span class="lang-zh">新天地 / 人民广场</span></span>
+            </div>
+            <div class="e-detail">Taxi từ khách sạn đến People's Square ~25 phút. 2 lựa chọn trong cùng khu</div>
+            <div class="food-callout"><strong>⭐ Din Tai Fung — Xintiandi branch</strong> — <span>Lane 123 Xinye Rd, Xintiandi — XLB chuẩn Đài Loan, tầng 2 South Block</span></div>
+            <div class="food-callout"><strong>Hoặc: Han Xiang Noodle Bar</strong> — <span>Huahai Rd (M) — mì ngon, gần khu French Concession</span></div>
           </div>
         </div>
       </div>
 
       <div class="entry">
         <div class="entry-inner">
-          <div class="e-time">13:30 – 14:30</div>
+          <div class="e-time">14:30 – 15:30</div>
           <div class="e-body">
             <div class="e-title">Bảo Tàng Thượng Hải
               <span class="tri"><span class="lang-en">Shanghai Museum</span><span class="sep">·</span><span class="lang-zh">上海博物馆</span></span>
@@ -791,20 +809,20 @@
 
       <div class="entry hl">
         <div class="entry-inner">
-          <div class="e-time">14:30 – 16:30</div>
+          <div class="e-time">15:30 – 17:00</div>
           <div class="e-body">
             <div class="e-title">Vườn Dự Viên
               <span class="tri"><span class="lang-en">Yu Garden</span><span class="sep">·</span><span class="lang-zh">豫园</span></span>
             </div>
-            <div class="e-detail">Taxi ~1.5km đông từ Bảo tàng về khu Old Town. Vườn cổ triều Minh, bazaar xung quanh</div>
-            <div class="tags"><span class="tag t-cost">156.000đ</span></div>
+            <div class="e-detail">Taxi ~1.5km đông từ Bảo tàng về khu Old Town. Vườn cổ triều Minh, bazaar xung quanh. Vào trước 16:30 để thoải mái tham quan</div>
+            <div class="tags"><span class="tag t-cost">156.000đ</span><span class="tag t-urgent">Vào trước 16:30 (đóng cửa sớm)</span></div>
           </div>
         </div>
       </div>
 
       <div class="entry transport">
         <div class="entry-inner">
-          <div class="e-time">16:30 – 17:30</div>
+          <div class="e-time">17:00 – 17:30</div>
           <div class="e-body">
             <div class="e-title">Vườn Dự Viên → People's Square
               <span class="tri"><span class="lang-en">People's Square Metro</span><span class="sep">·</span><span class="lang-zh">人民广场</span></span>
@@ -819,10 +837,12 @@
           <div class="e-time">17:30 – 19:00</div>
           <div class="e-body">
             <div class="e-title">Ăn tối — Jia Jia Tang Bao
-              <span class="tri"><span class="lang-en">Jia Jia Tang Bao · Soup Dumplings</span><span class="sep">·</span><span class="lang-zh">佳家汤包</span></span>
+              <span class="tri"><span class="lang-en">Jia Jia Tang Bao · 127 Huanghe Rd</span><span class="sep">·</span><span class="lang-zh">佳家汤包 · 黄河路127号</span></span>
             </div>
-            <div class="e-detail">90 Huanghe Road, Huangpu — ngay cạnh People's Square, tiện Metro về Pudong. Quán tiểu long bao 140 năm nổi tiếng nhất Shanghai, người địa phương xếp hàng mỗi ngày</div>
-            <div class="food-callout"><strong>⭐ Jia Jia Tang Bao 佳家汤包</strong> — <span>90 Huanghe Rd · Must try: XLB nhân thịt heo, XLB nhân cua · ~25–40 tệ/cage</span></div>
+            <div class="e-detail">127 Huanghe Road, Huangpu — ngay cạnh People's Square, tiện Metro về Pudong. Quán tiểu long bao nổi tiếng nhất Shanghai, người địa phương xếp hàng mỗi ngày</div>
+            <div class="note" style="margin-top:8px;font-size:11px;">⚠️ <strong>Địa chỉ đã thay đổi:</strong> Địa chỉ cũ là số 90 Huanghe Rd — địa chỉ mới là <strong>127 Huanghe Road</strong>. Nhiều app và bài review cũ vẫn ghi số 90 — hãy tìm đúng số <strong>127</strong> trên Amap/Didi.</div>
+            <div class="note" style="margin-top:6px;font-size:11px;background:#e8f5ee;border-color:var(--green);color:#1a4a28;">⏰ <strong>Timing tip:</strong> Mở cửa ~06:30–14:00 (hết sớm), đến trước 11:30 để tránh hết hàng. Xếp hàng nhanh ~15–20 phút, tốt nhất đến đúng giờ mở buổi tối (17:00) nếu ghé tối.</div>
+            <div class="food-callout"><strong>⭐ Jia Jia Tang Bao 佳家汤包</strong> — <span>127 Huanghe Rd · Must try: XLB nhân thịt heo, XLB nhân cua · ~25–40 tệ/cage</span></div>
             <div class="food-callout"><strong>Hoặc: De Xing Guan 德兴馆</strong> — <span>471 Zhapu Rd · 140 năm · San xian bao, guotie (bánh bao chiên giòn)</span></div>
           </div>
         </div>
@@ -937,12 +957,13 @@
 
       <div class="entry transport">
         <div class="entry-inner">
-          <div class="e-time">12:15</div>
+          <div class="e-time">11:45</div>
           <div class="e-body">
             <div class="e-title">Didi đến Green Tea Restaurant
               <span class="tri"><span class="lang-en">Green Tea Restaurant · 83 Longjing Rd</span><span class="sep">·</span><span class="lang-zh">绿茶餐厅 · 龙井路83号</span></span>
             </div>
             <div class="e-detail">Từ Linh Ẩn đến Longjing Road ~10 phút Didi. Nằm giữa đồi trà, không gian cực kỳ cổ kính và chill. Có thể đặt chỗ qua Dianping trước để tránh chờ</div>
+            <div class="note" style="margin-top:6px;font-size:11px;">⚠️ <strong>Timing quan trọng:</strong> Đặt Didi lúc <strong>11:45</strong> (khởi hành sớm hơn 30 phút so với kế hoạch cũ) để kịp giờ đặt bàn trưa. Nhà hàng rất đông cuối tuần — đặt bàn trên Dianping ít nhất 1 ngày trước.</div>
             <div class="tags"><span class="tag t-transport">Didi ~10 phút</span><span class="tag t-tip">Đặt chỗ trước trên Dianping</span></div>
           </div>
         </div>
@@ -950,7 +971,7 @@
 
       <div class="entry food">
         <div class="entry-inner">
-          <div class="e-time">12:30 – 14:00</div>
+          <div class="e-time">11:50 – 13:30</div>
           <div class="e-body">
             <div class="e-title">Ăn trưa — Green Tea Restaurant
               <span class="tri"><span class="lang-en">Green Tea Restaurant · Longjing Road</span><span class="sep">·</span><span class="lang-zh">绿茶餐厅 · 龙井路</span></span>
@@ -1551,6 +1572,41 @@
       .type-hotel { background: #E1F5EE; color: #085041; }
       .type-transport { background: #EEEDFE; color: #3C3489; }
       .copy-hint { font-size: 10px; color: var(--muted); margin-bottom: 10px; font-style: italic; }
+
+  /* NOTE CARDS */
+  .note-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .note-card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 13px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+    cursor: pointer;
+    user-select: none;
+    background: var(--cream);
+    transition: background 0.15s;
+  }
+  .note-card-head:hover { background: var(--amber-pale); }
+  .note-toggle { font-size: 11px; color: var(--muted); transition: transform 0.2s; }
+  .note-card-body {
+    display: none;
+    padding: 14px 16px;
+    font-size: 12.5px;
+    line-height: 1.75;
+    color: var(--ink);
+  }
+  .note-card-body ul { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+  .note-card-body li { padding-left: 2px; }
+  .note-card.open .note-card-body { display: block; }
+  .note-card.open .note-toggle { transform: rotate(180deg); }
+  .note-card.hidden { display: none; }
     </style>
 
     <p class="copy-hint">Nhấn vào tên tiếng Trung để chọn và copy vào Amap / Didi / WeChat</p>
@@ -1579,8 +1635,8 @@
           <tr><td><span class="loc-vn">Thành điện ảnh Thượng Hải</span><br><span class="loc-type type-sight">Tham quan</span></td><td class="loc-en">Shanghai Film Park</td><td class="loc-zh">上海影视乐园</td></tr>
           <tr><td><span class="loc-vn">Ga Hồng Kiều</span><br><span class="loc-type type-transport">Ga tàu</span></td><td class="loc-en">Hongqiao Railway Station</td><td class="loc-zh">虹桥火车站</td></tr>
           <tr><td><span class="loc-vn">Apoli Ita Bakery</span><br><span class="loc-type type-cafe">Cafe</span></td><td class="loc-en">Apoli Italian Bakery · Wukang Rd</td><td class="loc-zh">阿波利意大利烘焙·武康路</td></tr>
-          <tr><td><span class="loc-vn">Lai Lai Xiao Long</span><br><span class="loc-type type-food">Ăn uống</span></td><td class="loc-en">Lai Lai Xiao Long · 506 Tianjin Rd</td><td class="loc-zh">莱莱小笼·天津路506号</td></tr>
-          <tr><td><span class="loc-vn">Jia Jia Tang Bao</span><br><span class="loc-type type-food">Ăn uống</span></td><td class="loc-en">Jia Jia Tang Bao · 90 Huanghe Rd</td><td class="loc-zh">佳家汤包·黄河路90号</td></tr>
+          <tr><td><span class="loc-vn">Lai Lai Xiao Long</span><br><span class="loc-type type-food">Ăn uống</span></td><td class="loc-en">Lai Lai Xiao Long · <strong>504</strong> Tianjin Rd ⚠️ (cũ: 506)</td><td class="loc-zh">莱莱小笼·天津路504号</td></tr>
+          <tr><td><span class="loc-vn">Jia Jia Tang Bao</span><br><span class="loc-type type-food">Ăn uống</span></td><td class="loc-en">Jia Jia Tang Bao · <strong>127</strong> Huanghe Rd ⚠️ (cũ: 90)</td><td class="loc-zh">佳家汤包·黄河路127号</td></tr>
           <tr><td><span class="loc-vn">Din Tai Fung (Tân Thiên Địa)</span><br><span class="loc-type type-food">Ăn uống</span></td><td class="loc-en">Din Tai Fung · Xintiandi Branch</td><td class="loc-zh">鼎泰丰·新天地店</td></tr>
           <tr><td><span class="loc-vn">De Xing Guan</span><br><span class="loc-type type-food">Ăn uống</span></td><td class="loc-en">De Xing Guan · 471 Zhapu Rd</td><td class="loc-zh">德兴馆·乍浦路471号</td></tr>
           <tr><td><span class="loc-vn">Yang's Fried Dumpling</span><br><span class="loc-type type-food">Ăn uống</span></td><td class="loc-en">Xiao Yang Sheng Jian · Ningbo Rd</td><td class="loc-zh">小杨生煎·宁波路</td></tr>
@@ -1634,6 +1690,342 @@
 
   </div>
 
+  <div class="day-panel" id="p9">
+    <div class="day-head">
+      <div class="day-num" style="font-size:48px;">📝</div>
+      <div class="day-info">
+        <div class="day-date">Ghi chú quan trọng</div>
+        <div class="day-title">Notes — <em>Từng địa điểm</em></div>
+        <div class="day-subtitle">Expand/collapse từng card · Tìm kiếm nhanh bên dưới</div>
+      </div>
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <input id="note-search" type="text" placeholder="🔍  Tìm kiếm ghi chú... (vd: Disney, hộ chiếu, vali...)"
+        oninput="filterNotes(this.value)"
+        style="width:100%;padding:10px 14px;border:1px solid var(--border);border-radius:8px;font-size:13px;font-family:'DM Sans',sans-serif;background:var(--white);color:var(--ink);outline:none;">
+    </div>
+
+    <div id="note-list" style="display:flex;flex-direction:column;gap:10px;">
+
+      <!-- DISNEY -->
+      <div class="note-card" data-tags="disney disneyland vé hộ chiếu passport tripod ba lô">
+        <div class="note-card-head" onclick="toggleNote(this)">
+          <span>🎢 Disneyland Thượng Hải</span>
+          <span class="note-toggle">▼</span>
+        </div>
+        <div class="note-card-body">
+          <ul>
+            <li>✅ <strong>Mang hộ chiếu (Passport)</strong> — bắt buộc để vào cổng, không có không được vào</li>
+            <li>🚫 <strong>Không mang tripod / chân máy ảnh</strong> — bị tịch thu tại cổng an ninh</li>
+            <li>🚫 Không mang đồ ăn nóng / hộp cơm vào trong</li>
+            <li>✅ Mang bình nước 650ml (tự refill miễn phí bên trong)</li>
+            <li>✅ Mang tấm ngồi / ghế gấp mini nếu có — rất hữu ích chờ show</li>
+            <li>✅ Sạc dự phòng (DP) — điện thoại dùng nhiều để scan Lightning Lane, check app</li>
+            <li>📱 Cài app <strong>Shanghai Disney Resort</strong> trước — xem waittime real-time, mua Lightning Lane</li>
+            <li>⏰ <strong>Camp chỗ pháo hoa ~19:00</strong> nếu show lúc 21:15 — đứng trước lâu đài hướng bắc</li>
+            <li>🏃 Thứ tự ưu tiên sáng sớm: <strong>Zootopia (mở 8:30) → Tron Lightcycle Run → Pirates of the Caribbean</strong></li>
+            <li>💳 Mua vé <strong>Early Park Entry</strong> trên Klook/Traveloka — phải đặt trước 7–10 ngày</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- SÂN BAY -->
+      <div class="note-card" data-tags="sân bay airport hành lý xách tay ký gửi pin sạc mỹ phẩm">
+        <div class="note-card-head" onclick="toggleNote(this)">
+          <span>✈️ Sân bay — Hành lý & Quy định</span>
+          <span class="note-toggle">▼</span>
+        </div>
+        <div class="note-card-body">
+          <ul>
+            <li>🚫 <strong>Pin dự phòng (DP) — chỉ được mang trong xách tay</strong>, tuyệt đối không ký gửi</li>
+            <li>🚫 Chất lỏng xách tay ≤ 100ml/chai, đựng túi zip trong suốt ≤ 1 lít</li>
+            <li>🚫 <strong>Không mang máy duỗi tóc có nhiệt cao</strong> (một số loại bị cấm ký gửi)</li>
+            <li>🚫 Không mang bật lửa vào khoang hành lý ký gửi</li>
+            <li>✅ Hộ chiếu còn hạn ≥ 6 tháng</li>
+            <li>✅ Mang thêm 1 bộ quần áo + đồ thiết yếu trong xách tay phòng khi thất lạc vali</li>
+            <li>📱 Cài <strong>WeChat + Alipay + Amap + Didi</strong> trước khi lên máy bay</li>
+            <li>💰 Đổi tiền tệ hoặc nạp Alipay trước — Trung Quốc ít nơi nhận card quốc tế</li>
+            <li>🕓 Sân bay PVG Pudong: có mặt tại cổng trước giờ bay <strong>ít nhất 2 tiếng</strong></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- JIA JIA TANG BAO -->
+      <div class="note-card" data-tags="jia jia tang bao tiểu long bao soup dumpling huanghe địa chỉ">
+        <div class="note-card-head" onclick="toggleNote(this)">
+          <span>🥟 Jia Jia Tang Bao 佳家汤包</span>
+          <span class="note-toggle">▼</span>
+        </div>
+        <div class="note-card-body">
+          <ul>
+            <li>⚠️ <strong>Địa chỉ MỚI: 127 Huanghe Road</strong> — địa chỉ cũ 90 Huanghe Rd không còn đúng, nhiều app vẫn hiện số cũ</li>
+            <li>⏰ Giờ mở: ~06:30–14:00 (hết trước 14h) · Tối: ~17:00–19:30 (hết sớm)</li>
+            <li>🏃 <strong>Đến đúng giờ mở cửa</strong> — thường hết trước 13:30 buổi trưa</li>
+            <li>💡 Không nhận đặt trước — xếp hàng tại chỗ, thường ~15–20 phút</li>
+            <li>🥢 Must try: <strong>XLB nhân thịt heo (猪肉汤包)</strong> + <strong>XLB nhân cua (蟹粉汤包)</strong></li>
+            <li>🧾 ~25–40 tệ/lồng · Thanh toán WeChat Pay / Alipay</li>
+            <li>📍 Nhập vào Amap: <strong>佳家汤包·黄河路127号</strong></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- LAI LAI XIAO LONG -->
+      <div class="note-card" data-tags="lai lai xiao long tianjin michelin crab roe xlb địa chỉ">
+        <div class="note-card-head" onclick="toggleNote(this)">
+          <span>🥟 Lai Lai Xiao Long 莱莱小笼</span>
+          <span class="note-toggle">▼</span>
+        </div>
+        <div class="note-card-body">
+          <ul>
+            <li>⚠️ <strong>Địa chỉ MỚI: 504 Tianjin Road</strong> — địa chỉ cũ 506 Tianjin Rd, nhiều app vẫn hiện số cũ</li>
+            <li>🏆 Michelin Bib Gourmand — nổi tiếng với <strong>XLB crab roe (蟹黄小笼)</strong></li>
+            <li>⏰ Giờ mở: ~10:00–13:30 & 16:00–19:00 · <strong>Không mở cả ngày</strong></li>
+            <li>🏃 Đến sớm — hết nhanh, nhất là crab roe XLB</li>
+            <li>📍 Nhập vào Amap: <strong>莱莱小笼·天津路504号</strong></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- GREEN TEA RESTAURANT -->
+      <div class="note-card" data-tags="green tea restaurant hàng châu longjing đặt bàn dianping">
+        <div class="note-card-head" onclick="toggleNote(this)">
+          <span>🍵 Green Tea Restaurant 绿茶餐厅</span>
+          <span class="note-toggle">▼</span>
+        </div>
+        <div class="note-card-body">
+          <ul>
+            <li>📍 <strong>83 Longjing Road, Hangzhou</strong> — nằm giữa đồi trà Longjing</li>
+            <li>📱 <strong>Đặt bàn trước trên Dianping (大众点评)</strong> — cuối tuần rất đông, không đặt dễ chờ 1–2 tiếng</li>
+            <li>⏰ Didi từ Linh Ẩn: <strong>đặt lúc 11:45</strong>, đến ~11:50, ăn trưa 11:50–13:30</li>
+            <li>🍗 Must order: <strong>Gà nướng trà xanh (绿茶烤鸡)</strong> — đặc sản số 1</li>
+            <li>🍞 Cũng try: 面包诱惑 (bánh mì fusion) · Trà Longjing tại chỗ</li>
+            <li>💰 ~100–150 tệ/người</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- CHÙA LINH ẨN -->
+      <div class="note-card" data-tags="chùa linh ẩn lingyin phi lai phong hàng châu trang phục">
+        <div class="note-card-head" onclick="toggleNote(this)">
+          <span>🛕 Chùa Linh Ẩn + Phi Lai Phong</span>
+          <span class="note-toggle">▼</span>
+        </div>
+        <div class="note-card-body">
+          <ul>
+            <li>👗 <strong>Mặc trang phục kín đáo</strong> khi vào chùa — không mặc áo hở vai, quần đùi ngắn</li>
+            <li>💰 Vé vào: ~45 tệ/người (bao gồm cả Phi Lai Phong)</li>
+            <li>📸 Không chụp ảnh trong khu thờ tự chính</li>
+            <li>⏰ Mở cửa 07:00–17:00 · Đến trước 10:30 để tránh đông</li>
+            <li>🛕 Phi Lai Phong: hàng trăm tượng Phật khắc trực tiếp vào vách đá — đừng bỏ qua</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Ô TRẤN -->
+      <div class="note-card" data-tags="ô trấn wuzhen tây sách vé thuyền giờ đóng cửa">
+        <div class="note-card-head" onclick="toggleNote(this)">
+          <span>🌊 Ô Trấn (Wuzhen) — Khu Tây Sách</span>
+          <span class="note-toggle">▼</span>
+        </div>
+        <div class="note-card-body">
+          <ul>
+            <li>🎟 Vé vào khu Tây Sách: ~150 tệ/người · <strong>Đặt online trước</strong> trên Wuzhen official site</li>
+            <li>⏰ <strong>Cổng đóng 22:00 — vào trước 21:30</strong></li>
+            <li>⛵ Thuyền kênh (乌篷船): 60 tệ/người · Đặt tại bến, nói "<strong>有乌篷船吗?</strong>"</li>
+            <li>🌅 <strong>Sáng sớm trước 07:00</strong> là đẹp nhất — ít khách, sương mù trên kênh</li>
+            <li>🏨 ZELIN Hotel nằm bên trong khu Tây Sách — hỏi xem có bao gồm vé cổng không khi đặt phòng</li>
+            <li>🚕 Taxi từ cổng Tây Sách ra ga Tongxiang: đặt trước qua Didi hoặc nhờ khách sạn gọi hộ</li>
+            <li>⏰ <strong>Checkout ZELIN trước 12:00</strong> — nhớ báo chủ nhà tối hôm trước</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- THE BUND -->
+      <div class="note-card" data-tags="bến thượng hải the bund lujiazui chụp ảnh góc đứng đèn lên">
+        <div class="note-card-head" onclick="toggleNote(this)">
+          <span>🌉 Bến Thượng Hải (The Bund)</span>
+          <span class="note-toggle">▼</span>
+        </div>
+        <div class="note-card-body">
+          <ul>
+            <li>⏰ <strong>Có mặt lúc 17:30</strong> để chọn góc đứng đẹp trước khi đông</li>
+            <li>📸 Timeline ánh sáng: 18:00 các toà phía Tây bắt đầu lên đèn · 18:30 Tháp Minh Châu lên · 19:00 toàn bộ skyline sáng</li>
+            <li>💡 <strong>Góc chụp đẹp nhất:</strong> đứng phía trên cầu dành cho người đi bộ (bên tay phải khi nhìn ra sông), hoặc khu vực Bund 18–22</li>
+            <li>🚢 Qua phà sang Lujiazui: 2 tệ/người · bến phà ngay cuối The Bund</li>
+            <li>🌃 Về đêm ngắm The Bund từ Lujiazui phía đông cũng rất đẹp</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- METRO / DI CHUYỂN -->
+      <div class="note-card" data-tags="metro di chuyển alipay wechat pay thẻ vé">
+        <div class="note-card-head" onclick="toggleNote(this)">
+          <span>🚇 Metro & Di chuyển nội đô</span>
+          <span class="note-toggle">▼</span>
+        </div>
+        <div class="note-card-body">
+          <ul>
+            <li>📱 Thanh toán metro bằng <strong>Alipay → Metro</strong> hoặc <strong>WeChat Pay → 乘车码</strong></li>
+            <li>💵 Giá vé metro: ~4–7 tệ/lượt tuỳ khoảng cách</li>
+            <li>🚕 <strong>Didi</strong> = Grab của Trung Quốc — cài sẵn, nạp tiền qua Alipay. Chọn "Express" để có tài xế biết địa chỉ</li>
+            <li>📋 Khi đặt Didi: <strong>copy địa chỉ tiếng Trung từ tab Địa điểm</strong> paste vào ô tìm kiếm</li>
+            <li>⚠️ Taxi ngoài đường ở SH thường không biết tiếng Anh — dùng Didi hoặc nhờ khách sạn gọi hộ</li>
+            <li>🕐 Giờ cao điểm: 07:30–09:00 và 17:30–19:00 — tránh metro lúc này nếu có thể</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- VƯỜN DỰ VIÊN -->
+      <div class="note-card" data-tags="vườn dự viên yu garden vé giờ mở old town">
+        <div class="note-card-head" onclick="toggleNote(this)">
+          <span>🏯 Vườn Dự Viên (Yu Garden)</span>
+          <span class="note-toggle">▼</span>
+        </div>
+        <div class="note-card-body">
+          <ul>
+            <li>⏰ Giờ mở: 09:00–17:30 (vào trước 17:00, đóng 18:00 dịp lễ có thể đến 21:00)</li>
+            <li>💰 Vé: ~45 CNY (~156.000đ)</li>
+            <li>📱 Đặt vé online qua WeChat hoặc Alipay để tránh xếp hàng tại cửa</li>
+            <li>🛍 Bazaar xung quanh Dự Viên: mua quà lưu niệm, ăn vặt local (xiaolongbao chiên, kẹo thổi, bánh nướng)</li>
+            <li>📸 Khu Huxinting Tea House (亭亭如盖) — cầu zig-zag iconic nhất để chụp ảnh</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- BẢO TÀNG THƯỢNG HẢI -->
+      <div class="note-card" data-tags="bảo tàng shanghai museum wechat đặt slot miễn phí">
+        <div class="note-card-head" onclick="toggleNote(this)">
+          <span>🏛 Bảo Tàng Thượng Hải</span>
+          <span class="note-toggle">▼</span>
+        </div>
+        <div class="note-card-body">
+          <ul>
+            <li>💰 Miễn phí vào cửa</li>
+            <li>📱 <strong>Bắt buộc đặt slot trước qua WeChat:</strong> Search "上海博物馆" → nhấn "预约参观" → chọn ngày + giờ</li>
+            <li>⏰ Slot phổ biến hết nhanh — đặt trước ít nhất 1–2 ngày</li>
+            <li>🎒 Gửi ba lô tại quầy gần cổng vào (miễn phí), giữ đồ vật nhỏ</li>
+            <li>📸 Được chụp ảnh không flash trong hầu hết khu trưng bày</li>
+          </ul>
+        </div>
+      </div>
+
+    </div><!-- /note-list -->
+  </div>
+
+  <!-- ===== HỘI THOẠI TAB ===== -->
+  <div class="day-panel" id="p10">
+    <div class="day-head">
+      <div class="day-num" style="font-size:48px;">💬</div>
+      <div class="day-info">
+        <div class="day-date">Từ khoá & Hội thoại</div>
+        <div class="day-title">Tiếng Trung — <em>Du lịch cơ bản</em></div>
+        <div class="day-subtitle">Từ khoá địa điểm + câu giao tiếp thực tế · Nhấn ô tiếng Trung để copy</div>
+      </div>
+    </div>
+
+    <p class="copy-hint">Nhấn vào ô tiếng Trung để copy · Pinyin giúp đọc gần đúng khi không biết chữ</p>
+
+    <!-- SECTION: ĐỊA ĐIỂM / TỪ KHOÁ -->
+    <div style="margin:0 0 28px;">
+      <div class="section-head">📍 Địa điểm & Từ khoá quan trọng</div>
+      <table class="loc-table">
+        <thead><tr><th>Tiếng Việt</th><th>Pinyin</th><th>中文</th></tr></thead>
+        <tbody>
+          <tr><td>Khách sạn</td><td>Jiǔdiàn / Lǚguǎn</td><td class="loc-zh">酒店 / 旅馆</td></tr>
+          <tr><td>Sân bay</td><td>Jīchǎng</td><td class="loc-zh">机场</td></tr>
+          <tr><td>Ga tàu hoả</td><td>Huǒchēzhàn</td><td class="loc-zh">火车站</td></tr>
+          <tr><td>Tàu điện ngầm (Metro)</td><td>Dìtiě</td><td class="loc-zh">地铁</td></tr>
+          <tr><td>Xe taxi / Didi</td><td>Chūzūchē / Dīdī</td><td class="loc-zh">出租车 / 滴滴</td></tr>
+          <tr><td>Nhà vệ sinh</td><td>Xǐshǒujiān / Cèsuǒ</td><td class="loc-zh">洗手间 / 厕所</td></tr>
+          <tr><td>Siêu thị / Cửa hàng tiện lợi</td><td>Chāoshì / Biànlì diàn</td><td class="loc-zh">超市 / 便利店</td></tr>
+          <tr><td>Nhà hàng</td><td>Cāntīng / Fànguǎn</td><td class="loc-zh">餐厅 / 饭馆</td></tr>
+          <tr><td>Bệnh viện</td><td>Yīyuàn</td><td class="loc-zh">医院</td></tr>
+          <tr><td>Công an / Cảnh sát</td><td>Jǐngchá</td><td class="loc-zh">警察</td></tr>
+          <tr><td>Đặt phòng / Đặt chỗ</td><td>Yùdìng</td><td class="loc-zh">预订</td></tr>
+          <tr><td>Hộ chiếu</td><td>Hùzhào</td><td class="loc-zh">护照</td></tr>
+          <tr><td>Tiền mặt / Thanh toán</td><td>Xiànjīn / Fùkuǎn</td><td class="loc-zh">现金 / 付款</td></tr>
+          <tr><td>Quét mã (QR)</td><td>Sǎo mǎ</td><td class="loc-zh">扫码</td></tr>
+          <tr><td>Bản đồ</td><td>Dìtú</td><td class="loc-zh">地图</td></tr>
+          <tr><td>Xe buýt</td><td>Gōngjiāo chē</td><td class="loc-zh">公交车</td></tr>
+          <tr><td>Trái / Phải / Thẳng</td><td>Zuǒ / Yòu / Zhí zǒu</td><td class="loc-zh">左 / 右 / 直走</td></tr>
+          <tr><td>Gần / Xa</td><td>Jìn / Yuǎn</td><td class="loc-zh">近 / 远</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SECTION: CÂU GIAO TIẾP -->
+    <div style="margin:0 0 28px;">
+      <div class="section-head">🗣 Câu giao tiếp thực tế</div>
+      <table class="loc-table">
+        <thead><tr><th>Ý nghĩa</th><th>Pinyin</th><th>中文</th></tr></thead>
+        <tbody>
+          <tr><td>Xin chào / Chào</td><td>Nǐ hǎo</td><td class="loc-zh">你好</td></tr>
+          <tr><td>Cảm ơn</td><td>Xièxiè</td><td class="loc-zh">谢谢</td></tr>
+          <tr><td>Xin lỗi / Làm phiền</td><td>Bù hǎo yìsi / Máfan nǐ</td><td class="loc-zh">不好意思 / 麻烦你</td></tr>
+          <tr><td>Không hiểu</td><td>Wǒ tīng bù dǒng</td><td class="loc-zh">我听不懂</td></tr>
+          <tr><td>Bạn nói tiếng Anh không?</td><td>Nǐ huì shuō Yīngyǔ ma?</td><td class="loc-zh">你会说英语吗？</td></tr>
+          <tr><td>Cái này bao nhiêu tiền?</td><td>Zhège duōshǎo qián?</td><td class="loc-zh">这个多少钱？</td></tr>
+          <tr><td>Đắt quá!</td><td>Tài guì le!</td><td class="loc-zh">太贵了！</td></tr>
+          <tr><td>Tôi muốn cái này</td><td>Wǒ yào zhège</td><td class="loc-zh">我要这个</td></tr>
+          <tr><td>Cho tôi tính tiền</td><td>Mǎidān / Jiézhàng</td><td class="loc-zh">买单 / 结账</td></tr>
+          <tr><td>Không cay / Ít cay</td><td>Bú là / Shǎo là</td><td class="loc-zh">不辣 / 少辣</td></tr>
+          <tr><td>Tôi là người Việt Nam</td><td>Wǒ shì Yuènán rén</td><td class="loc-zh">我是越南人</td></tr>
+          <tr><td>Giúp tôi với!</td><td>Bāng wǒ yīxià!</td><td class="loc-zh">帮我一下！</td></tr>
+          <tr><td>Gọi cấp cứu (119)</td><td>Jiào jiùhùchē</td><td class="loc-zh">叫救护车</td></tr>
+          <tr><td>Đến [địa điểm] bao xa?</td><td>[địa điểm] lí zhèlǐ duō yuǎn?</td><td class="loc-zh">[地点]离这里多远？</td></tr>
+          <tr><td>Đi đến [địa điểm]</td><td>Qù [địa điểm]</td><td class="loc-zh">去[地点]</td></tr>
+          <tr><td>Có thể chụp ảnh giúp không?</td><td>Kěyǐ bāng wǒ pāi zhào ma?</td><td class="loc-zh">可以帮我拍照吗？</td></tr>
+          <tr><td>Wifi mật khẩu là gì?</td><td>Wǐfēi mìmǎ shì shénme?</td><td class="loc-zh">WiFi密码是什么？</td></tr>
+          <tr><td>Toilet ở đâu?</td><td>Xǐshǒujiān zài nǎlǐ?</td><td class="loc-zh">洗手间在哪里？</td></tr>
+          <tr><td>Xếp hàng ở đây</td><td>Zài zhèlǐ páiduì</td><td class="loc-zh">在这里排队</td></tr>
+          <tr><td>Có thuyền không?</td><td>Yǒu wūpéng chuán ma?</td><td class="loc-zh">有乌篷船吗？</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SECTION: TẠI QUÁN ĂN -->
+    <div style="margin:0 0 28px;">
+      <div class="section-head">🍜 Gọi món & Ăn uống</div>
+      <table class="loc-table">
+        <thead><tr><th>Ý nghĩa</th><th>Pinyin</th><th>中文</th></tr></thead>
+        <tbody>
+          <tr><td>Tiểu long bao (Soup dumpling)</td><td>Xiǎolóngbāo</td><td class="loc-zh">小笼包</td></tr>
+          <tr><td>XLB nhân thịt heo</td><td>Zhūròu xiǎolóngbāo</td><td class="loc-zh">猪肉小笼包</td></tr>
+          <tr><td>XLB nhân cua</td><td>Xiè fěn xiǎolóngbāo</td><td class="loc-zh">蟹粉小笼包</td></tr>
+          <tr><td>Bánh bao chiên (Sheng Jian)</td><td>Shēngjiān bāo</td><td class="loc-zh">生煎包</td></tr>
+          <tr><td>Mì</td><td>Miàn</td><td class="loc-zh">面</td></tr>
+          <tr><td>Cơm</td><td>Mǐfàn</td><td class="loc-zh">米饭</td></tr>
+          <tr><td>Nước lọc</td><td>Báishuǐ / Kuàngquán shuǐ</td><td class="loc-zh">白水 / 矿泉水</td></tr>
+          <tr><td>Trà</td><td>Chá</td><td class="loc-zh">茶</td></tr>
+          <tr><td>Không hành / tỏi</td><td>Bù fàng cōng / suàn</td><td class="loc-zh">不放葱 / 蒜</td></tr>
+          <tr><td>Đặt bàn (Dianping)</td><td>Yùdìng zuòwèi</td><td class="loc-zh">预订座位</td></tr>
+          <tr><td>Cho 2 người</td><td>Liǎng gè rén</td><td class="loc-zh">两个人</td></tr>
+          <tr><td>Ngon lắm!</td><td>Hǎo chī!</td><td class="loc-zh">好吃！</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SECTION: KHẨN CẤP -->
+    <div style="margin:0 0 28px;">
+      <div class="section-head">🆘 Khẩn cấp & Cần thiết</div>
+      <table class="loc-table">
+        <thead><tr><th>Tình huống</th><th>Pinyin</th><th>中文</th></tr></thead>
+        <tbody>
+          <tr><td>Cứu tôi với! / Cứu người!</td><td>Jiù rén a!</td><td class="loc-zh">救人啊！</td></tr>
+          <tr><td>Gọi cảnh sát (110)</td><td>Jiào jǐngchá</td><td class="loc-zh">叫警察</td></tr>
+          <tr><td>Gọi cấp cứu (120)</td><td>Jiào jiùhùchē</td><td class="loc-zh">叫救护车</td></tr>
+          <tr><td>Tôi bị mất đồ</td><td>Wǒ de dōngxi diū le</td><td class="loc-zh">我的东西丢了</td></tr>
+          <tr><td>Tôi bị mất hộ chiếu</td><td>Wǒ de hùzhào diū le</td><td class="loc-zh">我的护照丢了</td></tr>
+          <tr><td>Đại sứ quán Việt Nam</td><td>Yuènán Dàshǐguǎn</td><td class="loc-zh">越南大使馆</td></tr>
+          <tr><td>Tôi không khoẻ</td><td>Wǒ bù shūfu</td><td class="loc-zh">我不舒服</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div><!-- /p10 -->
+
+
 </main>
 
 <footer>China Trip · 25 tháng 4 – 01 tháng 5 năm 2026 · Shanghai · Hangzhou · Wuzhen</footer>
@@ -1645,6 +2037,24 @@
     document.getElementById('p' + i).classList.add('visible');
     document.querySelectorAll('.nav-btn')[i].classList.add('active');
     window.scrollTo({ top: document.querySelector('.nav-wrap').offsetHeight + document.querySelector('.hero').offsetHeight, behavior: 'smooth' });
+  }
+
+  function toggleNote(head) {
+    const card = head.closest('.note-card');
+    card.classList.toggle('open');
+  }
+
+  function filterNotes(query) {
+    const q = query.toLowerCase().trim();
+    document.querySelectorAll('.note-card').forEach(card => {
+      const tags = (card.dataset.tags || '').toLowerCase();
+      const text = card.innerText.toLowerCase();
+      if (!q || tags.includes(q) || text.includes(q)) {
+        card.classList.remove('hidden');
+      } else {
+        card.classList.add('hidden');
+      }
+    });
   }
 </script>
 </body>
