@@ -1572,6 +1572,15 @@
       .type-hotel { background: #E1F5EE; color: #085041; }
       .type-transport { background: #EEEDFE; color: #3C3489; }
       .copy-hint { font-size: 10px; color: var(--muted); margin-bottom: 10px; font-style: italic; }
+      .speak-btn {
+        background: none; border: none; cursor: pointer;
+        font-size: 13px; padding: 0 0 0 6px; opacity: 0.45;
+        vertical-align: middle; line-height: 1; transition: opacity 0.15s, transform 0.15s;
+      }
+      .speak-btn:hover { opacity: 1; transform: scale(1.2); }
+      .speak-btn.playing { opacity: 1; animation: pulse-spk 0.6s ease-in-out infinite alternate; }
+      @keyframes pulse-spk { from { transform: scale(1); } to { transform: scale(1.3); } }
+      tr.convo-hidden { display: none; }
 
   /* NOTE CARDS */
   .note-card {
@@ -1924,101 +1933,214 @@
       </div>
     </div>
 
-    <p class="copy-hint">Nhấn vào ô tiếng Trung để copy · Pinyin giúp đọc gần đúng khi không biết chữ</p>
+    <!-- SEARCH + COUNTER BAR -->
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;flex-wrap:wrap;">
+      <div style="position:relative;flex:1;min-width:200px;">
+        <span style="position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:14px;pointer-events:none;">🔍</span>
+        <input id="convo-search" type="text" placeholder="Tìm từ hoặc cụm từ... (vd: taxi, cảm ơn, toilet)" oninput="filterConvo(this.value)"
+          style="width:100%;padding:9px 12px 9px 34px;border:1px solid var(--border);border-radius:8px;font-size:13px;font-family:'DM Sans',sans-serif;background:var(--white);color:var(--ink);outline:none;"
+          onfocus="this.style.borderColor='var(--amber)'" onblur="this.style.borderColor='var(--border)'">
+      </div>
+      <div id="convo-counter" style="font-size:12px;color:var(--muted);white-space:nowrap;flex-shrink:0;padding:4px 0;"></div>
+    </div>
+    <p class="copy-hint">Nhấn 🔊 để nghe phát âm · Nhấn vào ô tiếng Trung để copy · Pinyin giúp đọc gần đúng khi không biết chữ</p>
 
     <!-- SECTION: ĐỊA ĐIỂM / TỪ KHOÁ -->
-    <div style="margin:0 0 28px;">
+    <div class="convo-section" style="margin:0 0 28px;">
       <div class="section-head">📍 Địa điểm & Từ khoá quan trọng</div>
       <table class="loc-table">
         <thead><tr><th>Tiếng Việt</th><th>Pinyin</th><th>中文</th></tr></thead>
         <tbody>
-          <tr><td>Khách sạn</td><td>Jiǔdiàn / Lǚguǎn</td><td class="loc-zh">酒店 / 旅馆</td></tr>
-          <tr><td>Sân bay</td><td>Jīchǎng</td><td class="loc-zh">机场</td></tr>
-          <tr><td>Ga tàu hoả</td><td>Huǒchēzhàn</td><td class="loc-zh">火车站</td></tr>
-          <tr><td>Tàu điện ngầm (Metro)</td><td>Dìtiě</td><td class="loc-zh">地铁</td></tr>
-          <tr><td>Xe taxi / Didi</td><td>Chūzūchē / Dīdī</td><td class="loc-zh">出租车 / 滴滴</td></tr>
-          <tr><td>Nhà vệ sinh</td><td>Xǐshǒujiān / Cèsuǒ</td><td class="loc-zh">洗手间 / 厕所</td></tr>
-          <tr><td>Siêu thị / Cửa hàng tiện lợi</td><td>Chāoshì / Biànlì diàn</td><td class="loc-zh">超市 / 便利店</td></tr>
-          <tr><td>Nhà hàng</td><td>Cāntīng / Fànguǎn</td><td class="loc-zh">餐厅 / 饭馆</td></tr>
-          <tr><td>Bệnh viện</td><td>Yīyuàn</td><td class="loc-zh">医院</td></tr>
-          <tr><td>Công an / Cảnh sát</td><td>Jǐngchá</td><td class="loc-zh">警察</td></tr>
-          <tr><td>Đặt phòng / Đặt chỗ</td><td>Yùdìng</td><td class="loc-zh">预订</td></tr>
-          <tr><td>Hộ chiếu</td><td>Hùzhào</td><td class="loc-zh">护照</td></tr>
-          <tr><td>Tiền mặt / Thanh toán</td><td>Xiànjīn / Fùkuǎn</td><td class="loc-zh">现金 / 付款</td></tr>
-          <tr><td>Quét mã (QR)</td><td>Sǎo mǎ</td><td class="loc-zh">扫码</td></tr>
-          <tr><td>Bản đồ</td><td>Dìtú</td><td class="loc-zh">地图</td></tr>
-          <tr><td>Xe buýt</td><td>Gōngjiāo chē</td><td class="loc-zh">公交车</td></tr>
-          <tr><td>Trái / Phải / Thẳng</td><td>Zuǒ / Yòu / Zhí zǒu</td><td class="loc-zh">左 / 右 / 直走</td></tr>
-          <tr><td>Gần / Xa</td><td>Jìn / Yuǎn</td><td class="loc-zh">近 / 远</td></tr>
+          <tr><td>Khách sạn</td><td>Jiǔdiàn / Lǚguǎn</td><td class="loc-zh">酒店 / 旅馆<button class="speak-btn" onclick="speakZh('酒店 旅馆',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Sân bay</td><td>Jīchǎng</td><td class="loc-zh">机场<button class="speak-btn" onclick="speakZh('机场',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Ga tàu hoả</td><td>Huǒchēzhàn</td><td class="loc-zh">火车站<button class="speak-btn" onclick="speakZh('火车站',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Tàu điện ngầm (Metro)</td><td>Dìtiě</td><td class="loc-zh">地铁<button class="speak-btn" onclick="speakZh('地铁',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Xe taxi / Didi</td><td>Chūzūchē / Dīdī</td><td class="loc-zh">出租车 / 滴滴<button class="speak-btn" onclick="speakZh('出租车 滴滴',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Nhà vệ sinh</td><td>Xǐshǒujiān / Cèsuǒ</td><td class="loc-zh">洗手间 / 厕所<button class="speak-btn" onclick="speakZh('洗手间 厕所',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Siêu thị / Cửa hàng tiện lợi</td><td>Chāoshì / Biànlì diàn</td><td class="loc-zh">超市 / 便利店<button class="speak-btn" onclick="speakZh('超市 便利店',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Nhà hàng</td><td>Cāntīng / Fànguǎn</td><td class="loc-zh">餐厅 / 饭馆<button class="speak-btn" onclick="speakZh('餐厅 饭馆',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Bệnh viện</td><td>Yīyuàn</td><td class="loc-zh">医院<button class="speak-btn" onclick="speakZh('医院',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Công an / Cảnh sát</td><td>Jǐngchá</td><td class="loc-zh">警察<button class="speak-btn" onclick="speakZh('警察',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Đặt phòng / Đặt chỗ</td><td>Yùdìng</td><td class="loc-zh">预订<button class="speak-btn" onclick="speakZh('预订',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Hộ chiếu</td><td>Hùzhào</td><td class="loc-zh">护照<button class="speak-btn" onclick="speakZh('护照',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Tiền mặt / Thanh toán</td><td>Xiànjīn / Fùkuǎn</td><td class="loc-zh">现金 / 付款<button class="speak-btn" onclick="speakZh('现金 付款',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Quét mã (QR)</td><td>Sǎo mǎ</td><td class="loc-zh">扫码<button class="speak-btn" onclick="speakZh('扫码',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Bản đồ</td><td>Dìtú</td><td class="loc-zh">地图<button class="speak-btn" onclick="speakZh('地图',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Xe buýt</td><td>Gōngjiāo chē</td><td class="loc-zh">公交车<button class="speak-btn" onclick="speakZh('公交车',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Trái / Phải / Thẳng</td><td>Zuǒ / Yòu / Zhí zǒu</td><td class="loc-zh">左 / 右 / 直走<button class="speak-btn" onclick="speakZh('左 右 直走',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Gần / Xa</td><td>Jìn / Yuǎn</td><td class="loc-zh">近 / 远<button class="speak-btn" onclick="speakZh('近 远',this)" title="Nghe phát âm">🔊</button></td></tr>
         </tbody>
       </table>
     </div>
 
     <!-- SECTION: CÂU GIAO TIẾP -->
-    <div style="margin:0 0 28px;">
+    <div class="convo-section" style="margin:0 0 28px;">
       <div class="section-head">🗣 Câu giao tiếp thực tế</div>
       <table class="loc-table">
         <thead><tr><th>Ý nghĩa</th><th>Pinyin</th><th>中文</th></tr></thead>
         <tbody>
-          <tr><td>Xin chào / Chào</td><td>Nǐ hǎo</td><td class="loc-zh">你好</td></tr>
-          <tr><td>Cảm ơn</td><td>Xièxiè</td><td class="loc-zh">谢谢</td></tr>
-          <tr><td>Xin lỗi / Làm phiền</td><td>Bù hǎo yìsi / Máfan nǐ</td><td class="loc-zh">不好意思 / 麻烦你</td></tr>
-          <tr><td>Không hiểu</td><td>Wǒ tīng bù dǒng</td><td class="loc-zh">我听不懂</td></tr>
-          <tr><td>Bạn nói tiếng Anh không?</td><td>Nǐ huì shuō Yīngyǔ ma?</td><td class="loc-zh">你会说英语吗？</td></tr>
-          <tr><td>Cái này bao nhiêu tiền?</td><td>Zhège duōshǎo qián?</td><td class="loc-zh">这个多少钱？</td></tr>
-          <tr><td>Đắt quá!</td><td>Tài guì le!</td><td class="loc-zh">太贵了！</td></tr>
-          <tr><td>Tôi muốn cái này</td><td>Wǒ yào zhège</td><td class="loc-zh">我要这个</td></tr>
-          <tr><td>Cho tôi tính tiền</td><td>Mǎidān / Jiézhàng</td><td class="loc-zh">买单 / 结账</td></tr>
-          <tr><td>Không cay / Ít cay</td><td>Bú là / Shǎo là</td><td class="loc-zh">不辣 / 少辣</td></tr>
-          <tr><td>Tôi là người Việt Nam</td><td>Wǒ shì Yuènán rén</td><td class="loc-zh">我是越南人</td></tr>
-          <tr><td>Giúp tôi với!</td><td>Bāng wǒ yīxià!</td><td class="loc-zh">帮我一下！</td></tr>
-          <tr><td>Gọi cấp cứu (119)</td><td>Jiào jiùhùchē</td><td class="loc-zh">叫救护车</td></tr>
-          <tr><td>Đến [địa điểm] bao xa?</td><td>[địa điểm] lí zhèlǐ duō yuǎn?</td><td class="loc-zh">[地点]离这里多远？</td></tr>
-          <tr><td>Đi đến [địa điểm]</td><td>Qù [địa điểm]</td><td class="loc-zh">去[地点]</td></tr>
-          <tr><td>Có thể chụp ảnh giúp không?</td><td>Kěyǐ bāng wǒ pāi zhào ma?</td><td class="loc-zh">可以帮我拍照吗？</td></tr>
-          <tr><td>Wifi mật khẩu là gì?</td><td>Wǐfēi mìmǎ shì shénme?</td><td class="loc-zh">WiFi密码是什么？</td></tr>
-          <tr><td>Toilet ở đâu?</td><td>Xǐshǒujiān zài nǎlǐ?</td><td class="loc-zh">洗手间在哪里？</td></tr>
-          <tr><td>Xếp hàng ở đây</td><td>Zài zhèlǐ páiduì</td><td class="loc-zh">在这里排队</td></tr>
-          <tr><td>Có thuyền không?</td><td>Yǒu wūpéng chuán ma?</td><td class="loc-zh">有乌篷船吗？</td></tr>
+          <tr><td>Xin chào / Chào</td><td>Nǐ hǎo</td><td class="loc-zh">你好<button class="speak-btn" onclick="speakZh('你好',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Cảm ơn</td><td>Xièxiè</td><td class="loc-zh">谢谢<button class="speak-btn" onclick="speakZh('谢谢',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Xin lỗi / Làm phiền</td><td>Bù hǎo yìsi / Máfan nǐ</td><td class="loc-zh">不好意思 / 麻烦你<button class="speak-btn" onclick="speakZh('不好意思 麻烦你',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Không hiểu</td><td>Wǒ tīng bù dǒng</td><td class="loc-zh">我听不懂<button class="speak-btn" onclick="speakZh('我听不懂',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Bạn nói tiếng Anh không?</td><td>Nǐ huì shuō Yīngyǔ ma?</td><td class="loc-zh">你会说英语吗？<button class="speak-btn" onclick="speakZh('你会说英语吗',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Cái này bao nhiêu tiền?</td><td>Zhège duōshǎo qián?</td><td class="loc-zh">这个多少钱？<button class="speak-btn" onclick="speakZh('这个多少钱',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Đắt quá!</td><td>Tài guì le!</td><td class="loc-zh">太贵了！<button class="speak-btn" onclick="speakZh('太贵了',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Tôi muốn cái này</td><td>Wǒ yào zhège</td><td class="loc-zh">我要这个<button class="speak-btn" onclick="speakZh('我要这个',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Cho tôi tính tiền</td><td>Mǎidān / Jiézhàng</td><td class="loc-zh">买单 / 结账<button class="speak-btn" onclick="speakZh('买单 结账',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Không cay / Ít cay</td><td>Bú là / Shǎo là</td><td class="loc-zh">不辣 / 少辣<button class="speak-btn" onclick="speakZh('不辣 少辣',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Tôi là người Việt Nam</td><td>Wǒ shì Yuènán rén</td><td class="loc-zh">我是越南人<button class="speak-btn" onclick="speakZh('我是越南人',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Giúp tôi với!</td><td>Bāng wǒ yīxià!</td><td class="loc-zh">帮我一下！<button class="speak-btn" onclick="speakZh('帮我一下',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Gọi cấp cứu (119)</td><td>Jiào jiùhùchē</td><td class="loc-zh">叫救护车<button class="speak-btn" onclick="speakZh('叫救护车',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Đến [địa điểm] bao xa?</td><td>[địa điểm] lí zhèlǐ duō yuǎn?</td><td class="loc-zh">[地点]离这里多远？<button class="speak-btn" onclick="speakZh('离这里多远',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Đi đến [địa điểm]</td><td>Qù [địa điểm]</td><td class="loc-zh">去[地点]<button class="speak-btn" onclick="speakZh('去',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Có thể chụp ảnh giúp không?</td><td>Kěyǐ bāng wǒ pāi zhào ma?</td><td class="loc-zh">可以帮我拍照吗？<button class="speak-btn" onclick="speakZh('可以帮我拍照吗',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Wifi mật khẩu là gì?</td><td>Wǐfēi mìmǎ shì shénme?</td><td class="loc-zh">WiFi密码是什么？<button class="speak-btn" onclick="speakZh('WiFi密码是什么',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Toilet ở đâu?</td><td>Xǐshǒujiān zài nǎlǐ?</td><td class="loc-zh">洗手间在哪里？<button class="speak-btn" onclick="speakZh('洗手间在哪里',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Xếp hàng ở đây</td><td>Zài zhèlǐ páiduì</td><td class="loc-zh">在这里排队<button class="speak-btn" onclick="speakZh('在这里排队',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Có thuyền không?</td><td>Yǒu wūpéng chuán ma?</td><td class="loc-zh">有乌篷船吗？<button class="speak-btn" onclick="speakZh('有乌篷船吗',this)" title="Nghe phát âm">🔊</button></td></tr>
         </tbody>
       </table>
     </div>
 
     <!-- SECTION: TẠI QUÁN ĂN -->
-    <div style="margin:0 0 28px;">
+    <div class="convo-section" style="margin:0 0 28px;">
       <div class="section-head">🍜 Gọi món & Ăn uống</div>
       <table class="loc-table">
         <thead><tr><th>Ý nghĩa</th><th>Pinyin</th><th>中文</th></tr></thead>
         <tbody>
-          <tr><td>Tiểu long bao (Soup dumpling)</td><td>Xiǎolóngbāo</td><td class="loc-zh">小笼包</td></tr>
-          <tr><td>XLB nhân thịt heo</td><td>Zhūròu xiǎolóngbāo</td><td class="loc-zh">猪肉小笼包</td></tr>
-          <tr><td>XLB nhân cua</td><td>Xiè fěn xiǎolóngbāo</td><td class="loc-zh">蟹粉小笼包</td></tr>
-          <tr><td>Bánh bao chiên (Sheng Jian)</td><td>Shēngjiān bāo</td><td class="loc-zh">生煎包</td></tr>
-          <tr><td>Mì</td><td>Miàn</td><td class="loc-zh">面</td></tr>
-          <tr><td>Cơm</td><td>Mǐfàn</td><td class="loc-zh">米饭</td></tr>
-          <tr><td>Nước lọc</td><td>Báishuǐ / Kuàngquán shuǐ</td><td class="loc-zh">白水 / 矿泉水</td></tr>
-          <tr><td>Trà</td><td>Chá</td><td class="loc-zh">茶</td></tr>
-          <tr><td>Không hành / tỏi</td><td>Bù fàng cōng / suàn</td><td class="loc-zh">不放葱 / 蒜</td></tr>
-          <tr><td>Đặt bàn (Dianping)</td><td>Yùdìng zuòwèi</td><td class="loc-zh">预订座位</td></tr>
-          <tr><td>Cho 2 người</td><td>Liǎng gè rén</td><td class="loc-zh">两个人</td></tr>
-          <tr><td>Ngon lắm!</td><td>Hǎo chī!</td><td class="loc-zh">好吃！</td></tr>
+          <tr><td>Thực đơn / Menu</td><td>Càidān</td><td class="loc-zh">菜单<button class="speak-btn" onclick="speakZh('菜单',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Cho tôi xem menu</td><td>Gěi wǒ càidān</td><td class="loc-zh">给我菜单<button class="speak-btn" onclick="speakZh('给我菜单',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Tiểu long bao (Soup dumpling)</td><td>Xiǎolóngbāo</td><td class="loc-zh">小笼包<button class="speak-btn" onclick="speakZh('小笼包',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>XLB nhân thịt heo</td><td>Zhūròu xiǎolóngbāo</td><td class="loc-zh">猪肉小笼包<button class="speak-btn" onclick="speakZh('猪肉小笼包',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>XLB nhân cua</td><td>Xiè fěn xiǎolóngbāo</td><td class="loc-zh">蟹粉小笼包<button class="speak-btn" onclick="speakZh('蟹粉小笼包',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Bánh bao chiên (Sheng Jian)</td><td>Shēngjiān bāo</td><td class="loc-zh">生煎包<button class="speak-btn" onclick="speakZh('生煎包',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Dimsum / Điểm tâm</td><td>Diǎnxīn</td><td class="loc-zh">点心<button class="speak-btn" onclick="speakZh('点心',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Vịt quay Bắc Kinh</td><td>Běijīng kǎoyā</td><td class="loc-zh">北京烤鸭<button class="speak-btn" onclick="speakZh('北京烤鸭',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Lẩu</td><td>Huǒguō</td><td class="loc-zh">火锅<button class="speak-btn" onclick="speakZh('火锅',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Cháo</td><td>Zhōu / Xīfàn</td><td class="loc-zh">粥 / 稀饭<button class="speak-btn" onclick="speakZh('粥',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Mì</td><td>Miàn</td><td class="loc-zh">面<button class="speak-btn" onclick="speakZh('面',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Cơm rang</td><td>Chǎofàn</td><td class="loc-zh">炒饭<button class="speak-btn" onclick="speakZh('炒饭',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Cơm trắng</td><td>Báifàn / Mǐfàn</td><td class="loc-zh">白饭 / 米饭<button class="speak-btn" onclick="speakZh('米饭',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Thịt heo / bò / gà / vịt</td><td>Zhūròu / Niúròu / Jīròu / Yāròu</td><td class="loc-zh">猪肉 / 牛肉 / 鸡肉 / 鸭肉<button class="speak-btn" onclick="speakZh('猪肉 牛肉 鸡肉 鸭肉',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Hải sản</td><td>Hǎixiān</td><td class="loc-zh">海鲜<button class="speak-btn" onclick="speakZh('海鲜',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Rau / Chay</td><td>Shūcài / Sùshí</td><td class="loc-zh">蔬菜 / 素食<button class="speak-btn" onclick="speakZh('蔬菜 素食',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Không cay / Ít cay / Cay vừa</td><td>Bú là / Shǎo là / Zhōng là</td><td class="loc-zh">不辣 / 少辣 / 中辣<button class="speak-btn" onclick="speakZh('不辣 少辣 中辣',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Không hành / tỏi</td><td>Bù fàng cōng / suàn</td><td class="loc-zh">不放葱 / 蒜<button class="speak-btn" onclick="speakZh('不放葱 蒜',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Dị ứng (thức ăn)</td><td>Guòmǐn</td><td class="loc-zh">过敏<button class="speak-btn" onclick="speakZh('过敏',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Nước lọc / Nước khoáng</td><td>Báishuǐ / Kuàngquán shuǐ</td><td class="loc-zh">白水 / 矿泉水<button class="speak-btn" onclick="speakZh('白水 矿泉水',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Trà / Cà phê / Nước ngọt</td><td>Chá / Kāfēi / Yǐnliào</td><td class="loc-zh">茶 / 咖啡 / 饮料<button class="speak-btn" onclick="speakZh('茶 咖啡 饮料',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Bia / Rượu</td><td>Píjiǔ / Jiǔ</td><td class="loc-zh">啤酒 / 酒<button class="speak-btn" onclick="speakZh('啤酒 酒',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Nóng / Lạnh / Ấm</td><td>Rè / Bīng / Wēn</td><td class="loc-zh">热 / 冰 / 温<button class="speak-btn" onclick="speakZh('热 冰 温',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Đặt bàn cho 2 người</td><td>Yùdìng liǎng gè rén de zuòwèi</td><td class="loc-zh">预订两个人的座位<button class="speak-btn" onclick="speakZh('预订两个人的座位',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Bàn ngoài trời / trong nhà</td><td>Hùwài / Shìnèi zuòwèi</td><td class="loc-zh">户外 / 室内座位<button class="speak-btn" onclick="speakZh('户外 室内座位',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Còn bàn trống không?</td><td>Yǒu kòng wèi ma?</td><td class="loc-zh">有空位吗？<button class="speak-btn" onclick="speakZh('有空位吗',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Chờ bao lâu?</td><td>Děng duō jiǔ?</td><td class="loc-zh">等多久？<button class="speak-btn" onclick="speakZh('等多久',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Cho thêm 1 cái nữa</td><td>Zài lái yī gè</td><td class="loc-zh">再来一个<button class="speak-btn" onclick="speakZh('再来一个',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Không cần đũa / Cho đũa</td><td>Bù yòng kuàizi / Gěi kuàizi</td><td class="loc-zh">不用筷子 / 给筷子<button class="speak-btn" onclick="speakZh('不用筷子 给筷子',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Đóng gói mang về</td><td>Dǎbāo</td><td class="loc-zh">打包<button class="speak-btn" onclick="speakZh('打包',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Ngon lắm!</td><td>Hǎo chī!</td><td class="loc-zh">好吃！<button class="speak-btn" onclick="speakZh('好吃',this)" title="Nghe phát âm">🔊</button></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SECTION: THANH TOÁN -->
+    <div class="convo-section" style="margin:0 0 28px;">
+      <div class="section-head">💳 Thanh toán & Tiền bạc</div>
+      <table class="loc-table">
+        <thead><tr><th>Ý nghĩa</th><th>Pinyin</th><th>中文</th></tr></thead>
+        <tbody>
+          <tr><td>Tính tiền / Thanh toán</td><td>Mǎidān / Jiézhàng</td><td class="loc-zh">买单 / 结账<button class="speak-btn" onclick="speakZh('买单 结账',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Bao nhiêu tiền tất cả?</td><td>Yīgòng duōshǎo qián?</td><td class="loc-zh">一共多少钱？<button class="speak-btn" onclick="speakZh('一共多少钱',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Quét mã QR</td><td>Sǎo mǎ fùkuǎn</td><td class="loc-zh">扫码付款<button class="speak-btn" onclick="speakZh('扫码付款',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>WeChat Pay</td><td>Wēixìn zhīfù</td><td class="loc-zh">微信支付<button class="speak-btn" onclick="speakZh('微信支付',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Alipay</td><td>Zhīfùbǎo</td><td class="loc-zh">支付宝<button class="speak-btn" onclick="speakZh('支付宝',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Trả bằng tiền mặt</td><td>Yòng xiànjīn fù</td><td class="loc-zh">用现金付<button class="speak-btn" onclick="speakZh('用现金付',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Thẻ ngân hàng / Visa</td><td>Yínhángkǎ / Xìnyòngkǎ</td><td class="loc-zh">银行卡 / 信用卡<button class="speak-btn" onclick="speakZh('银行卡 信用卡',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Có nhận thẻ không?</td><td>Kěyǐ shuākǎ ma?</td><td class="loc-zh">可以刷卡吗？<button class="speak-btn" onclick="speakZh('可以刷卡吗',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Chỉ nhận tiền mặt</td><td>Zhǐ shōu xiànjīn</td><td class="loc-zh">只收现金<button class="speak-btn" onclick="speakZh('只收现金',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Tiền thối lại</td><td>Zhǎo qián</td><td class="loc-zh">找钱<button class="speak-btn" onclick="speakZh('找钱',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Hoá đơn / Biên lai</td><td>Fāpiào / Shōujù</td><td class="loc-zh">发票 / 收据<button class="speak-btn" onclick="speakZh('发票 收据',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Chia bill / Trả riêng</td><td>Fēnkāi fùkuǎn / AA zhī</td><td class="loc-zh">分开付款 / AA制<button class="speak-btn" onclick="speakZh('分开付款 AA制',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Đắt quá! Giảm giá được không?</td><td>Tài guì le! Kěyǐ piányí ma?</td><td class="loc-zh">太贵了！可以便宜吗？<button class="speak-btn" onclick="speakZh('太贵了 可以便宜吗',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Giá cuối rồi không?</td><td>Zuìdī jià le ma?</td><td class="loc-zh">最低价了吗？<button class="speak-btn" onclick="speakZh('最低价了吗',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Tôi muốn mua cái này</td><td>Wǒ yào mǎi zhège</td><td class="loc-zh">我要买这个<button class="speak-btn" onclick="speakZh('我要买这个',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Có khuyến mãi không?</td><td>Yǒu yōuhuì ma?</td><td class="loc-zh">有优惠吗？<button class="speak-btn" onclick="speakZh('有优惠吗',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Đổi tiền ở đâu?</td><td>Nǎlǐ kěyǐ huàn qián?</td><td class="loc-zh">哪里可以换钱？<button class="speak-btn" onclick="speakZh('哪里可以换钱',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Tỷ giá hôm nay</td><td>Jīntiān de huìlǜ</td><td class="loc-zh">今天的汇率<button class="speak-btn" onclick="speakZh('今天的汇率',this)" title="Nghe phát âm">🔊</button></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SECTION: KHÁCH SẠN -->
+    <div class="convo-section" style="margin:0 0 28px;">
+      <div class="section-head">🏨 Khách sạn — Check-in & Check-out</div>
+      <table class="loc-table">
+        <thead><tr><th>Ý nghĩa</th><th>Pinyin</th><th>中文</th></tr></thead>
+        <tbody>
+          <tr><td>Tôi có đặt phòng</td><td>Wǒ yǒu yùdìng</td><td class="loc-zh">我有预订<button class="speak-btn" onclick="speakZh('我有预订',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Tên tôi là...</td><td>Wǒ de míngzì shì...</td><td class="loc-zh">我的名字是…<button class="speak-btn" onclick="speakZh('我的名字是',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Check-in / Nhận phòng</td><td>Rùzhù / Bànlǐ rùzhù</td><td class="loc-zh">入住 / 办理入住<button class="speak-btn" onclick="speakZh('办理入住',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Check-out / Trả phòng</td><td>Tuìfáng / Bànlǐ tuìfáng</td><td class="loc-zh">退房 / 办理退房<button class="speak-btn" onclick="speakZh('办理退房',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Giờ check-in là mấy giờ?</td><td>Rùzhù shíjiān shì jǐ diǎn?</td><td class="loc-zh">入住时间是几点？<button class="speak-btn" onclick="speakZh('入住时间是几点',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Giờ check-out là mấy giờ?</td><td>Tuìfáng shíjiān shì jǐ diǎn?</td><td class="loc-zh">退房时间是几点？<button class="speak-btn" onclick="speakZh('退房时间是几点',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Cho tôi gửi hành lý trước</td><td>Wǒ xiǎng jìcún xíngli</td><td class="loc-zh">我想寄存行李<button class="speak-btn" onclick="speakZh('我想寄存行李',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Phòng chưa sẵn sàng</td><td>Fángjiān hái méi zhǔnbèi hǎo</td><td class="loc-zh">房间还没准备好<button class="speak-btn" onclick="speakZh('房间还没准备好',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Chìa khoá / Thẻ phòng</td><td>Fángjiān yàoshi / Mén kǎ</td><td class="loc-zh">房间钥匙 / 门卡<button class="speak-btn" onclick="speakZh('房间钥匙 门卡',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Phòng của tôi số mấy?</td><td>Wǒ de fángjiān hào shì?</td><td class="loc-zh">我的房间号是？<button class="speak-btn" onclick="speakZh('我的房间号是',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Điều hoà / Máy lạnh</td><td>Kōngtiáo</td><td class="loc-zh">空调<button class="speak-btn" onclick="speakZh('空调',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Không có nước nóng</td><td>Méiyǒu rèshuǐ</td><td class="loc-zh">没有热水<button class="speak-btn" onclick="speakZh('没有热水',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Wifi phòng không kết nối được</td><td>Fángjiān wǐfēi liánbùshàng</td><td class="loc-zh">房间WiFi连不上<button class="speak-btn" onclick="speakZh('房间WiFi连不上',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Đổi phòng được không?</td><td>Kěyǐ huàn fángjiān ma?</td><td class="loc-zh">可以换房间吗？<button class="speak-btn" onclick="speakZh('可以换房间吗',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Cho thêm khăn tắm</td><td>Zài gěi wǒ máojīn</td><td class="loc-zh">再给我毛巾<button class="speak-btn" onclick="speakZh('再给我毛巾',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Gọi xe / Taxi hộ tôi</td><td>Bāng wǒ jiào chē</td><td class="loc-zh">帮我叫车<button class="speak-btn" onclick="speakZh('帮我叫车',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Lễ tân / Quầy lễ tân</td><td>Qiántái / Fúwútái</td><td class="loc-zh">前台 / 服务台<button class="speak-btn" onclick="speakZh('前台 服务台',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Thang máy ở đâu?</td><td>Diàntī zài nǎlǐ?</td><td class="loc-zh">电梯在哪里？<button class="speak-btn" onclick="speakZh('电梯在哪里',this)" title="Nghe phát âm">🔊</button></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SECTION: SÂN BAY -->
+    <div class="convo-section" style="margin:0 0 28px;">
+      <div class="section-head">✈️ Sân bay & Đi lại</div>
+      <table class="loc-table">
+        <thead><tr><th>Ý nghĩa</th><th>Pinyin</th><th>中文</th></tr></thead>
+        <tbody>
+          <tr><td>Làm thủ tục (check-in máy bay)</td><td>Bànlǐ dēngjī shǒuxù</td><td class="loc-zh">办理登机手续<button class="speak-btn" onclick="speakZh('办理登机手续',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Quầy làm thủ tục</td><td>Bànjī guìtái</td><td class="loc-zh">办机柜台<button class="speak-btn" onclick="speakZh('办机柜台',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Hành lý ký gửi</td><td>Tuōyùn xínglǐ</td><td class="loc-zh">托运行李<button class="speak-btn" onclick="speakZh('托运行李',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Hành lý xách tay</td><td>Suíshēn xínglǐ</td><td class="loc-zh">随身行李<button class="speak-btn" onclick="speakZh('随身行李',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Cổng lên máy bay</td><td>Dēngjī kǒu</td><td class="loc-zh">登机口<button class="speak-btn" onclick="speakZh('登机口',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Thẻ lên máy bay</td><td>Dēngjī pái</td><td class="loc-zh">登机牌<button class="speak-btn" onclick="speakZh('登机牌',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Chuyến bay của tôi bị trễ</td><td>Wǒ de hángbān wǎndiǎn le</td><td class="loc-zh">我的航班晚点了<button class="speak-btn" onclick="speakZh('我的航班晚点了',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Số hiệu chuyến bay</td><td>Hángbān hào</td><td class="loc-zh">航班号<button class="speak-btn" onclick="speakZh('航班号',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Kiểm tra an ninh</td><td>Ānquán jiǎnchá</td><td class="loc-zh">安全检查<button class="speak-btn" onclick="speakZh('安全检查',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Xuất / Nhập cảnh</td><td>Chūjìng / Rùjìng</td><td class="loc-zh">出境 / 入境<button class="speak-btn" onclick="speakZh('出境 入境',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Khai báo hải quan</td><td>Bàoguan / Hǎiguān shēnbào</td><td class="loc-zh">海关申报<button class="speak-btn" onclick="speakZh('海关申报',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Băng chuyền hành lý</td><td>Xínglǐ chuándài</td><td class="loc-zh">行李传带<button class="speak-btn" onclick="speakZh('行李传带',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Taxi sân bay</td><td>Jīchǎng chūzūchē</td><td class="loc-zh">机场出租车<button class="speak-btn" onclick="speakZh('机场出租车',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Xe buýt sân bay</td><td>Jīchǎng bāshì</td><td class="loc-zh">机场巴士<button class="speak-btn" onclick="speakZh('机场巴士',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Tàu cao tốc / Tàu nhanh</td><td>Gāotiě / Dòngchē</td><td class="loc-zh">高铁 / 动车<button class="speak-btn" onclick="speakZh('高铁 动车',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Nhà ga / Sảnh đến / Sảnh đi</td><td>Hòuchēshì / Dàodá / Chūfā</td><td class="loc-zh">候车室 / 到达 / 出发<button class="speak-btn" onclick="speakZh('候车室 到达 出发',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Phòng chờ</td><td>Hòujī shì / Hòuchē shì</td><td class="loc-zh">候机室 / 候车室<button class="speak-btn" onclick="speakZh('候机室',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Bản đồ sân bay ở đâu?</td><td>Jīchǎng dìtú zài nǎlǐ?</td><td class="loc-zh">机场地图在哪里？<button class="speak-btn" onclick="speakZh('机场地图在哪里',this)" title="Nghe phát âm">🔊</button></td></tr>
         </tbody>
       </table>
     </div>
 
     <!-- SECTION: KHẨN CẤP -->
-    <div style="margin:0 0 28px;">
+    <div class="convo-section" style="margin:0 0 28px;">
       <div class="section-head">🆘 Khẩn cấp & Cần thiết</div>
       <table class="loc-table">
         <thead><tr><th>Tình huống</th><th>Pinyin</th><th>中文</th></tr></thead>
         <tbody>
-          <tr><td>Cứu tôi với! / Cứu người!</td><td>Jiù rén a!</td><td class="loc-zh">救人啊！</td></tr>
-          <tr><td>Gọi cảnh sát (110)</td><td>Jiào jǐngchá</td><td class="loc-zh">叫警察</td></tr>
-          <tr><td>Gọi cấp cứu (120)</td><td>Jiào jiùhùchē</td><td class="loc-zh">叫救护车</td></tr>
-          <tr><td>Tôi bị mất đồ</td><td>Wǒ de dōngxi diū le</td><td class="loc-zh">我的东西丢了</td></tr>
-          <tr><td>Tôi bị mất hộ chiếu</td><td>Wǒ de hùzhào diū le</td><td class="loc-zh">我的护照丢了</td></tr>
-          <tr><td>Đại sứ quán Việt Nam</td><td>Yuènán Dàshǐguǎn</td><td class="loc-zh">越南大使馆</td></tr>
-          <tr><td>Tôi không khoẻ</td><td>Wǒ bù shūfu</td><td class="loc-zh">我不舒服</td></tr>
+          <tr><td>Cứu tôi với! / Cứu người!</td><td>Jiù rén a!</td><td class="loc-zh">救人啊！<button class="speak-btn" onclick="speakZh('救人啊',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Gọi cảnh sát (110)</td><td>Jiào jǐngchá</td><td class="loc-zh">叫警察<button class="speak-btn" onclick="speakZh('叫警察',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Gọi cấp cứu (120)</td><td>Jiào jiùhùchē</td><td class="loc-zh">叫救护车<button class="speak-btn" onclick="speakZh('叫救护车',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Tôi bị mất đồ</td><td>Wǒ de dōngxi diū le</td><td class="loc-zh">我的东西丢了<button class="speak-btn" onclick="speakZh('我的东西丢了',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Tôi bị mất hộ chiếu</td><td>Wǒ de hùzhào diū le</td><td class="loc-zh">我的护照丢了<button class="speak-btn" onclick="speakZh('我的护照丢了',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Đại sứ quán Việt Nam</td><td>Yuènán Dàshǐguǎn</td><td class="loc-zh">越南大使馆<button class="speak-btn" onclick="speakZh('越南大使馆',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Tôi không khoẻ</td><td>Wǒ bù shūfu</td><td class="loc-zh">我不舒服<button class="speak-btn" onclick="speakZh('我不舒服',this)" title="Nghe phát âm">🔊</button></td></tr>
         </tbody>
       </table>
     </div>
@@ -2043,6 +2165,63 @@
     const card = head.closest('.note-card');
     card.classList.toggle('open');
   }
+
+  // ===== HỘI THOẠI: TTS =====
+  function speakZh(text, btn) {
+    if (!window.speechSynthesis) { alert('Trình duyệt không hỗ trợ TTS'); return; }
+    window.speechSynthesis.cancel();
+    // Remove playing state from all buttons
+    document.querySelectorAll('.speak-btn.playing').forEach(b => b.classList.remove('playing'));
+    const utt = new SpeechSynthesisUtterance(text);
+    utt.lang = 'zh-CN';
+    utt.rate = 0.85;
+    utt.pitch = 1;
+    // Try to pick a Chinese voice
+    const voices = window.speechSynthesis.getVoices();
+    const zhVoice = voices.find(v => v.lang.startsWith('zh'));
+    if (zhVoice) utt.voice = zhVoice;
+    btn.classList.add('playing');
+    utt.onend = () => btn.classList.remove('playing');
+    utt.onerror = () => btn.classList.remove('playing');
+    window.speechSynthesis.speak(utt);
+  }
+
+  // ===== HỘI THOẠI: SEARCH + COUNTER =====
+  function filterConvo(q) {
+    q = q.toLowerCase().trim();
+    const panel = document.getElementById('p10');
+    const rows = panel.querySelectorAll('tr:not(thead tr)');
+    let visible = 0, total = 0;
+    rows.forEach(tr => {
+      if (tr.closest('thead')) return;
+      total++;
+      const text = tr.innerText.toLowerCase();
+      if (!q || text.includes(q)) {
+        tr.classList.remove('convo-hidden');
+        visible++;
+      } else {
+        tr.classList.add('convo-hidden');
+      }
+    });
+    const counter = document.getElementById('convo-counter');
+    if (q) {
+      counter.textContent = visible + ' / ' + total + ' kết quả';
+      counter.style.color = visible === 0 ? 'var(--red)' : 'var(--amber)';
+    } else {
+      counter.textContent = total + ' cụm từ';
+      counter.style.color = 'var(--muted)';
+    }
+  }
+
+  // Init counter on page load
+  window.addEventListener('load', () => {
+    // Init voices (some browsers load async)
+    if (window.speechSynthesis) {
+      window.speechSynthesis.getVoices();
+      window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
+    }
+    filterConvo('');
+  });
 
   function filterNotes(query) {
     const q = query.toLowerCase().trim();
