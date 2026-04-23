@@ -2174,7 +2174,7 @@
     document.querySelectorAll('.speak-btn.playing').forEach(b => b.classList.remove('playing'));
     const utt = new SpeechSynthesisUtterance(text);
     utt.lang = 'zh-CN';
-    utt.rate = 0.85;
+    utt.rate = 0.65;
     utt.pitch = 1;
     // Try to pick a Chinese voice
     const voices = window.speechSynthesis.getVoices();
