@@ -359,7 +359,7 @@
 </div>
 <script>
   (function(){
-    if(sessionStorage.getItem('ct26')==='ok'){
+    if(localStorage.getItem('ct26')==='ok'){
       document.getElementById('gate').style.display='none';
     } else {
       document.addEventListener('DOMContentLoaded',function(){
@@ -369,7 +369,7 @@
   })();
   function checkPw(){
     if(document.getElementById('gate-input').value==='2003'){
-      sessionStorage.setItem('ct26','ok');
+      localStorage.setItem('ct26','ok');
       var g=document.getElementById('gate');
       g.style.transition='opacity 0.4s';g.style.opacity='0';
       setTimeout(function(){g.style.display='none';},400);
@@ -723,184 +723,177 @@
       <div class="day-info">
         <div class="day-date">Thứ ba · 28/04/2026</div>
         <div class="day-title">Nội thành <em>Thượng Hải</em></div>
-        <div class="day-subtitle">Jing'an → French Concession → Wukang → Về KS thay đồ → Trưa muộn Xintiandi → Bảo tàng → Vườn Dự Viên → Jia Jia Tang Bao (127 Huanghe Rd)</div>
+        <div class="day-subtitle">Ngủ trễ → Ăn trưa → Wukang + Apoli → Chùa Tĩnh An → Về HomeInn → Bảo Tàng → Dự Viên → Ăn tối → Cocktail bar</div>
       </div>
     </div>
 
     <div class="route-note">
-      <strong>Lộ trình tối ưu (tây → về KS → trung tâm → đông):</strong> Zhang Shi Fu sáng (Shimen Rd, Jing'an) → Jing'an Temple → Moller → Wukang → Apoli Bakery → <strong>🏨 Taxi về Homeinn thay đồ (12:30–13:30)</strong> → Taxi ra People's Square → Trưa muộn Xintiandi/Han Xiang → Bảo tàng (People's Sq) → Vườn Dự Viên (Old Town) → Jia Jia Tang Bao tối (127 Huanghe Rd) → Metro về Pudong. <em>Về KS buổi trưa tốn ~1 tiếng nhưng tiết kiệm sức cho chiều.</em>
+      <strong>🏨 HomeInn · 570 Shangcheng Rd, Pudong</strong> — cách trung tâm ~30 phút metro.<br>
+      <strong>Lộ trình metro tối ưu:</strong> Ăn trưa + Wukang + Apoli (French Concession) → <strong>🚇 Line 11 → Jing'an Temple</strong> → <strong>🚇 Line 2 → Century Ave → Line 9 → Shangcheng Rd 🏨</strong> (~35 phút) → nghỉ → <strong>🚇 Line 9 → People's Sq (Line 1)</strong> → Bảo Tàng → Dự Viên → Ăn tối → <strong>🚇 → Speak Low (579 Fuxing Zhong Lu)</strong> → <strong>🚇 Line 1 → People's Sq → Line 2 → Century Ave → Line 9 → Shangcheng Rd 🏨</strong>.
     </div>
 
     <div class="timeline">
+
       <div class="entry food">
         <div class="entry-inner">
-          <div class="e-time">07:30 – 08:30</div>
+          <div class="e-time">11:30 – 12:30</div>
           <div class="e-body">
-            <div class="e-title">Ăn sáng — Zhang Shi Fu
-              <span class="tri"><span class="lang-en">Zhang Shi Fu Breakfast Shop</span><span class="sep">·</span><span class="lang-zh">张师傅早餐店</span></span>
+            <div class="e-title">Ăn trưa — French Concession
+              <span class="tri"><span class="lang-en">Lunch · French Concession</span><span class="sep">·</span><span class="lang-zh">法租界午餐</span></span>
             </div>
-            <div class="e-detail">487 Shimen 2nd Rd, Jing'an — ngay trên đường đến Jing'an Temple, mở từ 05:00. Quán sáng local nổi tiếng ~8–10 tệ/người. Đặc sản: xôi chiên, sữa đậu nành nóng, xiaolongbao tươi, shengjian</div>
-            <div class="food-callout"><strong>Zhang Shi Fu 张师傅</strong> — <span>487 Shimen 2nd Rd · Mở 05:00–12:00 · ~30.000đ/người</span></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="entry transport">
-        <div class="entry-inner">
-          <div class="e-time">08:30 – 09:00</div>
-          <div class="e-body">
-            <div class="e-title">Metro Line 2 → Chùa Tĩnh An
-              <span class="tri"><span class="lang-en">Jing'an Temple Station</span><span class="sep">·</span><span class="lang-zh">静安寺站</span></span>
-            </div>
-            <div class="e-detail">Zhang Shi Fu ngay sát Metro Shimen Rd → đi 1 trạm tới Jing'an Temple Station</div>
-            <div class="tags"><span class="tag t-transport">Metro ~5 phút</span></div>
+            <div class="e-detail">Khu Huaihai Rd / Anfu Rd — nhiều quán ngon, vibe cổ điển. Đây là lúc Apoli còn mở và đông khách.</div>
+            <div class="food-callout"><strong>Gợi ý: Fu 1088</strong> — <span>375 Zhenning Rd · Shanghainese classic, không gian biệt thự · đặt trước</span></div>
+            <div class="food-callout"><strong>Hoặc: Han Xiang Noodle Bar</strong> — <span>Huahai Rd (M) · mì vịt nhanh gọn, không cần đặt trước</span></div>
           </div>
         </div>
       </div>
 
       <div class="entry hl">
         <div class="entry-inner">
-          <div class="e-time">09:00 – 10:00</div>
-          <div class="e-body">
-            <div class="e-title">Chùa Tĩnh An
-              <span class="tri"><span class="lang-en">Jing'an Temple</span><span class="sep">·</span><span class="lang-zh">静安寺</span></span>
-            </div>
-            <div class="tags"><span class="tag t-cost">150.000đ</span><span class="tag t-tip">Đặt online qua Klook</span></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="entry hl">
-        <div class="entry-inner">
-          <div class="e-time">10:00 – 11:00</div>
-          <div class="e-body">
-            <div class="e-title">Biệt thự Moller + Khách sạn Hoà Bình
-              <span class="tri"><span class="lang-en">Moller Villa · Peace Hotel</span><span class="sep">·</span><span class="lang-zh">马勒别墅 · 和平饭店</span></span>
-            </div>
-            <div class="e-detail">Đi bộ ~10 phút từ Chùa Tĩnh An. Kiến trúc cổ châu Âu độc đáo</div>
-            <div class="tags"><span class="tag t-cost">Free</span></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="entry hl">
-        <div class="entry-inner">
-          <div class="e-time">11:00 – 11:45</div>
+          <div class="e-time">12:30 – 13:15</div>
           <div class="e-body">
             <div class="e-title">Tòa nhà Vũ Khang
               <span class="tri"><span class="lang-en">Wukang Building</span><span class="sep">·</span><span class="lang-zh">武康大楼</span></span>
             </div>
-            <div class="e-detail">Taxi ~2km về hướng nam. Góc ảnh iconic nhất Shanghai</div>
-            <div class="tags"><span class="tag t-transport">Taxi ~5 phút</span><span class="tag t-cost">Free</span></div>
+            <div class="e-detail">Đi bộ hoặc taxi ngắn ~5 phút từ khu ăn trưa. Góc ảnh iconic nhất Shanghai — chụp từ vỉa hè đối diện</div>
+            <div class="tags"><span class="tag t-cost">Free</span><span class="tag t-tip">Tranh thủ ánh sáng đẹp buổi trưa</span></div>
           </div>
         </div>
       </div>
 
       <div class="entry cafe">
         <div class="entry-inner">
-          <div class="e-time">11:45 – 12:30</div>
+          <div class="e-time">13:15 – 13:45</div>
           <div class="e-body">
             <div class="e-title">Apoli Ita Bakery
               <span class="tri"><span class="lang-en">Italian Bakery · Wukang Road</span><span class="sep">·</span><span class="lang-zh">意大利烘焙 · 武康路</span></span>
             </div>
-            <div class="e-detail">Ngay trên đường Wukang, đi bộ ra từ tòa nhà Vũ Khang. Bánh Ý kiểu Napoli, cà phê ngon, góc phố đẹp</div>
-            <div class="tags"><span class="tag t-cafe">Wukang Road</span><span class="tag t-tip">Ngay cạnh Wukang Building</span></div>
+            <div class="e-detail">Đi bộ ~3 phút từ Wukang Building. Bánh Ý kiểu Napoli, cà phê ngon — lấy đồ ăn nhẹ rồi đi Metro luôn</div>
+            <div class="tags"><span class="tag t-cafe">Wukang Road</span><span class="tag t-tip">Đi bộ từ Wukang Building</span></div>
           </div>
         </div>
       </div>
 
-      <!-- HOTEL RETURN -->
-      <div class="entry warn">
+      <div class="entry transport">
         <div class="entry-inner">
-          <div class="e-time">12:30 – 13:30</div>
+          <div class="e-time">13:45 – 14:15</div>
           <div class="e-body">
-            <div class="e-title">🏨 Về khách sạn thay đồ · Homeinn Selected Yaohan
-              <span class="tri"><span class="lang-en">Return to Hotel · Freshen Up</span><span class="sep">·</span><span class="lang-zh">回酒店换衣服</span></span>
+            <div class="e-title">Metro → Chùa Tĩnh An
+              <span class="tri"><span class="lang-en">Jing'an Temple Station · Line 11</span><span class="sep">·</span><span class="lang-zh">静安寺站</span></span>
             </div>
-            <div class="e-detail">Taxi từ Wukang Rd về Shangcheng Rd ~25–30 phút (~30–40 tệ). Về phòng thay đồ, nghỉ ngắn, sạc máy trước khi chiều tiếp tục</div>
-            <div class="tags"><span class="tag t-transport">🚕 Taxi ~25–30 phút · ~35 tệ</span><span class="tag t-tip">Không nên dùng metro (chuyển 2 tuyến, mất ~45 phút)</span></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="entry food">
-        <div class="entry-inner">
-          <div class="e-time">13:30 – 14:30</div>
-          <div class="e-body">
-            <div class="e-title">Ăn trưa muộn tại khu Xintiandi / People's Square
-              <span class="tri"><span class="lang-en">Late Lunch · Xintiandi or People's Sq</span><span class="sep">·</span><span class="lang-zh">新天地 / 人民广场</span></span>
-            </div>
-            <div class="e-detail">Taxi từ khách sạn đến People's Square ~25 phút. 2 lựa chọn trong cùng khu</div>
-            <div class="food-callout"><strong>⭐ Din Tai Fung — Xintiandi branch</strong> — <span>Lane 123 Xinye Rd, Xintiandi — XLB chuẩn Đài Loan, tầng 2 South Block</span></div>
-            <div class="food-callout"><strong>Hoặc: Han Xiang Noodle Bar</strong> — <span>Huahai Rd (M) — mì ngon, gần khu French Concession</span></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="entry">
-        <div class="entry-inner">
-          <div class="e-time">14:30 – 15:30</div>
-          <div class="e-body">
-            <div class="e-title">Bảo Tàng Thượng Hải
-              <span class="tri"><span class="lang-en">Shanghai Museum</span><span class="sep">·</span><span class="lang-zh">上海博物馆</span></span>
-            </div>
-            <div class="e-detail">Taxi ~2km hướng bắc về People's Square. Đặt slot qua WeChat → "上海博物馆" → 预约</div>
-            <div class="tags"><span class="tag t-cost">Free</span><span class="tag t-tip">Đặt slot WeChat trước</span></div>
+            <div class="e-detail">Đi bộ ~8 phút đến ga Jiaotong Uni (Line 11) → 4 trạm → Jing'an Temple Station</div>
+            <div class="tags"><span class="tag t-transport">🚇 Line 11 · ~15 phút</span></div>
           </div>
         </div>
       </div>
 
       <div class="entry hl">
         <div class="entry-inner">
-          <div class="e-time">15:30 – 17:00</div>
+          <div class="e-time">14:15 – 15:15</div>
           <div class="e-body">
-            <div class="e-title">Vườn Dự Viên
-              <span class="tri"><span class="lang-en">Yu Garden</span><span class="sep">·</span><span class="lang-zh">豫园</span></span>
+            <div class="e-title">Chùa Tĩnh An
+              <span class="tri"><span class="lang-en">Jing'an Temple</span><span class="sep">·</span><span class="lang-zh">静安寺</span></span>
             </div>
-            <div class="e-detail">Taxi ~1.5km đông từ Bảo tàng về khu Old Town. Vườn cổ triều Minh, bazaar xung quanh. Vào trước 16:30 để thoải mái tham quan</div>
-            <div class="tags"><span class="tag t-cost">156.000đ</span><span class="tag t-urgent">Vào trước 16:30 (đóng cửa sớm)</span></div>
+            <div class="e-detail">Ngôi chùa ngàn năm nằm giữa trung tâm tài chính — kiến trúc mạ vàng, tượng Phật ngọc bích. Ra Metro ngay từ cổng chùa</div>
+            <div class="tags"><span class="tag t-cost">150.000đ</span><span class="tag t-tip">Đặt qua Klook · đóng cửa 17:00</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry warn">
+        <div class="entry-inner">
+          <div class="e-time">15:15 – 16:05</div>
+          <div class="e-body">
+            <div class="e-title">🏨 Về HomeInn 570 Shangcheng Rd — nghỉ, sạc máy
+              <span class="tri"><span class="lang-en">Return to Hotel · Recharge</span><span class="sep">·</span><span class="lang-zh">回酒店休息充电</span></span>
+            </div>
+            <div class="e-detail">Jing'an Temple Station → Line 2 (hướng đông) → Century Ave → đổi Line 9 → Shangcheng Rd. ~35 phút, 10 trạm. Về phòng nghỉ ~25 phút, sạc máy, chuẩn bị tiếp</div>
+            <div class="tags"><span class="tag t-transport">🚇 Line 2 → Century Ave → Line 9 · ~35 phút</span><span class="tag t-tip">Shangcheng Rd Station ngay cạnh HomeInn</span></div>
           </div>
         </div>
       </div>
 
       <div class="entry transport">
         <div class="entry-inner">
-          <div class="e-time">17:00 – 17:30</div>
+          <div class="e-time">16:05 – 16:40</div>
           <div class="e-body">
-            <div class="e-title">Vườn Dự Viên → People's Square
-              <span class="tri"><span class="lang-en">People's Square Metro</span><span class="sep">·</span><span class="lang-zh">人民广场</span></span>
+            <div class="e-title">Metro → People's Square
+              <span class="tri"><span class="lang-en">Shangcheng Rd → People's Square</span><span class="sep">·</span><span class="lang-zh">商城路 → 人民广场</span></span>
             </div>
-            <div class="e-detail">Taxi ~2km về hướng tây bắc. Ghé ăn tối rồi bắt Metro về Pudong ngay tại People's Square</div>
+            <div class="e-detail">Shangcheng Rd → Line 9 → Century Ave → đổi Line 2 (hướng tây) → People's Square. Bảo Tàng ngay cạnh ga, đi bộ 2 phút</div>
+            <div class="tags"><span class="tag t-transport">🚇 Line 9 → Line 2 · ~30 phút · 9 trạm</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-inner">
+          <div class="e-time">16:40 – 17:20</div>
+          <div class="e-body">
+            <div class="e-title">Bảo Tàng Thượng Hải
+              <span class="tri"><span class="lang-en">Shanghai Museum</span><span class="sep">·</span><span class="lang-zh">上海博物馆</span></span>
+            </div>
+            <div class="e-detail">Đi bộ 2 phút từ Metro. Đặt slot qua WeChat: "上海博物馆" → 预约. Đóng cửa 17:00 — <strong>lưu ý:</strong> vào nhanh, chỉ đủ ~20 phút xem highlights. Nếu muốn xem kỹ hơn có thể bỏ qua và dạo quanh People's Square</div>
+            <div class="tags"><span class="tag t-cost">Free</span><span class="tag t-urgent">Đến 16:40 · Chỉ ~20 phút xem · Đóng 17:00</span><span class="tag t-tip">Đặt slot WeChat trước</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry hl">
+        <div class="entry-inner">
+          <div class="e-time">17:20 – 18:30</div>
+          <div class="e-body">
+            <div class="e-title">Vườn Dự Viên
+              <span class="tri"><span class="lang-en">Yu Garden</span><span class="sep">·</span><span class="lang-zh">豫园</span></span>
+            </div>
+            <div class="e-detail">Đi bộ ~15 phút hoặc taxi ~5 phút từ Bảo Tàng. Vườn cổ triều Minh, bazaar sầm uất xung quanh — đẹp nhất lúc đèn lồng bật lên lúc chạng vạng</div>
+            <div class="tags"><span class="tag t-cost">156.000đ (30 tệ)</span><span class="tag t-urgent">Mua vé trước 16:30 · Vườn đóng 17:30</span></div>
           </div>
         </div>
       </div>
 
       <div class="entry food">
         <div class="entry-inner">
-          <div class="e-time">17:30 – 19:00</div>
+          <div class="e-time">18:30 – 19:45</div>
           <div class="e-body">
-            <div class="e-title">Ăn tối — Jia Jia Tang Bao
-              <span class="tri"><span class="lang-en">Jia Jia Tang Bao · 127 Huanghe Rd</span><span class="sep">·</span><span class="lang-zh">佳家汤包 · 黄河路127号</span></span>
+            <div class="e-title">Ăn tối — khu Old Town / Huangpu
+              <span class="tri"><span class="lang-en">Dinner · Old Town</span><span class="sep">·</span><span class="lang-zh">晚餐 · 老城区</span></span>
             </div>
-            <div class="e-detail">127 Huanghe Road, Huangpu — ngay cạnh People's Square, tiện Metro về Pudong. Quán tiểu long bao nổi tiếng nhất Shanghai, người địa phương xếp hàng mỗi ngày</div>
-            <div class="note" style="margin-top:8px;font-size:11px;">⚠️ <strong>Địa chỉ đã thay đổi:</strong> Địa chỉ cũ là số 90 Huanghe Rd — địa chỉ mới là <strong>127 Huanghe Road</strong>. Nhiều app và bài review cũ vẫn ghi số 90 — hãy tìm đúng số <strong>127</strong> trên Amap/Didi.</div>
-            <div class="note" style="margin-top:6px;font-size:11px;background:#e8f5ee;border-color:var(--green);color:#1a4a28;">⏰ <strong>Timing tip:</strong> Mở cửa ~06:30–14:00 (hết sớm), đến trước 11:30 để tránh hết hàng. Xếp hàng nhanh ~15–20 phút, tốt nhất đến đúng giờ mở buổi tối (17:00) nếu ghé tối.</div>
-            <div class="food-callout"><strong>⭐ Jia Jia Tang Bao 佳家汤包</strong> — <span>127 Huanghe Rd · Must try: XLB nhân thịt heo, XLB nhân cua · ~25–40 tệ/cage</span></div>
-            <div class="food-callout"><strong>Hoặc: De Xing Guan 德兴馆</strong> — <span>471 Zhapu Rd · 140 năm · San xian bao, guotie (bánh bao chiên giòn)</span></div>
+            <div class="e-detail">Ăn ngay quanh khu Dự Viên — nhiều quán ngon, không cần đi xa</div>
+            <div class="food-callout"><strong>⭐ Jia Jia Tang Bao 佳家汤包</strong> — <span>127 Huanghe Rd, Huangpu · XLB nổi tiếng nhất Shanghai · mở tối ~17:00</span></div>
+            <div class="food-callout"><strong>Hoặc: Nanxiang Mantou Dian 南翔馒头店</strong> — <span>Ngay trong khu Dự Viên Bazaar · XLB trăm năm tuổi · đông nhưng xứng đáng</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry cafe">
+        <div class="entry-inner">
+          <div class="e-time">20:00 – 22:00</div>
+          <div class="e-body">
+            <div class="e-title">Speak Low
+              <span class="tri"><span class="lang-en">Speak Low · Speakeasy Bar</span><span class="sep">·</span><span class="lang-zh">斯皮克楼 · 579 复兴中路</span></span>
+            </div>
+            <div class="e-detail">579 Fuxing Zhong Lu, Huangpu — bar ẩn sau tủ sách giả, 4 tầng với concept khác nhau. Từ khu Dự Viên: Metro Line 10 → Xintiandi → đổi Line 1 → Changshu Rd Station, đi bộ ~5 phút</div>
+            <div class="note" style="margin-top:6px;font-size:11px;">🚪 <strong>Cách vào:</strong> Bước vào cửa hàng, tìm tủ sách giả phía trong → đẩy nhẹ là vào bar. Tầng 2 phổ biến nhất — hay đông, nên đến trước 21:00 để có chỗ ngồi.</div>
+            <div class="food-callout"><strong>⭐ Speak Low</strong> — <span>579 Fuxing Zhong Lu · Negroni + Chinese tea twist · Bartender nói tiếng Anh tốt</span></div>
+            <div class="tags"><span class="tag t-transport">🚇 Line 10 → Xintiandi → Line 1 → Changshu Rd · ~20 phút</span><span class="tag t-tip">Đến trước 21:00 để có chỗ</span></div>
           </div>
         </div>
       </div>
 
       <div class="entry transport">
         <div class="entry-inner">
-          <div class="e-time">19:00 – 20:00</div>
+          <div class="e-time">22:00 – 22:50</div>
           <div class="e-body">
-            <div class="e-title">Về Homeinn Selected · Yaohan</div>
-            <div class="e-detail"><strong>🚇 Metro:</strong> Line 2 từ People's Square → Century Ave → đổi Line 9 → Shangcheng Rd, ~25 phút. Nghỉ sớm — ngày mai checkout 07:00</div>
-            <div class="tags"><span class="tag t-transport">🚇 Line 2 → Line 9 · ~25 phút</span><span class="tag t-tip">Nghỉ sớm — mai checkout 07:00</span></div>
+            <div class="e-title">Về HomeInn · 570 Shangcheng Rd
+              <span class="tri"><span class="lang-en">Back to Hotel · Pudong</span><span class="sep">·</span><span class="lang-zh">回商城路酒店</span></span>
+            </div>
+            <div class="e-detail">Changshu Rd → Line 1 → People's Square → đổi Line 2 (hướng đông) → Century Ave → đổi Line 9 → Shangcheng Rd. ~40 phút. <strong>Hoặc Didi taxi ~30 phút, ~45–55 tệ</strong> nếu đã mỏi chân.</div>
+            <div class="tags"><span class="tag t-transport">🚇 Line 1 → Line 2 → Line 9 · ~40 phút</span><span class="tag t-tip">🚕 Didi ~30 phút nếu mỏi</span></div>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 
