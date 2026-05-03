@@ -329,6 +329,81 @@
     letter-spacing: 0.5px;
   }
 
+
+  /* ── PREP TIMELINE ── */
+  .prep-section { margin-bottom: 32px; }
+  .prep-group-label {
+    font-size: 10px; text-transform: uppercase; letter-spacing: 2px;
+    color: var(--muted); font-weight: 500; margin: 0 0 10px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .prep-group-label::after { content:''; flex:1; height:1px; background:var(--border); }
+  .prep-item {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 12px 0; border-bottom: 0.5px solid var(--border);
+  }
+  .prep-item:last-child { border-bottom: none; }
+  .prep-check {
+    width: 20px; height: 20px; border-radius: 5px; border: 1.5px solid var(--border);
+    background: var(--white); cursor: pointer; flex-shrink: 0; margin-top: 1px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; transition: all 0.15s; user-select: none;
+  }
+  .prep-check.done { background: var(--green); border-color: var(--green); color: #fff; }
+  .prep-body { flex: 1; }
+  .prep-title { font-size: 14px; font-weight: 500; color: var(--ink); line-height: 1.4; }
+  .prep-title.done-text { text-decoration: line-through; color: var(--muted); }
+  .prep-sub { font-size: 12px; color: var(--muted); margin-top: 3px; line-height: 1.5; }
+  .prep-tag {
+    display:inline-block; font-size:10px; font-weight:500; padding:2px 7px;
+    border-radius:20px; margin-top:5px; margin-right:4px;
+  }
+  .prep-done-tag { background:#e8f5ee; color:var(--green); }
+  .prep-urgent-tag { background:#fde8e8; color:var(--red); }
+  .prep-info-tag { background:var(--amber-pale); color:var(--amber); }
+  .prep-meta { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+  /* ── COST TABLE ── */
+  .cost-summary {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 12px; margin-bottom: 28px;
+  }
+  @media(max-width:600px){ .cost-summary { grid-template-columns: 1fr; } }
+  .cost-card {
+    background: var(--ink); border-radius: 12px; padding: 20px 22px; color: var(--paper);
+  }
+  .cost-card-label { font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; color: rgba(250,247,242,0.45); margin-bottom: 6px; }
+  .cost-card-val { font-size: 26px; font-weight: 300; font-family: 'Cormorant Garamond', serif; color: var(--amber-light); }
+  .cost-card-sub { font-size: 11px; color: rgba(250,247,242,0.4); margin-top: 4px; }
+
+  .cost-table { width: 100%; border-collapse: collapse; margin-bottom: 24px; }
+  .cost-table th {
+    text-align: left; font-size: 10px; text-transform: uppercase; letter-spacing: 1px;
+    color: var(--muted); font-weight: 500; padding: 7px 10px;
+    background: var(--cream); border-bottom: 1px solid var(--border);
+  }
+  .cost-table th:first-child { border-radius: 6px 0 0 0; }
+  .cost-table th:last-child { border-radius: 0 6px 0 0; text-align: right; }
+  .cost-table td { padding: 10px 10px; font-size: 13px; border-bottom: 0.5px solid var(--border); vertical-align: top; line-height: 1.45; }
+  .cost-table tr:last-child td { border-bottom: none; }
+  .cost-table tr:hover td { background: var(--cream); }
+  .cost-table td:last-child { text-align: right; font-weight: 500; white-space: nowrap; }
+  .cost-table .cat-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); }
+  .cost-split { display: flex; gap: 6px; margin-top: 4px; flex-wrap: wrap; }
+  .cost-pp { font-size: 11px; padding: 2px 7px; border-radius: 10px; }
+  .c-meo { background: #e8f0fb; color: var(--blue); }
+  .c-be { background: var(--amber-pale); color: var(--amber); }
+  .cost-note { font-size: 11px; color: var(--muted); margin-top: 3px; }
+  .cost-divider {
+    font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: var(--muted);
+    padding: 6px 10px; background: var(--cream); font-weight: 500;
+  }
+  .cost-total-row td { font-weight: 600; font-size: 14px; background: var(--cream) !important; border-top: 1.5px solid var(--border); }
+  .payer-badge {
+    display:inline-block; font-size:10px; font-weight:500; padding:2px 7px;
+    border-radius:10px; white-space:nowrap;
+  }
+
   @media (max-width: 600px) {
     .hero { padding: 40px 20px 32px; }
     .hero h1 { font-size: 36px; }
@@ -338,53 +413,170 @@
     .entry-inner { grid-template-columns: 72px 1fr; gap: 10px; }
     .day-num { font-size: 52px; }
   }
+
+  /* ── SUB-NAV FOR DAYS ── */
+  .sub-nav {
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+    gap: 4px;
+    margin-bottom: 32px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--border);
+  }
+  .sub-nav::-webkit-scrollbar { display: none; }
+  .sub-btn {
+    flex-shrink: 0;
+    padding: 7px 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--muted);
+    background: none;
+    border: 1px solid transparent;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .sub-btn:hover { background: var(--cream); color: var(--ink); }
+  .sub-btn.active { background: var(--ink); color: var(--amber-light); border-color: var(--ink); }
+
+  /* ── MAIN PANEL ── */
+  .main-panel { display: none; }
+  .main-panel.visible { display: block; }
+  .day-sub-panel { display: none; }
+  .day-sub-panel.visible { display: block; }
+
+  /* ── PREP CARDS (new) ── */
+  .prep-card-section {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 22px;
+    margin-bottom: 16px;
+  }
+  .prep-section-label {
+    font-size: 10px; text-transform: uppercase; letter-spacing: 2px;
+    color: var(--muted); font-weight: 500; margin: 0 0 16px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .prep-section-label::after { content:''; flex:1; height:1px; background:var(--border); }
+  .prep-all-done-badge {
+    font-size: 10px; text-transform: none; letter-spacing: 0;
+    background: #e8f5ee; color: var(--green); padding: 2px 8px; border-radius: 20px; font-weight: 500;
+    white-space: nowrap;
+  }
+
+  /* VISA FLOW CARD */
+  .prep-flow-card {
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 14px;
+    overflow: hidden;
+  }
+  .prep-flow-header {
+    display: flex; align-items: center; gap: 14px;
+    padding: 14px 16px; background: var(--ink); color: var(--paper);
+  }
+  .prep-flow-icon { font-size: 22px; flex-shrink: 0; }
+  .prep-flow-title { font-size: 13px; font-weight: 500; color: var(--paper); }
+  .prep-flow-sub { font-size: 11px; color: rgba(250,247,242,0.5); margin-top: 2px; }
+  .prep-flow-steps { padding: 0 16px; }
+  .prep-flow-step {
+    display: flex; gap: 12px; padding: 14px 0;
+    border-bottom: 1px dashed var(--border); position: relative;
+  }
+  .prep-flow-step.last { border-bottom: none; }
+  .prep-step-num {
+    width: 24px; height: 24px; border-radius: 50%;
+    background: var(--amber-pale); color: var(--amber);
+    font-size: 11px; font-weight: 600;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 1px;
+  }
+  .prep-step-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
+  .prep-step-detail { font-size: 12px; color: var(--muted); line-height: 1.55; }
+  .prep-flow-footer { padding: 14px 16px; background: var(--cream); border-top: 1px solid var(--border); }
+
+  /* BOOKING GRID */
+  .prep-booking-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+  }
+  @media(max-width:600px){ .prep-booking-grid { grid-template-columns: 1fr; } }
+  .prep-booking-card {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 12px; border-radius: 8px;
+    border: 1px solid var(--border); background: var(--paper);
+  }
+  .prep-booking-card.done-card { background: #f0faf5; border-color: #b8dfc8; }
+  .prep-bc-icon { font-size: 18px; flex-shrink: 0; }
+  .prep-bc-body { flex: 1; }
+  .prep-bc-title { font-size: 12px; font-weight: 500; color: var(--ink); }
+  .prep-bc-sub { font-size: 11px; color: var(--muted); margin-top: 1px; }
+  .prep-bc-status {
+    width: 22px; height: 22px; border-radius: 50%;
+    background: var(--green); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; flex-shrink: 0;
+  }
+
+  /* APP GRID */
+  .prep-app-grid { display: flex; flex-direction: column; gap: 10px; }
+  .prep-app-card {
+    display: flex; align-items: flex-start; gap: 14px;
+    padding: 12px 14px; border-radius: 10px;
+    border: 1px solid var(--border); background: var(--paper);
+  }
+  .prep-app-card.done-app-card { background: #f0faf5; border-color: #b8dfc8; }
+  .prep-app-icon {
+    width: 36px; height: 36px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; font-weight: 700; flex-shrink: 0;
+  }
+  .prep-app-body { flex: 1; }
+  .prep-app-name { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 3px; }
+  .prep-app-how { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+  /* ── NOTE / HOITHOAI CSS already present ── */
+  .note-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .note-card-head {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 13px 16px; font-size: 13px; font-weight: 500; color: var(--ink);
+    cursor: pointer; user-select: none; background: var(--cream); transition: background 0.15s;
+  }
+  .note-card-head:hover { background: var(--amber-pale); }
+  .note-toggle { font-size: 11px; color: var(--muted); transition: transform 0.2s; }
+  .note-card-body { display: none; padding: 14px 16px; font-size: 12.5px; line-height: 1.75; color: var(--ink); }
+  .note-card-body ul { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+  .note-card.open .note-card-body { display: block; }
+  .note-card.open .note-toggle { transform: rotate(180deg); }
+  .note-card.hidden { display: none; }
+  .copy-hint { font-size: 10px; color: var(--muted); margin-bottom: 10px; font-style: italic; }
+  .speak-btn {
+    background: none; border: none; cursor: pointer; font-size: 14px;
+    padding: 2px 4px; border-radius: 4px; transition: opacity 0.15s;
+  }
+  .speak-btn:hover { opacity: 0.7; }
+  .ht-section { margin: 0 0 28px; }
+  .loc-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  .loc-table th { text-align: left; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); font-weight: 500; padding: 6px 8px; border-bottom: 1px solid var(--border); }
+  .loc-table td { padding: 8px 8px; border-bottom: 0.5px solid var(--border); vertical-align: middle; line-height: 1.45; }
+  .loc-table tr:last-child td { border-bottom: none; }
+  .loc-zh { font-size: 13px; color: var(--amber); cursor: pointer; }
+  .loc-zh:hover { opacity: 0.75; }
+  .loc-type { font-size: 10px; color: var(--muted); }
+  .type-food { color: var(--green); }
+
 </style>
 </head>
 <body>
-<!-- PASSWORD GATE -->
-<div id="gate" style="position:fixed;inset:0;z-index:9999;background:var(--ink);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:20px;font-family:'DM Sans',sans-serif;">
-  <div style="text-align:center;margin-bottom:8px;">
-    <div style="font-family:'Cormorant Garamond',serif;font-size:80px;font-weight:300;color:rgba(200,135,58,0.15);line-height:1;user-select:none;">中国</div>
-    <div style="font-size:22px;font-weight:500;color:var(--paper);margin-top:-6px;letter-spacing:0.5px;">China Trip 2026</div>
-    <div style="font-size:13px;color:var(--muted);margin-top:6px;">Nhập mật khẩu để tiếp tục</div>
-  </div>
-  <input id="gate-input" type="password" placeholder="Mật khẩu..." maxlength="10"
-    onkeydown="if(event.key==='Enter')checkPw()"
-    style="width:220px;padding:13px 16px;border:1.5px solid var(--border);border-radius:10px;background:rgba(255,255,255,0.07);color:var(--paper);font-size:20px;font-family:'DM Sans',sans-serif;letter-spacing:6px;text-align:center;outline:none;transition:border-color 0.2s;"
-    onfocus="this.style.borderColor='var(--amber)'"
-    onblur="this.style.borderColor='var(--border)'"
-  >
-  <button onclick="checkPw()" style="padding:11px 36px;border:none;border-radius:10px;background:var(--amber);color:#fff;font-size:15px;font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer;transition:opacity 0.15s;" onmouseover="this.style.opacity='.82'" onmouseout="this.style.opacity='1'">Vào xem 🗺</button>
-  <div id="gate-err" style="font-size:13px;color:#e05555;min-height:18px;"></div>
-</div>
-<script>
-  (function(){
-    if(localStorage.getItem('ct26')==='ok'){
-      document.getElementById('gate').style.display='none';
-    } else {
-      document.addEventListener('DOMContentLoaded',function(){
-        document.getElementById('gate-input').focus();
-      });
-    }
-  })();
-  function checkPw(){
-    if(document.getElementById('gate-input').value==='2003'){
-      localStorage.setItem('ct26','ok');
-      var g=document.getElementById('gate');
-      g.style.transition='opacity 0.4s';g.style.opacity='0';
-      setTimeout(function(){g.style.display='none';},400);
-    } else {
-      var e=document.getElementById('gate-err');
-      var i=document.getElementById('gate-input');
-      e.textContent='Sai mật khẩu, thử lại nhé 🔒';
-      i.style.borderColor='#e05555';i.value='';
-      setTimeout(function(){i.style.borderColor='var(--border)';e.textContent='';},2200);
-      i.focus();
-    }
-  }
-</script>
-
-
 <div class="hero">
   <div class="hero-flag">🇨🇳</div>
   <h1>Thượng Hải,<br><em>Hàng Châu & Ô Trấn</em></h1>
@@ -398,25 +590,32 @@
 </div>
 
 <div class="nav-wrap">
-  <nav class="nav">
-    <button class="nav-btn active" onclick="show(0)">26/04 CN</button>
-    <button class="nav-btn" onclick="show(1)">27/04 T2 — Disney</button>
-    <button class="nav-btn" onclick="show(2)">28/04 T3</button>
-    <button class="nav-btn" onclick="show(3)">29/04 T4</button>
-    <button class="nav-btn" onclick="show(4)">30/04 T5</button>
-    <button class="nav-btn" onclick="show(5)">01/05 CN</button>
-    <button class="nav-btn special" onclick="show(6)">Đặt vé trước</button>
-    <button class="nav-btn special" onclick="show(7)">Eatery & Cafe</button>
-    <button class="nav-btn special" onclick="show(8)">📍 Địa điểm</button>
-    <button class="nav-btn special" onclick="show(9)">📝 Note</button>
-    <button class="nav-btn special" onclick="show(10)">💬 Hội thoại & Từ khoá</button>
+  <nav class="nav" id="main-nav">
+    <button class="nav-btn active" onclick="showMain(0)">📅 Lịch trình</button>
+    <button class="nav-btn special" onclick="showMain(1)">✅ Chuẩn bị</button>
+    <button class="nav-btn special" onclick="showMain(2)">💰 Chi tiêu</button>
+    <button class="nav-btn special" onclick="showMain(3)">Đặt vé trước</button>
+    <button class="nav-btn special" onclick="showMain(4)">Eatery & Cafe</button>
+    <button class="nav-btn special" onclick="showMain(5)">📍 Địa điểm</button>
+    <button class="nav-btn special" onclick="showMain(6)">📝 Note</button>
+    <button class="nav-btn special" onclick="showMain(7)">💬 Hội thoại</button>
   </nav>
 </div>
 
 <main class="main">
 
-  <!-- ===== 26/04 ===== -->
-  <div class="day-panel visible" id="p0">
+  <!-- ===== LỊCH TRÌNH ===== -->
+  <div class="main-panel visible" id="mp0">
+    <div class="sub-nav">
+      <button class="sub-btn active" onclick="showDay(0)">26/04 CN</button>
+      <button class="sub-btn" onclick="showDay(1)">27/04 T2 — Disney</button>
+      <button class="sub-btn" onclick="showDay(2)">28/04 T3</button>
+      <button class="sub-btn" onclick="showDay(3)">29/04 T4</button>
+      <button class="sub-btn" onclick="showDay(4)">30/04 T5</button>
+      <button class="sub-btn" onclick="showDay(5)">01/05 CN</button>
+    </div>
+
+  <div class="day-sub-panel visible" id="dp0">
     <div class="day-head">
       <div class="day-num">01</div>
       <div class="day-info">
@@ -631,7 +830,7 @@
   </div>
 
   <!-- ===== 27/04 DISNEY ===== -->
-  <div class="day-panel" id="p1">
+  <div class="day-sub-panel" id="dp1">
     <div class="day-head">
       <div class="day-num">02</div>
       <div class="day-info">
@@ -717,201 +916,195 @@
   </div>
 
   <!-- ===== 28/04 ===== -->
-  <div class="day-panel" id="p2">
+  <div class="day-sub-panel" id="dp2">
     <div class="day-head">
       <div class="day-num">03</div>
       <div class="day-info">
         <div class="day-date">Thứ ba · 28/04/2026</div>
         <div class="day-title">Nội thành <em>Thượng Hải</em></div>
-        <div class="day-subtitle">Đi cả ngày không về KS · French Concession → Chùa Tĩnh An → Bảo Tàng → Dự Viên → Ăn tối → Speak Low</div>
+        <div class="day-subtitle">Jing'an → French Concession → Wukang → Về KS thay đồ → Trưa muộn Xintiandi → Bảo tàng → Vườn Dự Viên → Jia Jia Tang Bao (127 Huanghe Rd)</div>
       </div>
     </div>
 
     <div class="route-note">
-      <strong>🏨 Xuất phát: HomeInn · 570 Shangcheng Rd, Pudong</strong><br>
-      Lộ trình tối ưu (tây → trung tâm → đông → về): <strong>🚇 Line 9 → People's Sq → Line 1 → Changshu Rd</strong> (ăn trưa + Wukang + Apoli, ~40 phút) → <strong>🚇 Line 11 → Jing'an Temple</strong> (chùa, ~10 phút) → <strong>🚇 Line 2 → People's Sq</strong> (Bảo Tàng, ~20 phút) → đi bộ Dự Viên → ăn tối → <strong>🚇 → Speak Low</strong> → <strong>🚇 Line 2 → Century Ave → Line 9 → Shangcheng Rd</strong> về KS.
+      <strong>Lộ trình tối ưu (tây → về KS → trung tâm → đông):</strong> Zhang Shi Fu sáng (Shimen Rd, Jing'an) → Jing'an Temple → Moller → Wukang → Apoli Bakery → <strong>🏨 Taxi về Homeinn thay đồ (12:30–13:30)</strong> → Taxi ra People's Square → Trưa muộn Xintiandi/Han Xiang → Bảo tàng (People's Sq) → Vườn Dự Viên (Old Town) → Jia Jia Tang Bao tối (127 Huanghe Rd) → Metro về Pudong. <em>Về KS buổi trưa tốn ~1 tiếng nhưng tiết kiệm sức cho chiều.</em>
     </div>
 
     <div class="timeline">
-
-      <div class="entry transport">
+      <div class="entry food">
         <div class="entry-inner">
-          <div class="e-time">12:30 – 13:10</div>
+          <div class="e-time">07:30 – 08:30</div>
           <div class="e-body">
-            <div class="e-title">Metro: HomeInn → French Concession
-              <span class="tri"><span class="lang-en">Shangcheng Rd → Changshu Rd</span><span class="sep">·</span><span class="lang-zh">商城路 → 常熟路</span></span>
+            <div class="e-title">Ăn sáng — Zhang Shi Fu
+              <span class="tri"><span class="lang-en">Zhang Shi Fu Breakfast Shop</span><span class="sep">·</span><span class="lang-zh">张师傅早餐店</span></span>
             </div>
-            <div class="e-detail">Shangcheng Rd (Line 9) → Century Ave → đổi Line 2 hướng tây → People's Square → đổi Line 1 → Changshu Rd. ~40 phút</div>
-            <div class="tags"><span class="tag t-transport">🚇 Line 9 → Line 2 → Line 1 · ~40 phút</span></div>
+            <div class="e-detail">487 Shimen 2nd Rd, Jing'an — ngay trên đường đến Jing'an Temple, mở từ 05:00. Quán sáng local nổi tiếng ~8–10 tệ/người. Đặc sản: xôi chiên, sữa đậu nành nóng, xiaolongbao tươi, shengjian</div>
+            <div class="food-callout"><strong>Zhang Shi Fu 张师傅</strong> — <span>487 Shimen 2nd Rd · Mở 05:00–12:00 · ~30.000đ/người</span></div>
           </div>
         </div>
       </div>
 
-      <div class="entry food">
+      <div class="entry transport">
         <div class="entry-inner">
-          <div class="e-time">13:10 – 14:15</div>
+          <div class="e-time">08:30 – 09:00</div>
           <div class="e-body">
-            <div class="e-title">Ăn trưa — French Concession
-              <span class="tri"><span class="lang-en">Lunch · French Concession</span><span class="sep">·</span><span class="lang-zh">法租界午餐</span></span>
+            <div class="e-title">Metro Line 2 → Chùa Tĩnh An
+              <span class="tri"><span class="lang-en">Jing'an Temple Station</span><span class="sep">·</span><span class="lang-zh">静安寺站</span></span>
             </div>
-            <div class="e-detail">Khu Changshu Rd / Anfu Rd / Wukang Rd — vibe cổ điển, nhiều quán mở lunch</div>
-            <div class="food-callout"><strong>Lost Heaven 花马天堂</strong> — <span>38 Gaoyou Rd · Yunnan cuisine · mở 11:30–14:30 · không cần đặt bàn ngày thường · Michelin recommended</span></div>
-            <div class="food-callout"><strong>Hoặc: Han Xiang Noodle Bar</strong> — <span>Huaihai Rd (M) · mì vịt nhanh gọn nếu muốn tiết kiệm thời gian</span></div>
+            <div class="e-detail">Zhang Shi Fu ngay sát Metro Shimen Rd → đi 1 trạm tới Jing'an Temple Station</div>
+            <div class="tags"><span class="tag t-transport">Metro ~5 phút</span></div>
           </div>
         </div>
       </div>
 
       <div class="entry hl">
         <div class="entry-inner">
-          <div class="e-time">14:15 – 15:00</div>
+          <div class="e-time">09:00 – 10:00</div>
           <div class="e-body">
-            <div class="e-title">Tòa nhà Vũ Khang + dạo Wukang Rd
+            <div class="e-title">Chùa Tĩnh An
+              <span class="tri"><span class="lang-en">Jing'an Temple</span><span class="sep">·</span><span class="lang-zh">静安寺</span></span>
+            </div>
+            <div class="tags"><span class="tag t-cost">150.000đ</span><span class="tag t-tip">Đặt online qua Klook</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry hl">
+        <div class="entry-inner">
+          <div class="e-time">10:00 – 11:00</div>
+          <div class="e-body">
+            <div class="e-title">Biệt thự Moller + Khách sạn Hoà Bình
+              <span class="tri"><span class="lang-en">Moller Villa · Peace Hotel</span><span class="sep">·</span><span class="lang-zh">马勒别墅 · 和平饭店</span></span>
+            </div>
+            <div class="e-detail">Đi bộ ~10 phút từ Chùa Tĩnh An. Kiến trúc cổ châu Âu độc đáo</div>
+            <div class="tags"><span class="tag t-cost">Free</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry hl">
+        <div class="entry-inner">
+          <div class="e-time">11:00 – 11:45</div>
+          <div class="e-body">
+            <div class="e-title">Tòa nhà Vũ Khang
               <span class="tri"><span class="lang-en">Wukang Building</span><span class="sep">·</span><span class="lang-zh">武康大楼</span></span>
             </div>
-            <div class="e-detail">Đi bộ ~10 phút từ khu ăn trưa. Góc ảnh iconic nhất Shanghai — chụp từ vỉa hè đối diện, ánh sáng đẹp buổi chiều</div>
-            <div class="tags"><span class="tag t-cost">Free</span></div>
+            <div class="e-detail">Taxi ~2km về hướng nam. Góc ảnh iconic nhất Shanghai</div>
+            <div class="tags"><span class="tag t-transport">Taxi ~5 phút</span><span class="tag t-cost">Free</span></div>
           </div>
         </div>
       </div>
 
       <div class="entry cafe">
         <div class="entry-inner">
-          <div class="e-time">15:00 – 15:30</div>
+          <div class="e-time">11:45 – 12:30</div>
           <div class="e-body">
             <div class="e-title">Apoli Ita Bakery
               <span class="tri"><span class="lang-en">Italian Bakery · Wukang Road</span><span class="sep">·</span><span class="lang-zh">意大利烘焙 · 武康路</span></span>
             </div>
-            <div class="e-detail">Đi bộ ~3 phút từ Wukang Building. Bánh Ý kiểu Napoli — lấy cà phê và bánh ăn đường trước khi đi Metro</div>
-            <div class="tags"><span class="tag t-cafe">Wukang Road</span><span class="tag t-tip">Đi bộ từ Wukang Building</span></div>
+            <div class="e-detail">Ngay trên đường Wukang, đi bộ ra từ tòa nhà Vũ Khang. Bánh Ý kiểu Napoli, cà phê ngon, góc phố đẹp</div>
+            <div class="tags"><span class="tag t-cafe">Wukang Road</span><span class="tag t-tip">Ngay cạnh Wukang Building</span></div>
           </div>
         </div>
       </div>
 
-      <div class="entry transport">
+      <!-- HOTEL RETURN -->
+      <div class="entry warn">
         <div class="entry-inner">
-          <div class="e-time">15:30 – 15:45</div>
+          <div class="e-time">12:30 – 13:30</div>
           <div class="e-body">
-            <div class="e-title">Metro → Chùa Tĩnh An
-              <span class="tri"><span class="lang-en">Jiaotong Uni → Jing'an Temple · Line 11</span><span class="sep">·</span><span class="lang-zh">交通大学 → 静安寺</span></span>
+            <div class="e-title">🏨 Về khách sạn thay đồ · Homeinn Selected Yaohan
+              <span class="tri"><span class="lang-en">Return to Hotel · Freshen Up</span><span class="sep">·</span><span class="lang-zh">回酒店换衣服</span></span>
             </div>
-            <div class="e-detail">Đi bộ ~8 phút từ Apoli đến ga Jiaotong Uni (Line 11) → 4 trạm → Jing'an Temple Station</div>
-            <div class="tags"><span class="tag t-transport">🚇 Line 11 · ~10 phút · 4 trạm</span></div>
+            <div class="e-detail">Taxi từ Wukang Rd về Shangcheng Rd ~25–30 phút (~30–40 tệ). Về phòng thay đồ, nghỉ ngắn, sạc máy trước khi chiều tiếp tục</div>
+            <div class="tags"><span class="tag t-transport">🚕 Taxi ~25–30 phút · ~35 tệ</span><span class="tag t-tip">Không nên dùng metro (chuyển 2 tuyến, mất ~45 phút)</span></div>
           </div>
         </div>
       </div>
 
-      <div class="entry hl">
+      <div class="entry food">
         <div class="entry-inner">
-          <div class="e-time">15:45 – 16:45</div>
+          <div class="e-time">13:30 – 14:30</div>
           <div class="e-body">
-            <div class="e-title">Chùa Tĩnh An
-              <span class="tri"><span class="lang-en">Jing'an Temple</span><span class="sep">·</span><span class="lang-zh">静安寺</span></span>
+            <div class="e-title">Ăn trưa muộn tại khu Xintiandi / People's Square
+              <span class="tri"><span class="lang-en">Late Lunch · Xintiandi or People's Sq</span><span class="sep">·</span><span class="lang-zh">新天地 / 人民广场</span></span>
             </div>
-            <div class="e-detail">Ngôi chùa ngàn năm mạ vàng giữa trung tâm tài chính. Ra Metro ngay từ cổng chùa — tiện đi tiếp</div>
-            <div class="tags"><span class="tag t-cost">150.000đ (~50 tệ)</span><span class="tag t-tip">Đặt qua Klook · Đóng cửa 17:00</span><span class="tag t-urgent">Vào trước 16:30</span></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="entry transport">
-        <div class="entry-inner">
-          <div class="e-time">16:45 – 17:05</div>
-          <div class="e-body">
-            <div class="e-title">Metro → People's Square → Bảo Tàng
-              <span class="tri"><span class="lang-en">Jing'an Temple → People's Square · Line 2</span><span class="sep">·</span><span class="lang-zh">静安寺 → 人民广场</span></span>
-            </div>
-            <div class="e-detail">Line 2 từ Jing'an Temple → People's Square, 4 trạm ~10 phút. Bảo Tàng đi bộ 2 phút từ ga</div>
-            <div class="tags"><span class="tag t-transport">🚇 Line 2 · ~10 phút · 4 trạm</span></div>
+            <div class="e-detail">Taxi từ khách sạn đến People's Square ~25 phút. 2 lựa chọn trong cùng khu</div>
+            <div class="food-callout"><strong>⭐ Din Tai Fung — Xintiandi branch</strong> — <span>Lane 123 Xinye Rd, Xintiandi — XLB chuẩn Đài Loan, tầng 2 South Block</span></div>
+            <div class="food-callout"><strong>Hoặc: Han Xiang Noodle Bar</strong> — <span>Huahai Rd (M) — mì ngon, gần khu French Concession</span></div>
           </div>
         </div>
       </div>
 
       <div class="entry">
         <div class="entry-inner">
-          <div class="e-time">17:05 – 18:00</div>
+          <div class="e-time">14:30 – 15:30</div>
           <div class="e-body">
             <div class="e-title">Bảo Tàng Thượng Hải
               <span class="tri"><span class="lang-en">Shanghai Museum</span><span class="sep">·</span><span class="lang-zh">上海博物馆</span></span>
             </div>
-            <div class="e-detail">Đặt slot qua WeChat: "上海博物馆" → 预约. Đóng cửa 17:00 nhưng khách đã vào trước được ở lại. Tập trung highlights: đồ đồng cổ, gốm sứ, thư pháp</div>
-            <div class="tags"><span class="tag t-cost">Free</span><span class="tag t-urgent">Đặt slot WeChat trước · Phải vào trước 17:00</span></div>
+            <div class="e-detail">Taxi ~2km hướng bắc về People's Square. Đặt slot qua WeChat → "上海博物馆" → 预约</div>
+            <div class="tags"><span class="tag t-cost">Free</span><span class="tag t-tip">Đặt slot WeChat trước</span></div>
           </div>
         </div>
       </div>
 
       <div class="entry hl">
         <div class="entry-inner">
-          <div class="e-time">18:00 – 19:15</div>
+          <div class="e-time">15:30 – 17:00</div>
           <div class="e-body">
             <div class="e-title">Vườn Dự Viên
               <span class="tri"><span class="lang-en">Yu Garden</span><span class="sep">·</span><span class="lang-zh">豫园</span></span>
             </div>
-            <div class="e-detail">Taxi ~5 phút hoặc đi bộ ~20 phút từ Bảo Tàng về khu Old Town. Đẹp nhất lúc chạng vạng khi đèn lồng bật — đúng giờ này!</div>
-            <div class="tags"><span class="tag t-cost">156.000đ (30 tệ)</span><span class="tag t-tip">🌆 Đến lúc hoàng hôn — đẹp nhất trong ngày</span></div>
+            <div class="e-detail">Taxi ~1.5km đông từ Bảo tàng về khu Old Town. Vườn cổ triều Minh, bazaar xung quanh. Vào trước 16:30 để thoải mái tham quan</div>
+            <div class="tags"><span class="tag t-cost">156.000đ</span><span class="tag t-urgent">Vào trước 16:30 (đóng cửa sớm)</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="entry transport">
+        <div class="entry-inner">
+          <div class="e-time">17:00 – 17:30</div>
+          <div class="e-body">
+            <div class="e-title">Vườn Dự Viên → People's Square
+              <span class="tri"><span class="lang-en">People's Square Metro</span><span class="sep">·</span><span class="lang-zh">人民广场</span></span>
+            </div>
+            <div class="e-detail">Taxi ~2km về hướng tây bắc. Ghé ăn tối rồi bắt Metro về Pudong ngay tại People's Square</div>
           </div>
         </div>
       </div>
 
       <div class="entry food">
         <div class="entry-inner">
-          <div class="e-time">19:15 – 20:30</div>
+          <div class="e-time">17:30 – 19:00</div>
           <div class="e-body">
-            <div class="e-title">Ăn tối — khu Old Town / Dự Viên
-              <span class="tri"><span class="lang-en">Dinner · Yu Garden Area</span><span class="sep">·</span><span class="lang-zh">晚餐 · 豫园附近</span></span>
+            <div class="e-title">Ăn tối — Jia Jia Tang Bao
+              <span class="tri"><span class="lang-en">Jia Jia Tang Bao · 127 Huanghe Rd</span><span class="sep">·</span><span class="lang-zh">佳家汤包 · 黄河路127号</span></span>
             </div>
-            <div class="e-detail">Ăn ngay trong khu — không cần đi xa, tiết kiệm sức cho Speak Low</div>
-            <div class="food-callout"><strong>⭐ Nanxiang Mantou Dian 南翔馒头店</strong> — <span>Ngay trong Dự Viên Bazaar · XLB trăm năm tuổi · ~25–35 tệ/cage</span></div>
-            <div class="food-callout"><strong>Hoặc: Jia Jia Tang Bao 佳家汤包</strong> — <span>127 Huanghe Rd, ~10 phút taxi · XLB nổi tiếng nhất Shanghai</span></div>
+            <div class="e-detail">127 Huanghe Road, Huangpu — ngay cạnh People's Square, tiện Metro về Pudong. Quán tiểu long bao nổi tiếng nhất Shanghai, người địa phương xếp hàng mỗi ngày</div>
+            <div class="note" style="margin-top:8px;font-size:11px;">⚠️ <strong>Địa chỉ đã thay đổi:</strong> Địa chỉ cũ là số 90 Huanghe Rd — địa chỉ mới là <strong>127 Huanghe Road</strong>. Nhiều app và bài review cũ vẫn ghi số 90 — hãy tìm đúng số <strong>127</strong> trên Amap/Didi.</div>
+            <div class="note" style="margin-top:6px;font-size:11px;background:#e8f5ee;border-color:var(--green);color:#1a4a28;">⏰ <strong>Timing tip:</strong> Mở cửa ~06:30–14:00 (hết sớm), đến trước 11:30 để tránh hết hàng. Xếp hàng nhanh ~15–20 phút, tốt nhất đến đúng giờ mở buổi tối (17:00) nếu ghé tối.</div>
+            <div class="food-callout"><strong>⭐ Jia Jia Tang Bao 佳家汤包</strong> — <span>127 Huanghe Rd · Must try: XLB nhân thịt heo, XLB nhân cua · ~25–40 tệ/cage</span></div>
+            <div class="food-callout"><strong>Hoặc: De Xing Guan 德兴馆</strong> — <span>471 Zhapu Rd · 140 năm · San xian bao, guotie (bánh bao chiên giòn)</span></div>
           </div>
         </div>
       </div>
 
       <div class="entry transport">
         <div class="entry-inner">
-          <div class="e-time">20:30 – 20:55</div>
+          <div class="e-time">19:00 – 20:00</div>
           <div class="e-body">
-            <div class="e-title">Metro → Speak Low
-              <span class="tri"><span class="lang-en">Old Town → Fuxing Zhong Lu</span><span class="sep">·</span><span class="lang-zh">老城区 → 复兴中路579号</span></span>
-            </div>
-            <div class="e-detail">Taxi từ khu Dự Viên ~15 phút (~20 tệ) hoặc Metro: Yuyuan Garden Station (Line 14) → 3 trạm → Xintiandi → đi bộ ~8 phút đến 579 Fuxing Zhong Lu</div>
-            <div class="tags"><span class="tag t-transport">🚇 Line 14 → Xintiandi · ~15 phút</span><span class="tag t-tip">🚕 Taxi ~15 phút nếu mỏi chân</span></div>
+            <div class="e-title">Về Homeinn Selected · Yaohan</div>
+            <div class="e-detail"><strong>🚇 Metro:</strong> Line 2 từ People's Square → Century Ave → đổi Line 9 → Shangcheng Rd, ~25 phút. Nghỉ sớm — ngày mai checkout 07:00</div>
+            <div class="tags"><span class="tag t-transport">🚇 Line 2 → Line 9 · ~25 phút</span><span class="tag t-tip">Nghỉ sớm — mai checkout 07:00</span></div>
           </div>
         </div>
       </div>
-
-      <div class="entry cafe">
-        <div class="entry-inner">
-          <div class="e-time">21:00 – 22:30</div>
-          <div class="e-body">
-            <div class="e-title">Speak Low
-              <span class="tri"><span class="lang-en">Speak Low · Speakeasy</span><span class="sep">·</span><span class="lang-zh">579 复兴中路</span></span>
-            </div>
-            <div class="e-detail">579 Fuxing Zhong Lu, Huangpu. Bar ẩn sau tủ sách giả — bước vào cửa hàng, đẩy nhẹ tủ sách phía trong là vào bar. 4 tầng, concept khác nhau mỗi tầng</div>
-            <div class="note" style="margin-top:6px;font-size:11px;">🚪 <strong>Tip:</strong> Tầng 2 phổ biến nhất, hay đông. Nếu đến ~21:00 thường còn chỗ. Bartender Kris nói tiếng Anh tốt — thử Negroni + Chinese tea twist.</div>
-            <div class="food-callout"><strong>⭐ Speak Low</strong> — <span>579 Fuxing Zhong Lu · mở từ 18:00 · ~80–120 tệ/ly</span></div>
-            <div class="tags"><span class="tag t-tip">Đến trước 21:30 để chắc có chỗ</span></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="entry transport">
-        <div class="entry-inner">
-          <div class="e-time">22:30 – 23:15</div>
-          <div class="e-body">
-            <div class="e-title">Về HomeInn · 570 Shangcheng Rd
-              <span class="tri"><span class="lang-en">Back to Hotel · Pudong</span><span class="sep">·</span><span class="lang-zh">回商城路酒店</span></span>
-            </div>
-            <div class="e-detail">Từ Speak Low (Fuxing Zhong Lu) → đi bộ ~8 phút đến ga Xintiandi (Line 10 hoặc Line 1) → People's Square → Line 2 → Century Ave → Line 9 → Shangcheng Rd. ~40 phút. Hoặc <strong>Didi ~30 phút, ~50–60 tệ</strong> — xứng đáng sau ngày dài</div>
-            <div class="tags"><span class="tag t-transport">🚇 Line 1 → Line 2 → Line 9 · ~40 phút</span><span class="tag t-tip">🚕 Didi ~30 phút nếu mỏi · ~50–60 tệ</span></div>
-          </div>
-        </div>
-      </div>
-
     </div>
   </div>
 
   <!-- ===== 29/04 ===== -->
-  <div class="day-panel" id="p3">
+  <div class="day-sub-panel" id="dp3">
     <div class="day-head">
       <div class="day-num">04</div>
       <div class="day-info">
@@ -1112,7 +1305,7 @@
   </div>
 
   <!-- ===== 30/04 ===== -->
-  <div class="day-panel" id="p4">
+  <div class="day-sub-panel" id="dp4">
     <div class="day-head">
       <div class="day-num">05</div>
       <div class="day-info">
@@ -1259,7 +1452,7 @@
 
 
   <!-- ===== 01/05 ===== -->
-  <div class="day-panel" id="p5">
+  <div class="day-sub-panel" id="dp5">
     <div class="day-head">
       <div class="day-num">06</div>
       <div class="day-info">
@@ -1331,7 +1524,9 @@
   </div>
 
   <!-- ===== ĐẶT VÉ ===== -->
-  <div class="day-panel" id="p6">
+  </div><!-- /mp0 -->
+
+  <div class="main-panel" id="mp3">
     <div class="day-head">
       <div class="day-num" style="font-size:48px; color: var(--amber);">!</div>
       <div class="day-info">
@@ -1410,7 +1605,7 @@
   </div>
 
   <!-- ===== EATERY ===== -->
-  <div class="day-panel" id="p7">
+  <div class="main-panel" id="mp4">
     <div class="day-head">
       <div class="day-num" style="font-size:48px; color: var(--green);">✦</div>
       <div class="day-info">
@@ -1571,7 +1766,7 @@
   </div>
 
   <!-- ===== LOCATION REFERENCE ===== -->
-  <div class="day-panel" id="p8">
+  <div class="main-panel" id="mp5">
     <div class="day-head">
       <div class="day-num" style="font-size:40px;color:var(--amber);">📍</div>
       <div class="day-info">
@@ -1590,24 +1785,24 @@
       }
       .loc-table { width: 100%; border-collapse: collapse; }
       .loc-table th {
-        text-align: left; font-size: 11px; text-transform: uppercase;
+        text-align: left; font-size: 10px; text-transform: uppercase;
         letter-spacing: 1.2px; color: var(--muted); font-weight: 500;
-        padding: 8px 12px; background: var(--cream);
+        padding: 6px 10px; background: var(--cream);
         border-bottom: 1px solid var(--border);
       }
       .loc-table th:first-child { border-radius: 6px 0 0 0; }
       .loc-table th:last-child { border-radius: 0 6px 0 0; }
       .loc-table td {
-        padding: 11px 12px; font-size: 15px; vertical-align: top;
+        padding: 10px 10px; font-size: 13px; vertical-align: top;
         border-bottom: 0.5px solid var(--border);
-        line-height: 1.5;
+        line-height: 1.4;
       }
       .loc-table tr:last-child td { border-bottom: none; }
       .loc-table tr:hover td { background: var(--cream); }
       .loc-vn { font-weight: 500; color: var(--ink); }
-      .loc-en { color: var(--muted); font-size: 13px; }
+      .loc-en { color: var(--muted); font-size: 12px; }
       .loc-zh {
-        color: var(--amber); font-size: 18px; cursor: pointer;
+        color: var(--amber); font-size: 14px; cursor: pointer;
         user-select: all; font-weight: 400;
       }
       .loc-zh:hover { color: #a06020; }
@@ -1621,15 +1816,6 @@
       .type-hotel { background: #E1F5EE; color: #085041; }
       .type-transport { background: #EEEDFE; color: #3C3489; }
       .copy-hint { font-size: 10px; color: var(--muted); margin-bottom: 10px; font-style: italic; }
-      .speak-btn {
-        background: none; border: none; cursor: pointer;
-        font-size: 13px; padding: 0 0 0 6px; opacity: 0.45;
-        vertical-align: middle; line-height: 1; transition: opacity 0.15s, transform 0.15s;
-      }
-      .speak-btn:hover { opacity: 1; transform: scale(1.2); }
-      .speak-btn.playing { opacity: 1; animation: pulse-spk 0.6s ease-in-out infinite alternate; }
-      @keyframes pulse-spk { from { transform: scale(1); } to { transform: scale(1.3); } }
-      tr.convo-hidden { display: none; }
 
   /* NOTE CARDS */
   .note-card {
@@ -1748,7 +1934,7 @@
 
   </div>
 
-  <div class="day-panel" id="p9">
+  <div class="main-panel" id="mp6">
     <div class="day-head">
       <div class="day-num" style="font-size:48px;">📝</div>
       <div class="day-info">
@@ -1972,381 +2158,111 @@
   </div>
 
   <!-- ===== HỘI THOẠI TAB ===== -->
-  <div class="day-panel" id="p10">
+  <div class="main-panel" id="mp7">
     <div class="day-head">
       <div class="day-num" style="font-size:48px;">💬</div>
       <div class="day-info">
-        <div class="day-date">Hội thoại · Từ khoá để nghe hiểu</div>
+        <div class="day-date">Từ khoá & Hội thoại</div>
         <div class="day-title">Tiếng Trung — <em>Du lịch cơ bản</em></div>
         <div class="day-subtitle">Từ khoá địa điểm + câu giao tiếp thực tế · Nhấn ô tiếng Trung để copy</div>
       </div>
     </div>
 
-    <!-- SEARCH + COUNTER BAR -->
-    <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;flex-wrap:wrap;">
-      <div style="position:relative;flex:1;min-width:200px;">
-        <span style="position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:14px;pointer-events:none;">🔍</span>
-        <input id="convo-search" type="text" placeholder="Tìm từ hoặc cụm từ... (vd: taxi, cảm ơn, toilet)" oninput="filterConvo(this.value)"
-          style="width:100%;padding:9px 12px 9px 34px;border:1px solid var(--border);border-radius:8px;font-size:13px;font-family:'DM Sans',sans-serif;background:var(--white);color:var(--ink);outline:none;"
-          onfocus="this.style.borderColor='var(--amber)'" onblur="this.style.borderColor='var(--border)'">
-      </div>
-      <div id="convo-counter" style="font-size:12px;color:var(--muted);white-space:nowrap;flex-shrink:0;padding:4px 0;"></div>
-    </div>
-    <p class="copy-hint">Nhấn 🔊 để nghe phát âm · Nhấn vào ô tiếng Trung để copy · Pinyin giúp đọc gần đúng khi không biết chữ</p>
+    <p class="copy-hint">Nhấn vào ô tiếng Trung để copy · Pinyin giúp đọc gần đúng khi không biết chữ</p>
 
-    <!-- SECTION: KEYWORDS ĐỂ NGHE HIỂU -->
-    <div class="convo-section" style="margin:0 0 28px;">
-      <div class="section-head">👂 Keywords để nghe & nhận ra</div>
-      <p style="font-size:13px;color:var(--muted);margin:-4px 0 14px;line-height:1.6;">Những từ người bản xứ hay nói — học để <em>nhận ra</em> khi nghe, không cần nói lại. Nhấn 🔊 để luyện tai.</p>
-
-      <div style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin:0 0 8px;">💰 Tiền & Giá cả</div>
-      <table class="loc-table" style="margin-bottom:20px;">
-        <thead><tr><th>Nghe thấy từ này</th><th>Pinyin</th><th>中文</th><th>Nghĩa</th></tr></thead>
-        <tbody>
-          <tr><td>Guì</td><td>Guì</td><td class="loc-zh">贵<button class="speak-btn" onclick="speakZh('贵',this)">🔊</button></td><td>Đắt</td></tr>
-          <tr><td>Piányí</td><td>Piányí</td><td class="loc-zh">便宜<button class="speak-btn" onclick="speakZh('便宜',this)">🔊</button></td><td>Rẻ</td></tr>
-          <tr><td>Miǎnfèi</td><td>Miǎnfèi</td><td class="loc-zh">免费<button class="speak-btn" onclick="speakZh('免费',this)">🔊</button></td><td>Miễn phí</td></tr>
-          <tr><td>Dǎzhé</td><td>Dǎzhé</td><td class="loc-zh">打折<button class="speak-btn" onclick="speakZh('打折',this)">🔊</button></td><td>Giảm giá</td></tr>
-          <tr><td>Màidān / Jiézhàng</td><td>Mǎidān / Jiézhàng</td><td class="loc-zh">买单 / 结账<button class="speak-btn" onclick="speakZh('买单 结账',this)">🔊</button></td><td>Tính tiền</td></tr>
-          <tr><td>Zhǎo qián</td><td>Zhǎo qián</td><td class="loc-zh">找钱<button class="speak-btn" onclick="speakZh('找钱',this)">🔊</button></td><td>Tiền thối</td></tr>
-          <tr><td>Sǎo mǎ</td><td>Sǎo mǎ</td><td class="loc-zh">扫码<button class="speak-btn" onclick="speakZh('扫码',this)">🔊</button></td><td>Quét QR</td></tr>
-          <tr><td>Xiànjīn</td><td>Xiànjīn</td><td class="loc-zh">现金<button class="speak-btn" onclick="speakZh('现金',this)">🔊</button></td><td>Tiền mặt</td></tr>
-        </tbody>
-      </table>
-
-      <div style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin:0 0 8px;">🍜 Quán ăn & Gọi món</div>
-      <table class="loc-table" style="margin-bottom:20px;">
-        <thead><tr><th>Nghe thấy từ này</th><th>Pinyin</th><th>中文</th><th>Nghĩa</th></tr></thead>
-        <tbody>
-          <tr><td>Lā / Bù là</td><td>Là / Bù là</td><td class="loc-zh">辣 / 不辣<button class="speak-btn" onclick="speakZh('辣 不辣',this)">🔊</button></td><td>Cay / Không cay</td></tr>
-          <tr><td>Tāng</td><td>Tāng</td><td class="loc-zh">汤<button class="speak-btn" onclick="speakZh('汤',this)">🔊</button></td><td>Canh / Súp</td></tr>
-          <tr><td>Zhūròu / Niúròu / Jīròu</td><td>Zhūròu / Niúròu / Jīròu</td><td class="loc-zh">猪肉 / 牛肉 / 鸡肉<button class="speak-btn" onclick="speakZh('猪肉 牛肉 鸡肉',this)">🔊</button></td><td>Heo / Bò / Gà</td></tr>
-          <tr><td>Hǎixiān</td><td>Hǎixiān</td><td class="loc-zh">海鲜<button class="speak-btn" onclick="speakZh('海鲜',this)">🔊</button></td><td>Hải sản</td></tr>
-          <tr><td>Sùshí / Sùcài</td><td>Sùshí / Sùcài</td><td class="loc-zh">素食 / 素菜<button class="speak-btn" onclick="speakZh('素食 素菜',this)">🔊</button></td><td>Đồ chay</td></tr>
-          <tr><td>Dǎbāo</td><td>Dǎbāo</td><td class="loc-zh">打包<button class="speak-btn" onclick="speakZh('打包',this)">🔊</button></td><td>Đóng gói mang về</td></tr>
-          <tr><td>Děng yīxià</td><td>Děng yīxià</td><td class="loc-zh">等一下<button class="speak-btn" onclick="speakZh('等一下',this)">🔊</button></td><td>Chờ một chút</td></tr>
-          <tr><td>Méiyǒu le</td><td>Méiyǒu le</td><td class="loc-zh">没有了<button class="speak-btn" onclick="speakZh('没有了',this)">🔊</button></td><td>Hết rồi (món ăn)</td></tr>
-          <tr><td>Gòu le ma?</td><td>Gòu le ma?</td><td class="loc-zh">够了吗？<button class="speak-btn" onclick="speakZh('够了吗',this)">🔊</button></td><td>Đủ chưa?</td></tr>
-        </tbody>
-      </table>
-
-      <div style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin:0 0 8px;">🚇 Đi lại & Vị trí</div>
-      <table class="loc-table" style="margin-bottom:20px;">
-        <thead><tr><th>Nghe thấy từ này</th><th>Pinyin</th><th>中文</th><th>Nghĩa</th></tr></thead>
-        <tbody>
-          <tr><td>Zuǒ / Yòu / Zhíxíng</td><td>Zuǒ / Yòu / Zhíxíng</td><td class="loc-zh">左 / 右 / 直行<button class="speak-btn" onclick="speakZh('左 右 直行',this)">🔊</button></td><td>Trái / Phải / Thẳng</td></tr>
-          <tr><td>Qiánmiàn / Hòumiàn</td><td>Qiánmiàn / Hòumiàn</td><td class="loc-zh">前面 / 后面<button class="speak-btn" onclick="speakZh('前面 后面',this)">🔊</button></td><td>Phía trước / Phía sau</td></tr>
-          <tr><td>Lóushàng / Lóuxià</td><td>Lóushàng / Lóuxià</td><td class="loc-zh">楼上 / 楼下<button class="speak-btn" onclick="speakZh('楼上 楼下',this)">🔊</button></td><td>Tầng trên / Tầng dưới</td></tr>
-          <tr><td>Chūkǒu / Rùkǒu</td><td>Chūkǒu / Rùkǒu</td><td class="loc-zh">出口 / 入口<button class="speak-btn" onclick="speakZh('出口 入口',this)">🔊</button></td><td>Lối ra / Lối vào</td></tr>
-          <tr><td>Pái duì</td><td>Páiduì</td><td class="loc-zh">排队<button class="speak-btn" onclick="speakZh('排队',this)">🔊</button></td><td>Xếp hàng</td></tr>
-          <tr><td>Mǎn le / Kè mǎn le</td><td>Mǎn le</td><td class="loc-zh">满了<button class="speak-btn" onclick="speakZh('满了',this)">🔊</button></td><td>Hết chỗ / Đầy rồi</td></tr>
-          <tr><td>Guān mén le</td><td>Guān mén le</td><td class="loc-zh">关门了<button class="speak-btn" onclick="speakZh('关门了',this)">🔊</button></td><td>Đóng cửa rồi</td></tr>
-          <tr><td>Kāimén / Yíngyè</td><td>Kāimén / Yíngyè</td><td class="loc-zh">开门 / 营业<button class="speak-btn" onclick="speakZh('开门 营业',this)">🔊</button></td><td>Mở cửa / Đang hoạt động</td></tr>
-          <tr><td>Jìn / Yuǎn</td><td>Jìn / Yuǎn</td><td class="loc-zh">近 / 远<button class="speak-btn" onclick="speakZh('近 远',this)">🔊</button></td><td>Gần / Xa</td></tr>
-        </tbody>
-      </table>
-
-      <div style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin:0 0 8px;">🏨 Khách sạn & Dịch vụ</div>
-      <table class="loc-table" style="margin-bottom:20px;">
-        <thead><tr><th>Nghe thấy từ này</th><th>Pinyin</th><th>中文</th><th>Nghĩa</th></tr></thead>
-        <tbody>
-          <tr><td>Hǎo de / Méi wèntí</td><td>Hǎo de / Méi wèntí</td><td class="loc-zh">好的 / 没问题<button class="speak-btn" onclick="speakZh('好的 没问题',this)">🔊</button></td><td>OK / Không vấn đề</td></tr>
-          <tr><td>Bù hǎo yìsi</td><td>Bù hǎo yìsi</td><td class="loc-zh">不好意思<button class="speak-btn" onclick="speakZh('不好意思',this)">🔊</button></td><td>Xin lỗi (nhẹ)</td></tr>
-          <tr><td>Mǎshàng / Lìkè</td><td>Mǎshàng / Lìkè</td><td class="loc-zh">马上 / 立刻<button class="speak-btn" onclick="speakZh('马上 立刻',this)">🔊</button></td><td>Ngay lập tức</td></tr>
-          <tr><td>Yǐjīng / Hái méi</td><td>Yǐjīng / Hái méi</td><td class="loc-zh">已经 / 还没<button class="speak-btn" onclick="speakZh('已经 还没',this)">🔊</button></td><td>Rồi / Chưa</td></tr>
-          <tr><td>Bù xíng / Bù kěyǐ</td><td>Bù xíng / Bù kěyǐ</td><td class="loc-zh">不行 / 不可以<button class="speak-btn" onclick="speakZh('不行 不可以',this)">🔊</button></td><td>Không được</td></tr>
-          <tr><td>Xūyào / Bù xūyào</td><td>Xūyào / Bù xūyào</td><td class="loc-zh">需要 / 不需要<button class="speak-btn" onclick="speakZh('需要 不需要',this)">🔊</button></td><td>Cần / Không cần</td></tr>
-          <tr><td>Duōshǎo</td><td>Duōshǎo</td><td class="loc-zh">多少<button class="speak-btn" onclick="speakZh('多少',this)">🔊</button></td><td>Bao nhiêu</td></tr>
-          <tr><td>Jǐ gè / Jǐ wèi</td><td>Jǐ gè / Jǐ wèi</td><td class="loc-zh">几个 / 几位<button class="speak-btn" onclick="speakZh('几个 几位',this)">🔊</button></td><td>Mấy cái / Mấy người</td></tr>
-        </tbody>
-      </table>
-
-      <div style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin:0 0 8px;">⏰ Thời gian & Số đếm</div>
-      <table class="loc-table" style="margin-bottom:4px;">
-        <thead><tr><th>Nghe thấy từ này</th><th>Pinyin</th><th>中文</th><th>Nghĩa</th></tr></thead>
-        <tbody>
-          <tr><td>Jīntiān / Míngtiān / Zuótiān</td><td>Jīntiān / Míngtiān / Zuótiān</td><td class="loc-zh">今天 / 明天 / 昨天<button class="speak-btn" onclick="speakZh('今天 明天 昨天',this)">🔊</button></td><td>Hôm nay / Mai / Hôm qua</td></tr>
-          <tr><td>Shàngwǔ / Xiàwǔ / Wǎnshang</td><td>Shàngwǔ / Xiàwǔ / Wǎnshang</td><td class="loc-zh">上午 / 下午 / 晚上<button class="speak-btn" onclick="speakZh('上午 下午 晚上',this)">🔊</button></td><td>Sáng / Chiều / Tối</td></tr>
-          <tr><td>Xiànzài / Děng yīxià / Yīhuìr</td><td>Xiànzài / Yīhuìr</td><td class="loc-zh">现在 / 一会儿<button class="speak-btn" onclick="speakZh('现在 一会儿',this)">🔊</button></td><td>Bây giờ / Lát nữa</td></tr>
-          <tr><td>Yī / Èr / Sān / Sì / Wǔ</td><td>Yī / Èr / Sān / Sì / Wǔ</td><td class="loc-zh">一 / 二 / 三 / 四 / 五<button class="speak-btn" onclick="speakZh('一 二 三 四 五',this)">🔊</button></td><td>1 / 2 / 3 / 4 / 5</td></tr>
-          <tr><td>Liù / Qī / Bā / Jiǔ / Shí</td><td>Liù / Qī / Bā / Jiǔ / Shí</td><td class="loc-zh">六 / 七 / 八 / 九 / 十<button class="speak-btn" onclick="speakZh('六 七 八 九 十',this)">🔊</button></td><td>6 / 7 / 8 / 9 / 10</td></tr>
-          <tr><td>Bǎi / Qiān / Wàn</td><td>Bǎi / Qiān / Wàn</td><td class="loc-zh">百 / 千 / 万<button class="speak-btn" onclick="speakZh('百 千 万',this)">🔊</button></td><td>Trăm / Nghìn / Vạn</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- SECTION: CHÀO HỎI CƠ BẢN -->
-    <div class="convo-section" style="margin:0 0 28px;">
-      <div class="<div class="section-head">🗣 Giao tiếp & Câu hỏi cơ bản</div>
+    <!-- SECTION: ĐỊA ĐIỂM / TỪ KHOÁ -->
+    <div style="margin:0 0 28px;">
+      <div class="section-head">📍 Địa điểm & Từ khoá quan trọng</div>
       <table class="loc-table">
         <thead><tr><th>Tiếng Việt</th><th>Pinyin</th><th>中文</th></tr></thead>
         <tbody>
-          <tr><td>Xin chào</td><td>Nǐ hǎo</td><td class="loc-zh">你好<button class="speak-btn" onclick="speakZh('你好',this)">🔊</button></td></tr>
-          <tr><td>Tạm biệt</td><td>Zàijiàn</td><td class="loc-zh">再见<button class="speak-btn" onclick="speakZh('再见',this)">🔊</button></td></tr>
-          <tr><td>Cảm ơn</td><td>Xièxiè</td><td class="loc-zh">谢谢<button class="speak-btn" onclick="speakZh('谢谢',this)">🔊</button></td></tr>
-          <tr><td>Không có gì / Không sao</td><td>Bù kèqì / Méi guānxi</td><td class="loc-zh">不客气 / 没关系<button class="speak-btn" onclick="speakZh('不客气 没关系',this)">🔊</button></td></tr>
-          <tr><td>Xin lỗi (thành thật)</td><td>Duìbuqǐ</td><td class="loc-zh">对不起<button class="speak-btn" onclick="speakZh('对不起',this)">🔊</button></td></tr>
-          <tr><td>Làm phiền / Xin lỗi nhẹ</td><td>Bù hǎo yìsi / Máfan nǐ</td><td class="loc-zh">不好意思 / 麻烦你<button class="speak-btn" onclick="speakZh('不好意思',this)">🔊</button></td></tr>
-          <tr><td>Có / Đúng rồi</td><td>Shì de / Duì</td><td class="loc-zh">是的 / 对<button class="speak-btn" onclick="speakZh('是的 对',this)">🔊</button></td></tr>
-          <tr><td>Không / Không phải</td><td>Bù shì / Bù</td><td class="loc-zh">不是 / 不<button class="speak-btn" onclick="speakZh('不是 不',this)">🔊</button></td></tr>
-          <tr><td>Làm ơn / Xin hãy</td><td>Qǐng</td><td class="loc-zh">请<button class="speak-btn" onclick="speakZh('请',this)">🔊</button></td></tr>
-          <tr><td>Được / OK</td><td>Kěyǐ / Hǎo de</td><td class="loc-zh">可以 / 好的<button class="speak-btn" onclick="speakZh('可以 好的',this)">🔊</button></td></tr>
-          <tr><td>Không hiểu</td><td>Wǒ tīng bù dǒng</td><td class="loc-zh">我听不懂<button class="speak-btn" onclick="speakZh('我听不懂',this)">🔊</button></td></tr>
-          <tr><td>Nói chậm hơn được không?</td><td>Qǐng shuō màn yīdiǎn</td><td class="loc-zh">请说慢一点<button class="speak-btn" onclick="speakZh('请说慢一点',this)">🔊</button></td></tr>
-          <tr><td>Bạn nói tiếng Anh không?</td><td>Nǐ huì shuō Yīngyǔ ma?</td><td class="loc-zh">你会说英语吗？<button class="speak-btn" onclick="speakZh('你会说英语吗',this)">🔊</button></td></tr>
-          <tr><td>Tôi là người Việt Nam</td><td>Wǒ shì Yuènán rén</td><td class="loc-zh">我是越南人<button class="speak-btn" onclick="speakZh('我是越南人',this)">🔊</button></td></tr>
-          <tr><td>Tên tôi là...</td><td>Wǒ jiào...</td><td class="loc-zh">我叫…<button class="speak-btn" onclick="speakZh('我叫',this)">🔊</button></td></tr>
-          <tr><td>Rất vui được gặp bạn</td><td>Hěn gāoxìng rènshí nǐ</td><td class="loc-zh">很高兴认识你<button class="speak-btn" onclick="speakZh('很高兴认识你',this)">🔊</button></td></tr>
-        
-          <tr><td>Xin chào / Chào</td><td>Nǐ hǎo</td><td class="loc-zh">你好<button class="speak-btn" onclick="speakZh('你好',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Cảm ơn</td><td>Xièxiè</td><td class="loc-zh">谢谢<button class="speak-btn" onclick="speakZh('谢谢',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Xin lỗi / Làm phiền</td><td>Bù hǎo yìsi / Máfan nǐ</td><td class="loc-zh">不好意思 / 麻烦你<button class="speak-btn" onclick="speakZh('不好意思 麻烦你',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Không hiểu</td><td>Wǒ tīng bù dǒng</td><td class="loc-zh">我听不懂<button class="speak-btn" onclick="speakZh('我听不懂',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Bạn nói tiếng Anh không?</td><td>Nǐ huì shuō Yīngyǔ ma?</td><td class="loc-zh">你会说英语吗？<button class="speak-btn" onclick="speakZh('你会说英语吗',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Cái này bao nhiêu tiền?</td><td>Zhège duōshǎo qián?</td><td class="loc-zh">这个多少钱？<button class="speak-btn" onclick="speakZh('这个多少钱',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Đắt quá!</td><td>Tài guì le!</td><td class="loc-zh">太贵了！<button class="speak-btn" onclick="speakZh('太贵了',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Tôi muốn cái này</td><td>Wǒ yào zhège</td><td class="loc-zh">我要这个<button class="speak-btn" onclick="speakZh('我要这个',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Cho tôi tính tiền</td><td>Mǎidān / Jiézhàng</td><td class="loc-zh">买单 / 结账<button class="speak-btn" onclick="speakZh('买单 结账',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Không cay / Ít cay</td><td>Bú là / Shǎo là</td><td class="loc-zh">不辣 / 少辣<button class="speak-btn" onclick="speakZh('不辣 少辣',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Tôi là người Việt Nam</td><td>Wǒ shì Yuènán rén</td><td class="loc-zh">我是越南人<button class="speak-btn" onclick="speakZh('我是越南人',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Giúp tôi với!</td><td>Bāng wǒ yīxià!</td><td class="loc-zh">帮我一下！<button class="speak-btn" onclick="speakZh('帮我一下',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Gọi cấp cứu (119)</td><td>Jiào jiùhùchē</td><td class="loc-zh">叫救护车<button class="speak-btn" onclick="speakZh('叫救护车',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Đến [địa điểm] bao xa?</td><td>[địa điểm] lí zhèlǐ duō yuǎn?</td><td class="loc-zh">[地点]离这里多远？<button class="speak-btn" onclick="speakZh('离这里多远',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Đi đến [địa điểm]</td><td>Qù [địa điểm]</td><td class="loc-zh">去[地点]<button class="speak-btn" onclick="speakZh('去',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Có thể chụp ảnh giúp không?</td><td>Kěyǐ bāng wǒ pāi zhào ma?</td><td class="loc-zh">可以帮我拍照吗？<button class="speak-btn" onclick="speakZh('可以帮我拍照吗',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Wifi mật khẩu là gì?</td><td>Wǐfēi mìmǎ shì shénme?</td><td class="loc-zh">WiFi密码是什么？<button class="speak-btn" onclick="speakZh('WiFi密码是什么',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Toilet ở đâu?</td><td>Xǐshǒujiān zài nǎlǐ?</td><td class="loc-zh">洗手间在哪里？<button class="speak-btn" onclick="speakZh('洗手间在哪里',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Xếp hàng ở đây</td><td>Zài zhèlǐ páiduì</td><td class="loc-zh">在这里排队<button class="speak-btn" onclick="speakZh('在这里排队',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Có thuyền không?</td><td>Yǒu wūpéng chuán ma?</td><td class="loc-zh">有乌篷船吗？<button class="speak-btn" onclick="speakZh('有乌篷船吗',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Khách sạn</td><td>Jiǔdiàn / Lǚguǎn</td><td class="loc-zh">酒店 / 旅馆</td></tr>
+          <tr><td>Sân bay</td><td>Jīchǎng</td><td class="loc-zh">机场</td></tr>
+          <tr><td>Ga tàu hoả</td><td>Huǒchēzhàn</td><td class="loc-zh">火车站</td></tr>
+          <tr><td>Tàu điện ngầm (Metro)</td><td>Dìtiě</td><td class="loc-zh">地铁</td></tr>
+          <tr><td>Xe taxi / Didi</td><td>Chūzūchē / Dīdī</td><td class="loc-zh">出租车 / 滴滴</td></tr>
+          <tr><td>Nhà vệ sinh</td><td>Xǐshǒujiān / Cèsuǒ</td><td class="loc-zh">洗手间 / 厕所</td></tr>
+          <tr><td>Siêu thị / Cửa hàng tiện lợi</td><td>Chāoshì / Biànlì diàn</td><td class="loc-zh">超市 / 便利店</td></tr>
+          <tr><td>Nhà hàng</td><td>Cāntīng / Fànguǎn</td><td class="loc-zh">餐厅 / 饭馆</td></tr>
+          <tr><td>Bệnh viện</td><td>Yīyuàn</td><td class="loc-zh">医院</td></tr>
+          <tr><td>Công an / Cảnh sát</td><td>Jǐngchá</td><td class="loc-zh">警察</td></tr>
+          <tr><td>Đặt phòng / Đặt chỗ</td><td>Yùdìng</td><td class="loc-zh">预订</td></tr>
+          <tr><td>Hộ chiếu</td><td>Hùzhào</td><td class="loc-zh">护照</td></tr>
+          <tr><td>Tiền mặt / Thanh toán</td><td>Xiànjīn / Fùkuǎn</td><td class="loc-zh">现金 / 付款</td></tr>
+          <tr><td>Quét mã (QR)</td><td>Sǎo mǎ</td><td class="loc-zh">扫码</td></tr>
+          <tr><td>Bản đồ</td><td>Dìtú</td><td class="loc-zh">地图</td></tr>
+          <tr><td>Xe buýt</td><td>Gōngjiāo chē</td><td class="loc-zh">公交车</td></tr>
+          <tr><td>Trái / Phải / Thẳng</td><td>Zuǒ / Yòu / Zhí zǒu</td><td class="loc-zh">左 / 右 / 直走</td></tr>
+          <tr><td>Gần / Xa</td><td>Jìn / Yuǎn</td><td class="loc-zh">近 / 远</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SECTION: CÂU GIAO TIẾP -->
+    <div style="margin:0 0 28px;">
+      <div class="section-head">🗣 Câu giao tiếp thực tế</div>
+      <table class="loc-table">
+        <thead><tr><th>Ý nghĩa</th><th>Pinyin</th><th>中文</th></tr></thead>
+        <tbody>
+          <tr><td>Xin chào / Chào</td><td>Nǐ hǎo</td><td class="loc-zh">你好</td></tr>
+          <tr><td>Cảm ơn</td><td>Xièxiè</td><td class="loc-zh">谢谢</td></tr>
+          <tr><td>Xin lỗi / Làm phiền</td><td>Bù hǎo yìsi / Máfan nǐ</td><td class="loc-zh">不好意思 / 麻烦你</td></tr>
+          <tr><td>Không hiểu</td><td>Wǒ tīng bù dǒng</td><td class="loc-zh">我听不懂</td></tr>
+          <tr><td>Bạn nói tiếng Anh không?</td><td>Nǐ huì shuō Yīngyǔ ma?</td><td class="loc-zh">你会说英语吗？</td></tr>
+          <tr><td>Cái này bao nhiêu tiền?</td><td>Zhège duōshǎo qián?</td><td class="loc-zh">这个多少钱？</td></tr>
+          <tr><td>Đắt quá!</td><td>Tài guì le!</td><td class="loc-zh">太贵了！</td></tr>
+          <tr><td>Tôi muốn cái này</td><td>Wǒ yào zhège</td><td class="loc-zh">我要这个</td></tr>
+          <tr><td>Cho tôi tính tiền</td><td>Mǎidān / Jiézhàng</td><td class="loc-zh">买单 / 结账</td></tr>
+          <tr><td>Không cay / Ít cay</td><td>Bú là / Shǎo là</td><td class="loc-zh">不辣 / 少辣</td></tr>
+          <tr><td>Tôi là người Việt Nam</td><td>Wǒ shì Yuènán rén</td><td class="loc-zh">我是越南人</td></tr>
+          <tr><td>Giúp tôi với!</td><td>Bāng wǒ yīxià!</td><td class="loc-zh">帮我一下！</td></tr>
+          <tr><td>Gọi cấp cứu (119)</td><td>Jiào jiùhùchē</td><td class="loc-zh">叫救护车</td></tr>
+          <tr><td>Đến [địa điểm] bao xa?</td><td>[địa điểm] lí zhèlǐ duō yuǎn?</td><td class="loc-zh">[地点]离这里多远？</td></tr>
+          <tr><td>Đi đến [địa điểm]</td><td>Qù [địa điểm]</td><td class="loc-zh">去[地点]</td></tr>
+          <tr><td>Có thể chụp ảnh giúp không?</td><td>Kěyǐ bāng wǒ pāi zhào ma?</td><td class="loc-zh">可以帮我拍照吗？</td></tr>
+          <tr><td>Wifi mật khẩu là gì?</td><td>Wǐfēi mìmǎ shì shénme?</td><td class="loc-zh">WiFi密码是什么？</td></tr>
+          <tr><td>Toilet ở đâu?</td><td>Xǐshǒujiān zài nǎlǐ?</td><td class="loc-zh">洗手间在哪里？</td></tr>
+          <tr><td>Xếp hàng ở đây</td><td>Zài zhèlǐ páiduì</td><td class="loc-zh">在这里排队</td></tr>
+          <tr><td>Có thuyền không?</td><td>Yǒu wūpéng chuán ma?</td><td class="loc-zh">有乌篷船吗？</td></tr>
         </tbody>
       </table>
     </div>
 
     <!-- SECTION: TẠI QUÁN ĂN -->
-    <div class="convo-section" style="margin:0 0 28px;">
+    <div style="margin:0 0 28px;">
       <div class="section-head">🍜 Gọi món & Ăn uống</div>
       <table class="loc-table">
         <thead><tr><th>Ý nghĩa</th><th>Pinyin</th><th>中文</th></tr></thead>
         <tbody>
-          <tr><td>Thực đơn / Menu</td><td>Càidān</td><td class="loc-zh">菜单<button class="speak-btn" onclick="speakZh('菜单',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Cho tôi xem menu</td><td>Gěi wǒ càidān</td><td class="loc-zh">给我菜单<button class="speak-btn" onclick="speakZh('给我菜单',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Tiểu long bao (Soup dumpling)</td><td>Xiǎolóngbāo</td><td class="loc-zh">小笼包<button class="speak-btn" onclick="speakZh('小笼包',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>XLB nhân thịt heo</td><td>Zhūròu xiǎolóngbāo</td><td class="loc-zh">猪肉小笼包<button class="speak-btn" onclick="speakZh('猪肉小笼包',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>XLB nhân cua</td><td>Xiè fěn xiǎolóngbāo</td><td class="loc-zh">蟹粉小笼包<button class="speak-btn" onclick="speakZh('蟹粉小笼包',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Bánh bao chiên (Sheng Jian)</td><td>Shēngjiān bāo</td><td class="loc-zh">生煎包<button class="speak-btn" onclick="speakZh('生煎包',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Dimsum / Điểm tâm</td><td>Diǎnxīn</td><td class="loc-zh">点心<button class="speak-btn" onclick="speakZh('点心',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Vịt quay Bắc Kinh</td><td>Běijīng kǎoyā</td><td class="loc-zh">北京烤鸭<button class="speak-btn" onclick="speakZh('北京烤鸭',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Lẩu</td><td>Huǒguō</td><td class="loc-zh">火锅<button class="speak-btn" onclick="speakZh('火锅',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Cháo</td><td>Zhōu / Xīfàn</td><td class="loc-zh">粥 / 稀饭<button class="speak-btn" onclick="speakZh('粥',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Mì</td><td>Miàn</td><td class="loc-zh">面<button class="speak-btn" onclick="speakZh('面',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Cơm rang</td><td>Chǎofàn</td><td class="loc-zh">炒饭<button class="speak-btn" onclick="speakZh('炒饭',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Cơm trắng</td><td>Báifàn / Mǐfàn</td><td class="loc-zh">白饭 / 米饭<button class="speak-btn" onclick="speakZh('米饭',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Thịt heo / bò / gà / vịt</td><td>Zhūròu / Niúròu / Jīròu / Yāròu</td><td class="loc-zh">猪肉 / 牛肉 / 鸡肉 / 鸭肉<button class="speak-btn" onclick="speakZh('猪肉 牛肉 鸡肉 鸭肉',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Hải sản</td><td>Hǎixiān</td><td class="loc-zh">海鲜<button class="speak-btn" onclick="speakZh('海鲜',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Rau / Chay</td><td>Shūcài / Sùshí</td><td class="loc-zh">蔬菜 / 素食<button class="speak-btn" onclick="speakZh('蔬菜 素食',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Không cay / Ít cay / Cay vừa</td><td>Bú là / Shǎo là / Zhōng là</td><td class="loc-zh">不辣 / 少辣 / 中辣<button class="speak-btn" onclick="speakZh('不辣 少辣 中辣',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Không hành / tỏi</td><td>Bù fàng cōng / suàn</td><td class="loc-zh">不放葱 / 蒜<button class="speak-btn" onclick="speakZh('不放葱 蒜',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Dị ứng (thức ăn)</td><td>Guòmǐn</td><td class="loc-zh">过敏<button class="speak-btn" onclick="speakZh('过敏',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Nước lọc / Nước khoáng</td><td>Báishuǐ / Kuàngquán shuǐ</td><td class="loc-zh">白水 / 矿泉水<button class="speak-btn" onclick="speakZh('白水 矿泉水',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Trà / Cà phê / Nước ngọt</td><td>Chá / Kāfēi / Yǐnliào</td><td class="loc-zh">茶 / 咖啡 / 饮料<button class="speak-btn" onclick="speakZh('茶 咖啡 饮料',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Bia / Rượu</td><td>Píjiǔ / Jiǔ</td><td class="loc-zh">啤酒 / 酒<button class="speak-btn" onclick="speakZh('啤酒 酒',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Nóng / Lạnh / Ấm</td><td>Rè / Bīng / Wēn</td><td class="loc-zh">热 / 冰 / 温<button class="speak-btn" onclick="speakZh('热 冰 温',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Đặt bàn cho 2 người</td><td>Yùdìng liǎng gè rén de zuòwèi</td><td class="loc-zh">预订两个人的座位<button class="speak-btn" onclick="speakZh('预订两个人的座位',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Bàn ngoài trời / trong nhà</td><td>Hùwài / Shìnèi zuòwèi</td><td class="loc-zh">户外 / 室内座位<button class="speak-btn" onclick="speakZh('户外 室内座位',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Còn bàn trống không?</td><td>Yǒu kòng wèi ma?</td><td class="loc-zh">有空位吗？<button class="speak-btn" onclick="speakZh('有空位吗',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Chờ bao lâu?</td><td>Děng duō jiǔ?</td><td class="loc-zh">等多久？<button class="speak-btn" onclick="speakZh('等多久',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Cho thêm 1 cái nữa</td><td>Zài lái yī gè</td><td class="loc-zh">再来一个<button class="speak-btn" onclick="speakZh('再来一个',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Không cần đũa / Cho đũa</td><td>Bù yòng kuàizi / Gěi kuàizi</td><td class="loc-zh">不用筷子 / 给筷子<button class="speak-btn" onclick="speakZh('不用筷子 给筷子',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Đóng gói mang về</td><td>Dǎbāo</td><td class="loc-zh">打包<button class="speak-btn" onclick="speakZh('打包',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Ngon lắm!</td><td>Hǎo chī!</td><td class="loc-zh">好吃！<button class="speak-btn" onclick="speakZh('好吃',this)" title="Nghe phát âm">🔊</button></td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- SECTION: THANH TOÁN -->
-    <div class="convo-section" style="margin:0 0 28px;">
-      <div class="section-head">💳 Thanh toán & Tiền bạc</div>
-      <table class="loc-table">
-        <thead><tr><th>Ý nghĩa</th><th>Pinyin</th><th>中文</th></tr></thead>
-        <tbody>
-          <tr><td>Tính tiền / Thanh toán</td><td>Mǎidān / Jiézhàng</td><td class="loc-zh">买单 / 结账<button class="speak-btn" onclick="speakZh('买单 结账',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Bao nhiêu tiền tất cả?</td><td>Yīgòng duōshǎo qián?</td><td class="loc-zh">一共多少钱？<button class="speak-btn" onclick="speakZh('一共多少钱',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Quét mã QR</td><td>Sǎo mǎ fùkuǎn</td><td class="loc-zh">扫码付款<button class="speak-btn" onclick="speakZh('扫码付款',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>WeChat Pay</td><td>Wēixìn zhīfù</td><td class="loc-zh">微信支付<button class="speak-btn" onclick="speakZh('微信支付',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Alipay</td><td>Zhīfùbǎo</td><td class="loc-zh">支付宝<button class="speak-btn" onclick="speakZh('支付宝',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Trả bằng tiền mặt</td><td>Yòng xiànjīn fù</td><td class="loc-zh">用现金付<button class="speak-btn" onclick="speakZh('用现金付',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Thẻ ngân hàng / Visa</td><td>Yínhángkǎ / Xìnyòngkǎ</td><td class="loc-zh">银行卡 / 信用卡<button class="speak-btn" onclick="speakZh('银行卡 信用卡',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Có nhận thẻ không?</td><td>Kěyǐ shuākǎ ma?</td><td class="loc-zh">可以刷卡吗？<button class="speak-btn" onclick="speakZh('可以刷卡吗',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Chỉ nhận tiền mặt</td><td>Zhǐ shōu xiànjīn</td><td class="loc-zh">只收现金<button class="speak-btn" onclick="speakZh('只收现金',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Tiền thối lại</td><td>Zhǎo qián</td><td class="loc-zh">找钱<button class="speak-btn" onclick="speakZh('找钱',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Hoá đơn / Biên lai</td><td>Fāpiào / Shōujù</td><td class="loc-zh">发票 / 收据<button class="speak-btn" onclick="speakZh('发票 收据',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Chia bill / Trả riêng</td><td>Fēnkāi fùkuǎn / AA zhī</td><td class="loc-zh">分开付款 / AA制<button class="speak-btn" onclick="speakZh('分开付款 AA制',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Đắt quá! Giảm giá được không?</td><td>Tài guì le! Kěyǐ piányí ma?</td><td class="loc-zh">太贵了！可以便宜吗？<button class="speak-btn" onclick="speakZh('太贵了 可以便宜吗',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Giá cuối rồi không?</td><td>Zuìdī jià le ma?</td><td class="loc-zh">最低价了吗？<button class="speak-btn" onclick="speakZh('最低价了吗',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Tôi muốn mua cái này</td><td>Wǒ yào mǎi zhège</td><td class="loc-zh">我要买这个<button class="speak-btn" onclick="speakZh('我要买这个',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Có khuyến mãi không?</td><td>Yǒu yōuhuì ma?</td><td class="loc-zh">有优惠吗？<button class="speak-btn" onclick="speakZh('有优惠吗',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Đổi tiền ở đâu?</td><td>Nǎlǐ kěyǐ huàn qián?</td><td class="loc-zh">哪里可以换钱？<button class="speak-btn" onclick="speakZh('哪里可以换钱',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Tỷ giá hôm nay</td><td>Jīntiān de huìlǜ</td><td class="loc-zh">今天的汇率<button class="speak-btn" onclick="speakZh('今天的汇率',this)" title="Nghe phát âm">🔊</button></td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- SECTION: ĐỊA ĐIỂM / TỪ KHOÁ -->
-    <div class="convo-section" style="margin:0 0 28px;">
-      <div class="<div class="section-head">📍 Địa điểm & Hỏi đường</div>
-      <table class="loc-table">
-        <thead><tr><th>Tiếng Việt</th><th>Pinyin</th><th>中文</th></tr></thead>
-        <tbody>
-          <tr><td>Khách sạn</td><td>Jiǔdiàn / Lǚguǎn</td><td class="loc-zh">酒店 / 旅馆<button class="speak-btn" onclick="speakZh('酒店 旅馆',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Sân bay</td><td>Jīchǎng</td><td class="loc-zh">机场<button class="speak-btn" onclick="speakZh('机场',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Ga tàu hoả</td><td>Huǒchēzhàn</td><td class="loc-zh">火车站<button class="speak-btn" onclick="speakZh('火车站',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Tàu điện ngầm (Metro)</td><td>Dìtiě</td><td class="loc-zh">地铁<button class="speak-btn" onclick="speakZh('地铁',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Xe taxi / Didi</td><td>Chūzūchē / Dīdī</td><td class="loc-zh">出租车 / 滴滴<button class="speak-btn" onclick="speakZh('出租车 滴滴',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Nhà vệ sinh</td><td>Xǐshǒujiān / Cèsuǒ</td><td class="loc-zh">洗手间 / 厕所<button class="speak-btn" onclick="speakZh('洗手间 厕所',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Siêu thị / Cửa hàng tiện lợi</td><td>Chāoshì / Biànlì diàn</td><td class="loc-zh">超市 / 便利店<button class="speak-btn" onclick="speakZh('超市 便利店',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Nhà hàng</td><td>Cāntīng / Fànguǎn</td><td class="loc-zh">餐厅 / 饭馆<button class="speak-btn" onclick="speakZh('餐厅 饭馆',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Bệnh viện</td><td>Yīyuàn</td><td class="loc-zh">医院<button class="speak-btn" onclick="speakZh('医院',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Công an / Cảnh sát</td><td>Jǐngchá</td><td class="loc-zh">警察<button class="speak-btn" onclick="speakZh('警察',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Đặt phòng / Đặt chỗ</td><td>Yùdìng</td><td class="loc-zh">预订<button class="speak-btn" onclick="speakZh('预订',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Hộ chiếu</td><td>Hùzhào</td><td class="loc-zh">护照<button class="speak-btn" onclick="speakZh('护照',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Tiền mặt / Thanh toán</td><td>Xiànjīn / Fùkuǎn</td><td class="loc-zh">现金 / 付款<button class="speak-btn" onclick="speakZh('现金 付款',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Quét mã (QR)</td><td>Sǎo mǎ</td><td class="loc-zh">扫码<button class="speak-btn" onclick="speakZh('扫码',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Bản đồ</td><td>Dìtú</td><td class="loc-zh">地图<button class="speak-btn" onclick="speakZh('地图',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Xe buýt</td><td>Gōngjiāo chē</td><td class="loc-zh">公交车<button class="speak-btn" onclick="speakZh('公交车',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Trái / Phải / Thẳng</td><td>Zuǒ / Yòu / Zhí zǒu</td><td class="loc-zh">左 / 右 / 直走<button class="speak-btn" onclick="speakZh('左 右 直走',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Gần / Xa</td><td>Jìn / Yuǎn</td><td class="loc-zh">近 / 远<button class="speak-btn" onclick="speakZh('近 远',this)" title="Nghe phát âm">🔊</button></td></tr>
-        
-          <tr><td>... ở đâu?</td><td>... zài nǎlǐ?</td><td class="loc-zh">…在哪里？<button class="speak-btn" onclick="speakZh('在哪里',this)">🔊</button></td></tr>
-          <tr><td>Tôi muốn đi đến...</td><td>Wǒ xiǎng qù...</td><td class="loc-zh">我想去…<button class="speak-btn" onclick="speakZh('我想去',this)">🔊</button></td></tr>
-          <tr><td>Ga tàu ở đâu?</td><td>Huǒchēzhàn zài nǎlǐ?</td><td class="loc-zh">火车站在哪里？<button class="speak-btn" onclick="speakZh('火车站在哪里',this)">🔊</button></td></tr>
-          <tr><td>Trạm metro gần nhất</td><td>Zuìjìn de dìtiě zhàn</td><td class="loc-zh">最近的地铁站<button class="speak-btn" onclick="speakZh('最近的地铁站',this)">🔊</button></td></tr>
-          <tr><td>Đi bộ mất bao lâu?</td><td>Zǒulù yào duō jiǔ?</td><td class="loc-zh">走路要多久？<button class="speak-btn" onclick="speakZh('走路要多久',this)">🔊</button></td></tr>
-          <tr><td>Rẽ trái / Rẽ phải</td><td>Zuǒ zhuǎn / Yòu zhuǎn</td><td class="loc-zh">左转 / 右转<button class="speak-btn" onclick="speakZh('左转 右转',this)">🔊</button></td></tr>
-          <tr><td>Đi thẳng</td><td>Yīzhí zǒu</td><td class="loc-zh">一直走<button class="speak-btn" onclick="speakZh('一直走',this)">🔊</button></td></tr>
-          <tr><td>Tôi bị lạc đường</td><td>Wǒ mílù le</td><td class="loc-zh">我迷路了<button class="speak-btn" onclick="speakZh('我迷路了',this)">🔊</button></td></tr>
-          <tr><td>Đây là đường nào?</td><td>Zhè shì shénme lù?</td><td class="loc-zh">这是什么路？<button class="speak-btn" onclick="speakZh('这是什么路',this)">🔊</button></td></tr>
-          <tr><td>Nhà vệ sinh ở đâu?</td><td>Xǐshǒujiān zài nǎlǐ?</td><td class="loc-zh">洗手间在哪里？<button class="speak-btn" onclick="speakZh('洗手间在哪里',this)">🔊</button></td></tr>
-          <tr><td>Lối vào / Lối ra</td><td>Rùkǒu / Chūkǒu</td><td class="loc-zh">入口 / 出口<button class="speak-btn" onclick="speakZh('入口 出口',this)">🔊</button></td></tr>
-          <tr><td>Tầng mấy?</td><td>Jǐ lóu?</td><td class="loc-zh">几楼？<button class="speak-btn" onclick="speakZh('几楼',this)">🔊</button></td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- SECTION: KHÁCH SẠN -->
-    <div class="convo-section" style="margin:0 0 28px;">
-      <div class="section-head">🏨 Khách sạn — Check-in & Check-out</div>
-      <table class="loc-table">
-        <thead><tr><th>Ý nghĩa</th><th>Pinyin</th><th>中文</th></tr></thead>
-        <tbody>
-          <tr><td>Tôi có đặt phòng</td><td>Wǒ yǒu yùdìng</td><td class="loc-zh">我有预订<button class="speak-btn" onclick="speakZh('我有预订',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Tên tôi là...</td><td>Wǒ de míngzì shì...</td><td class="loc-zh">我的名字是…<button class="speak-btn" onclick="speakZh('我的名字是',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Check-in / Nhận phòng</td><td>Rùzhù / Bànlǐ rùzhù</td><td class="loc-zh">入住 / 办理入住<button class="speak-btn" onclick="speakZh('办理入住',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Check-out / Trả phòng</td><td>Tuìfáng / Bànlǐ tuìfáng</td><td class="loc-zh">退房 / 办理退房<button class="speak-btn" onclick="speakZh('办理退房',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Giờ check-in là mấy giờ?</td><td>Rùzhù shíjiān shì jǐ diǎn?</td><td class="loc-zh">入住时间是几点？<button class="speak-btn" onclick="speakZh('入住时间是几点',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Giờ check-out là mấy giờ?</td><td>Tuìfáng shíjiān shì jǐ diǎn?</td><td class="loc-zh">退房时间是几点？<button class="speak-btn" onclick="speakZh('退房时间是几点',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Cho tôi gửi hành lý trước</td><td>Wǒ xiǎng jìcún xíngli</td><td class="loc-zh">我想寄存行李<button class="speak-btn" onclick="speakZh('我想寄存行李',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Phòng chưa sẵn sàng</td><td>Fángjiān hái méi zhǔnbèi hǎo</td><td class="loc-zh">房间还没准备好<button class="speak-btn" onclick="speakZh('房间还没准备好',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Chìa khoá / Thẻ phòng</td><td>Fángjiān yàoshi / Mén kǎ</td><td class="loc-zh">房间钥匙 / 门卡<button class="speak-btn" onclick="speakZh('房间钥匙 门卡',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Phòng của tôi số mấy?</td><td>Wǒ de fángjiān hào shì?</td><td class="loc-zh">我的房间号是？<button class="speak-btn" onclick="speakZh('我的房间号是',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Điều hoà / Máy lạnh</td><td>Kōngtiáo</td><td class="loc-zh">空调<button class="speak-btn" onclick="speakZh('空调',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Không có nước nóng</td><td>Méiyǒu rèshuǐ</td><td class="loc-zh">没有热水<button class="speak-btn" onclick="speakZh('没有热水',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Wifi phòng không kết nối được</td><td>Fángjiān wǐfēi liánbùshàng</td><td class="loc-zh">房间WiFi连不上<button class="speak-btn" onclick="speakZh('房间WiFi连不上',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Đổi phòng được không?</td><td>Kěyǐ huàn fángjiān ma?</td><td class="loc-zh">可以换房间吗？<button class="speak-btn" onclick="speakZh('可以换房间吗',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Cho thêm khăn tắm</td><td>Zài gěi wǒ máojīn</td><td class="loc-zh">再给我毛巾<button class="speak-btn" onclick="speakZh('再给我毛巾',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Gọi xe / Taxi hộ tôi</td><td>Bāng wǒ jiào chē</td><td class="loc-zh">帮我叫车<button class="speak-btn" onclick="speakZh('帮我叫车',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Lễ tân / Quầy lễ tân</td><td>Qiántái / Fúwútái</td><td class="loc-zh">前台 / 服务台<button class="speak-btn" onclick="speakZh('前台 服务台',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Thang máy ở đâu?</td><td>Diàntī zài nǎlǐ?</td><td class="loc-zh">电梯在哪里？<button class="speak-btn" onclick="speakZh('电梯在哪里',this)" title="Nghe phát âm">🔊</button></td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- SECTION: SÂN BAY -->
-    <div class="convo-section" style="margin:0 0 28px;">
-      <div class="section-head">✈️ Sân bay & Đi lại</div>
-      <table class="loc-table">
-        <thead><tr><th>Ý nghĩa</th><th>Pinyin</th><th>中文</th></tr></thead>
-        <tbody>
-          <tr><td>Làm thủ tục (check-in máy bay)</td><td>Bànlǐ dēngjī shǒuxù</td><td class="loc-zh">办理登机手续<button class="speak-btn" onclick="speakZh('办理登机手续',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Quầy làm thủ tục</td><td>Bànjī guìtái</td><td class="loc-zh">办机柜台<button class="speak-btn" onclick="speakZh('办机柜台',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Hành lý ký gửi</td><td>Tuōyùn xínglǐ</td><td class="loc-zh">托运行李<button class="speak-btn" onclick="speakZh('托运行李',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Hành lý xách tay</td><td>Suíshēn xínglǐ</td><td class="loc-zh">随身行李<button class="speak-btn" onclick="speakZh('随身行李',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Cổng lên máy bay</td><td>Dēngjī kǒu</td><td class="loc-zh">登机口<button class="speak-btn" onclick="speakZh('登机口',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Thẻ lên máy bay</td><td>Dēngjī pái</td><td class="loc-zh">登机牌<button class="speak-btn" onclick="speakZh('登机牌',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Chuyến bay của tôi bị trễ</td><td>Wǒ de hángbān wǎndiǎn le</td><td class="loc-zh">我的航班晚点了<button class="speak-btn" onclick="speakZh('我的航班晚点了',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Số hiệu chuyến bay</td><td>Hángbān hào</td><td class="loc-zh">航班号<button class="speak-btn" onclick="speakZh('航班号',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Kiểm tra an ninh</td><td>Ānquán jiǎnchá</td><td class="loc-zh">安全检查<button class="speak-btn" onclick="speakZh('安全检查',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Xuất / Nhập cảnh</td><td>Chūjìng / Rùjìng</td><td class="loc-zh">出境 / 入境<button class="speak-btn" onclick="speakZh('出境 入境',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Khai báo hải quan</td><td>Bàoguan / Hǎiguān shēnbào</td><td class="loc-zh">海关申报<button class="speak-btn" onclick="speakZh('海关申报',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Băng chuyền hành lý</td><td>Xínglǐ chuándài</td><td class="loc-zh">行李传带<button class="speak-btn" onclick="speakZh('行李传带',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Taxi sân bay</td><td>Jīchǎng chūzūchē</td><td class="loc-zh">机场出租车<button class="speak-btn" onclick="speakZh('机场出租车',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Xe buýt sân bay</td><td>Jīchǎng bāshì</td><td class="loc-zh">机场巴士<button class="speak-btn" onclick="speakZh('机场巴士',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Tàu cao tốc / Tàu nhanh</td><td>Gāotiě / Dòngchē</td><td class="loc-zh">高铁 / 动车<button class="speak-btn" onclick="speakZh('高铁 动车',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Nhà ga / Sảnh đến / Sảnh đi</td><td>Hòuchēshì / Dàodá / Chūfā</td><td class="loc-zh">候车室 / 到达 / 出发<button class="speak-btn" onclick="speakZh('候车室 到达 出发',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Phòng chờ</td><td>Hòujī shì / Hòuchē shì</td><td class="loc-zh">候机室 / 候车室<button class="speak-btn" onclick="speakZh('候机室',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Bản đồ sân bay ở đâu?</td><td>Jīchǎng dìtú zài nǎlǐ?</td><td class="loc-zh">机场地图在哪里？<button class="speak-btn" onclick="speakZh('机场地图在哪里',this)" title="Nghe phát âm">🔊</button></td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- SECTION: MUA SẮM -->
-    <div class="convo-section" style="margin:0 0 28px;">
-      <div class="section-head">🛍 Mua sắm</div>
-      <table class="loc-table">
-        <thead><tr><th>Tiếng Việt</th><th>Pinyin</th><th>中文</th></tr></thead>
-        <tbody>
-          <tr><td>Chợ / Trung tâm thương mại</td><td>Shìchǎng / Gòuwù zhōngxīn</td><td class="loc-zh">市场 / 购物中心<button class="speak-btn" onclick="speakZh('市场 购物中心',this)">🔊</button></td></tr>
-          <tr><td>Cửa hàng / Tiệm</td><td>Shāngdiàn</td><td class="loc-zh">商店<button class="speak-btn" onclick="speakZh('商店',this)">🔊</button></td></tr>
-          <tr><td>Cái này bao nhiêu tiền?</td><td>Zhège duōshǎo qián?</td><td class="loc-zh">这个多少钱？<button class="speak-btn" onclick="speakZh('这个多少钱',this)">🔊</button></td></tr>
-          <tr><td>Giảm giá được không?</td><td>Kěyǐ piányí diǎn ma?</td><td class="loc-zh">可以便宜点吗？<button class="speak-btn" onclick="speakZh('可以便宜点吗',this)">🔊</button></td></tr>
-          <tr><td>Đắt quá!</td><td>Tài guì le!</td><td class="loc-zh">太贵了！<button class="speak-btn" onclick="speakZh('太贵了',this)">🔊</button></td></tr>
-          <tr><td>Tôi chỉ xem thôi</td><td>Wǒ zhǐ shì kànkan</td><td class="loc-zh">我只是看看<button class="speak-btn" onclick="speakZh('我只是看看',this)">🔊</button></td></tr>
-          <tr><td>Tôi muốn mua cái này</td><td>Wǒ yào mǎi zhège</td><td class="loc-zh">我要买这个<button class="speak-btn" onclick="speakZh('我要买这个',this)">🔊</button></td></tr>
-          <tr><td>Có size lớn hơn không?</td><td>Yǒu dà hào de ma?</td><td class="loc-zh">有大号的吗？<button class="speak-btn" onclick="speakZh('有大号的吗',this)">🔊</button></td></tr>
-          <tr><td>Có màu khác không?</td><td>Yǒu qítā yánsè ma?</td><td class="loc-zh">有其他颜色吗？<button class="speak-btn" onclick="speakZh('有其他颜色吗',this)">🔊</button></td></tr>
-          <tr><td>Đây là hàng thật không?</td><td>Zhè shì zhēn de ma?</td><td class="loc-zh">这是真的吗？<button class="speak-btn" onclick="speakZh('这是真的吗',this)">🔊</button></td></tr>
-          <tr><td>Có khuyến mãi không?</td><td>Yǒu yōuhuì ma?</td><td class="loc-zh">有优惠吗？<button class="speak-btn" onclick="speakZh('有优惠吗',this)">🔊</button></td></tr>
-          <tr><td>Cho tôi túi đựng đồ</td><td>Gěi wǒ yī gè dài</td><td class="loc-zh">给我一个袋<button class="speak-btn" onclick="speakZh('给我一个袋',this)">🔊</button></td></tr>
-          <tr><td>Đổi hàng được không?</td><td>Kěyǐ huàn ma?</td><td class="loc-zh">可以换吗？<button class="speak-btn" onclick="speakZh('可以换吗',this)">🔊</button></td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- SECTION: SỨC KHOẺ & Y TẾ -->
-    <div class="convo-section" style="margin:0 0 28px;">
-      <div class="section-head">🏥 Sức khoẻ & Y tế</div>
-      <table class="loc-table">
-        <thead><tr><th>Tiếng Việt</th><th>Pinyin</th><th>中文</th></tr></thead>
-        <tbody>
-          <tr><td>Tôi không khoẻ</td><td>Wǒ bù shūfu</td><td class="loc-zh">我不舒服<button class="speak-btn" onclick="speakZh('我不舒服',this)">🔊</button></td></tr>
-          <tr><td>Bệnh viện ở đâu?</td><td>Yīyuàn zài nǎlǐ?</td><td class="loc-zh">医院在哪里？<button class="speak-btn" onclick="speakZh('医院在哪里',this)">🔊</button></td></tr>
-          <tr><td>Bác sĩ / Nhà thuốc</td><td>Yīshēng / Yàodiàn</td><td class="loc-zh">医生 / 药店<button class="speak-btn" onclick="speakZh('医生 药店',this)">🔊</button></td></tr>
-          <tr><td>Tôi bị đau đầu</td><td>Wǒ tóuténg</td><td class="loc-zh">我头疼<button class="speak-btn" onclick="speakZh('我头疼',this)">🔊</button></td></tr>
-          <tr><td>Tôi bị đau bụng</td><td>Wǒ dùziténg</td><td class="loc-zh">我肚子疼<button class="speak-btn" onclick="speakZh('我肚子疼',this)">🔊</button></td></tr>
-          <tr><td>Tôi bị sốt</td><td>Wǒ fāshāo le</td><td class="loc-zh">我发烧了<button class="speak-btn" onclick="speakZh('我发烧了',this)">🔊</button></td></tr>
-          <tr><td>Tôi bị dị ứng</td><td>Wǒ guòmǐn</td><td class="loc-zh">我过敏<button class="speak-btn" onclick="speakZh('我过敏',this)">🔊</button></td></tr>
-          <tr><td>Thuốc giảm đau</td><td>Zhǐtòngyào</td><td class="loc-zh">止痛药<button class="speak-btn" onclick="speakZh('止痛药',this)">🔊</button></td></tr>
-          <tr><td>Cứu tôi! / Cứu người!</td><td>Jiùmìng! / Jiù rén a!</td><td class="loc-zh">救命！ / 救人啊！<button class="speak-btn" onclick="speakZh('救命',this)">🔊</button></td></tr>
-          <tr><td>Gọi cấp cứu (120)</td><td>Jiào jiùhùchē</td><td class="loc-zh">叫救护车<button class="speak-btn" onclick="speakZh('叫救护车',this)">🔊</button></td></tr>
-          <tr><td>Gọi cảnh sát (110)</td><td>Jiào jǐngchá</td><td class="loc-zh">叫警察<button class="speak-btn" onclick="speakZh('叫警察',this)">🔊</button></td></tr>
-          <tr><td>Tôi bị mất...</td><td>Wǒ diūle...</td><td class="loc-zh">我丢了…<button class="speak-btn" onclick="speakZh('我丢了',this)">🔊</button></td></tr>
-          <tr><td>Có đặc sản gì không?</td><td>Yǒu shénme tèbié tuījiàn ma?</td><td class="loc-zh">有什么特别推荐的吗？<button class="speak-btn" onclick="speakZh('有什么特别推荐的吗',this)">🔊</button></td></tr>
+          <tr><td>Tiểu long bao (Soup dumpling)</td><td>Xiǎolóngbāo</td><td class="loc-zh">小笼包</td></tr>
+          <tr><td>XLB nhân thịt heo</td><td>Zhūròu xiǎolóngbāo</td><td class="loc-zh">猪肉小笼包</td></tr>
+          <tr><td>XLB nhân cua</td><td>Xiè fěn xiǎolóngbāo</td><td class="loc-zh">蟹粉小笼包</td></tr>
+          <tr><td>Bánh bao chiên (Sheng Jian)</td><td>Shēngjiān bāo</td><td class="loc-zh">生煎包</td></tr>
+          <tr><td>Mì</td><td>Miàn</td><td class="loc-zh">面</td></tr>
+          <tr><td>Cơm</td><td>Mǐfàn</td><td class="loc-zh">米饭</td></tr>
+          <tr><td>Nước lọc</td><td>Báishuǐ / Kuàngquán shuǐ</td><td class="loc-zh">白水 / 矿泉水</td></tr>
+          <tr><td>Trà</td><td>Chá</td><td class="loc-zh">茶</td></tr>
+          <tr><td>Không hành / tỏi</td><td>Bù fàng cōng / suàn</td><td class="loc-zh">不放葱 / 蒜</td></tr>
+          <tr><td>Đặt bàn (Dianping)</td><td>Yùdìng zuòwèi</td><td class="loc-zh">预订座位</td></tr>
+          <tr><td>Cho 2 người</td><td>Liǎng gè rén</td><td class="loc-zh">两个人</td></tr>
+          <tr><td>Ngon lắm!</td><td>Hǎo chī!</td><td class="loc-zh">好吃！</td></tr>
         </tbody>
       </table>
     </div>
 
     <!-- SECTION: KHẨN CẤP -->
-    <div class="convo-section" style="margin:0 0 28px;">
+    <div style="margin:0 0 28px;">
       <div class="section-head">🆘 Khẩn cấp & Cần thiết</div>
       <table class="loc-table">
         <thead><tr><th>Tình huống</th><th>Pinyin</th><th>中文</th></tr></thead>
         <tbody>
-          <tr><td>Cứu tôi với! / Cứu người!</td><td>Jiù rén a!</td><td class="loc-zh">救人啊！<button class="speak-btn" onclick="speakZh('救人啊',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Gọi cảnh sát (110)</td><td>Jiào jǐngchá</td><td class="loc-zh">叫警察<button class="speak-btn" onclick="speakZh('叫警察',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Gọi cấp cứu (120)</td><td>Jiào jiùhùchē</td><td class="loc-zh">叫救护车<button class="speak-btn" onclick="speakZh('叫救护车',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Tôi bị mất đồ</td><td>Wǒ de dōngxi diū le</td><td class="loc-zh">我的东西丢了<button class="speak-btn" onclick="speakZh('我的东西丢了',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Tôi bị mất hộ chiếu</td><td>Wǒ de hùzhào diū le</td><td class="loc-zh">我的护照丢了<button class="speak-btn" onclick="speakZh('我的护照丢了',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Đại sứ quán Việt Nam</td><td>Yuènán Dàshǐguǎn</td><td class="loc-zh">越南大使馆<button class="speak-btn" onclick="speakZh('越南大使馆',this)" title="Nghe phát âm">🔊</button></td></tr>
-          <tr><td>Tôi không khoẻ</td><td>Wǒ bù shūfu</td><td class="loc-zh">我不舒服<button class="speak-btn" onclick="speakZh('我不舒服',this)" title="Nghe phát âm">🔊</button></td></tr>
+          <tr><td>Cứu tôi với! / Cứu người!</td><td>Jiù rén a!</td><td class="loc-zh">救人啊！</td></tr>
+          <tr><td>Gọi cảnh sát (110)</td><td>Jiào jǐngchá</td><td class="loc-zh">叫警察</td></tr>
+          <tr><td>Gọi cấp cứu (120)</td><td>Jiào jiùhùchē</td><td class="loc-zh">叫救护车</td></tr>
+          <tr><td>Tôi bị mất đồ</td><td>Wǒ de dōngxi diū le</td><td class="loc-zh">我的东西丢了</td></tr>
+          <tr><td>Tôi bị mất hộ chiếu</td><td>Wǒ de hùzhào diū le</td><td class="loc-zh">我的护照丢了</td></tr>
+          <tr><td>Đại sứ quán Việt Nam</td><td>Yuènán Dàshǐguǎn</td><td class="loc-zh">越南大使馆</td></tr>
+          <tr><td>Tôi không khoẻ</td><td>Wǒ bù shūfu</td><td class="loc-zh">我不舒服</td></tr>
         </tbody>
       </table>
     </div>
@@ -2354,93 +2270,549 @@
   </div><!-- /p10 -->
 
 
+
+  <!-- ===== P11: CHUẨN BỊ ===== -->
+  <!-- ===== CHUẨN BỊ ===== -->
+  <div class="main-panel" id="mp1">
+    <div class="day-head">
+      <div class="day-num" style="font-size:48px;">✅</div>
+      <div class="day-info">
+        <div class="day-date">Checklist chuẩn bị</div>
+        <div class="day-title">Trước chuyến đi</div>
+        <div class="day-subtitle">Các mục cần hoàn thành trước ngày khởi hành 25/04/2026</div>
+      </div>
+    </div>
+
+    <!-- ══ SECTION 1: VISA & HỘ CHIẾU ══ -->
+    <div class="prep-card-section">
+      <div class="prep-section-label">🛂 Visa & Hộ chiếu</div>
+
+      <div class="prep-flow-card">
+        <div class="prep-flow-header">
+          <span class="prep-flow-icon">🇨🇳</span>
+          <div>
+            <div class="prep-flow-title">Visa Trung Quốc — Quy trình nộp hồ sơ</div>
+            <div class="prep-flow-sub">Nộp trực tiếp tại Lãnh sự quán · TP.HCM hoặc Hà Nội</div>
+          </div>
+        </div>
+        <div class="prep-flow-steps">
+          <div class="prep-flow-step">
+            <div class="prep-step-num">1</div>
+            <div class="prep-step-body">
+              <div class="prep-step-title">Chuẩn bị hồ sơ giấy tờ</div>
+              <div class="prep-step-detail">Hộ chiếu gốc còn hạn ≥ 6 tháng · Ảnh 4.5×3.5 cm nền trắng (×2) · Form đơn xin visa (điền tay hoặc in online) · Xác nhận đặt phòng khách sạn · Vé máy bay khứ hồi · CMND/CCCD bản gốc</div>
+            </div>
+          </div>
+          <div class="prep-flow-step">
+            <div class="prep-step-num">2</div>
+            <div class="prep-step-body">
+              <div class="prep-step-title">Nộp hồ sơ tại Lãnh sự quán</div>
+              <div class="prep-step-detail">TP.HCM: 175 Hai Bà Trưng, Q.3 · Thứ 2–5, 09:00–11:30 · Mang phong bì có tem để nhận kết quả qua bưu điện · Lệ phí nộp tại quầy</div>
+            </div>
+          </div>
+          <div class="prep-flow-step">
+            <div class="prep-step-num">3</div>
+            <div class="prep-step-body">
+              <div class="prep-step-title">Chờ duyệt — 5–7 ngày làm việc</div>
+              <div class="prep-step-detail">Không có hệ thống tra cứu trạng thái online — gọi hotline Lãnh sự quán để hỏi nếu cần. Dịch vụ khẩn cho phép rút ngắn còn 3 ngày.</div>
+            </div>
+          </div>
+          <div class="prep-flow-step last">
+            <div class="prep-step-num">4</div>
+            <div class="prep-step-body">
+              <div class="prep-step-title">Nhận hộ chiếu có visa</div>
+              <div class="prep-step-detail">Nhận trực tiếp hoặc qua bưu điện. Kiểm tra ngay: họ tên, số hộ chiếu, ngày vào/ra, số lần nhập cảnh — sai phải đổi trước khi đi.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="prep-item">
+        <div class="prep-body">
+          <div class="prep-title">Kiểm tra hạn hộ chiếu</div>
+          <div class="prep-sub">Phải còn hạn ≥ 6 tháng tính từ ngày nhập cảnh cuối (01/05/2026) → cần hợp lệ đến ít nhất <strong>01/11/2026</strong></div>
+          <span class="prep-tag prep-urgent-tag">⚡ Kiểm tra ngay</span>
+        </div>
+      </div>
+      <div class="prep-item">
+        <div class="prep-body">
+          <div class="prep-title">Ảnh hộ chiếu dự phòng (×4/người)</div>
+          <div class="prep-sub">4.5 × 3.5 cm · nền trắng · mặc áo sáng màu · không đội mũ · cần khi nộp visa và trong trường hợp khẩn cấp</div>
+          <span class="prep-tag prep-info-tag">4 ảnh/người</span>
+        </div>
+      </div>
+      <div class="prep-item">
+        <div class="prep-body">
+          <div class="prep-title">Photo copy hộ chiếu + visa (×2 bản/người)</div>
+          <div class="prep-sub">In 2 bản · Lưu bản scan lên Google Drive / iCloud · Để tách riêng khỏi hộ chiếu gốc khi mang đi — nếu mất gốc vẫn còn bản sao</div>
+          <span class="prep-tag prep-info-tag">2 bản/người</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ SECTION 2: VÉ & ĐẶT CHỖ ══ -->
+    <div class="prep-card-section">
+      <div class="prep-section-label">✈️ Vé & Đặt chỗ <span class="prep-all-done-badge">Đã hoàn tất ✓</span></div>
+
+      <div class="prep-booking-grid">
+        <div class="prep-booking-card done-card">
+          <div class="prep-bc-icon">✈️</div>
+          <div class="prep-bc-body">
+            <div class="prep-bc-title">Vé máy bay chiều đi · 25/04</div>
+            <div class="prep-bc-sub">HCM → Pudong · Thanh toán bằng Travel Credit</div>
+          </div>
+          <div class="prep-bc-status">✓</div>
+        </div>
+        <div class="prep-booking-card done-card">
+          <div class="prep-bc-icon">✈️</div>
+          <div class="prep-bc-body">
+            <div class="prep-bc-title">Vé máy bay chiều về · 01/05</div>
+            <div class="prep-bc-sub">Pudong → HCM</div>
+          </div>
+          <div class="prep-bc-status">✓</div>
+        </div>
+        <div class="prep-booking-card done-card">
+          <div class="prep-bc-icon">🏨</div>
+          <div class="prep-bc-body">
+            <div class="prep-bc-title">Pod Inn · Pudong Airport</div>
+            <div class="prep-bc-sub">25/04 · 1 đêm · Gần sân bay</div>
+          </div>
+          <div class="prep-bc-status">✓</div>
+        </div>
+        <div class="prep-booking-card done-card">
+          <div class="prep-bc-icon">🏨</div>
+          <div class="prep-bc-body">
+            <div class="prep-bc-title">HomeInn Selected · 570 Shangcheng Rd</div>
+            <div class="prep-bc-sub">26–29/04 · 3 đêm · Ngay ga Shangcheng Rd (Line 9)</div>
+          </div>
+          <div class="prep-bc-status">✓</div>
+        </div>
+        <div class="prep-booking-card done-card">
+          <div class="prep-bc-icon">🏨</div>
+          <div class="prep-bc-body">
+            <div class="prep-bc-title">ZELIN Viewing Pavilion · Wuzhen</div>
+            <div class="prep-bc-sub">29/04 · 1 đêm · Trong khu Tây Sách</div>
+          </div>
+          <div class="prep-bc-status">✓</div>
+        </div>
+        <div class="prep-booking-card done-card">
+          <div class="prep-bc-icon">🏨</div>
+          <div class="prep-bc-body">
+            <div class="prep-bc-title">Manli Hotel · Pudong Airport</div>
+            <div class="prep-bc-sub">30/04 · 1 đêm · Ngay cạnh PVG — tiện checkout 01/05</div>
+          </div>
+          <div class="prep-bc-status">✓</div>
+        </div>
+        <div class="prep-booking-card done-card">
+          <div class="prep-bc-icon">🚄</div>
+          <div class="prep-bc-body">
+            <div class="prep-bc-title">G-train Hồng Kiều → Hàng Châu Đông</div>
+            <div class="prep-bc-sub">29/04 · Chuyến G7349 09:09 → 10:02 · 2 vé</div>
+          </div>
+          <div class="prep-bc-status">✓</div>
+        </div>
+        <div class="prep-booking-card done-card">
+          <div class="prep-bc-icon">🚄</div>
+          <div class="prep-bc-body">
+            <div class="prep-bc-title">G-train Hàng Châu Đông → Hồng Kiều</div>
+            <div class="prep-bc-sub">30/04 · 2 vé</div>
+          </div>
+          <div class="prep-bc-status">✓</div>
+        </div>
+        <div class="prep-booking-card done-card">
+          <div class="prep-bc-icon">🎢</div>
+          <div class="prep-bc-body">
+            <div class="prep-bc-title">Shanghai Disneyland · Entry + Early Pass</div>
+            <div class="prep-bc-sub">27/04 · 2 vé · Đã tích hợp vào Disney App</div>
+          </div>
+          <div class="prep-bc-status">✓</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ SECTION 3: APP & KẾT NỐI ══ -->
+    <div class="prep-card-section">
+      <div class="prep-section-label">📱 App & Kết nối — Cài trước khi đến Trung Quốc</div>
+
+      <div class="prep-app-grid">
+        <div class="prep-app-card">
+          <div class="prep-app-icon" style="background:#07c160;color:#fff;">W</div>
+          <div class="prep-app-body">
+            <div class="prep-app-name">WeChat Pay</div>
+            <div class="prep-app-how">Cài app → Settings → WeChat Pay → Add Bank Card (Visa / Mastercard quốc tế). Phải kích hoạt <strong>trước khi đến TQ</strong> — trong nước đôi khi bị chặn</div>
+          </div>
+        </div>
+        <div class="prep-app-card">
+          <div class="prep-app-icon" style="background:#1677ff;color:#fff;">A</div>
+          <div class="prep-app-body">
+            <div class="prep-app-name">Alipay International (Alipay+)</div>
+            <div class="prep-app-how">Tải bản quốc tế · Link thẻ Visa/Mastercard · Nạp sẵn tiền trước để dùng ngay ngày đầu — hầu hết quán ăn, metro, Didi đều nhận Alipay</div>
+          </div>
+        </div>
+        <div class="prep-app-card">
+          <div class="prep-app-icon" style="background:#ff6e00;color:#fff;">滴</div>
+          <div class="prep-app-body">
+            <div class="prep-app-name">Didi + Amap (高德地图)</div>
+            <div class="prep-app-how">Didi = Grab của TQ · Liên kết Alipay/WeChat trước · Amap = Google Maps TQ, hoạt động không cần VPN, hỗ trợ offline</div>
+          </div>
+        </div>
+        <div class="prep-app-card">
+          <div class="prep-app-icon" style="background:#1a1410;color:#fff;">VPN</div>
+          <div class="prep-app-body">
+            <div class="prep-app-name">VPN — cài và test trước khi đi</div>
+            <div class="prep-app-how"><strong>Bắt buộc</strong> cài và kiểm tra trước khi đến TQ — không thể tải VPN từ bên trong TQ. Gợi ý: ExpressVPN, NordVPN, hoặc Astrill</div>
+          </div>
+        </div>
+        <div class="prep-app-card done-app-card">
+          <div class="prep-app-icon" style="background:#e8f5ee;color:var(--green);">📶</div>
+          <div class="prep-app-body">
+            <div class="prep-app-name">E-SIM Trung Quốc · 2 thuê bao</div>
+            <div class="prep-app-how">Mua qua Trip.com · Thêm 1 SIM dự phòng mua qua Klook · Cả 2 đã kích hoạt</div>
+          </div>
+          <div style="width:22px;height:22px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;">✓</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ SECTION 4: SLOT & VÉ ĐẶT TRƯỚC ══ -->
+    <div class="prep-card-section">
+      <div class="prep-section-label">🎟 Slot & Vé cần đặt online trước</div>
+
+      <div class="prep-item">
+        <div class="prep-body">
+          <div class="prep-title">Bảo Tàng Thượng Hải — đặt slot qua WeChat</div>
+          <div class="prep-sub">WeChat → tìm "上海博物馆" → 预约 → chọn ngày <strong>28/04, slot 17:00</strong> · Miễn phí vào cửa nhưng slot hết rất nhanh — nên đặt trước 1–2 ngày</div>
+          <span class="prep-tag prep-urgent-tag">Đặt trước · Free · WeChat</span>
+        </div>
+      </div>
+      <div class="prep-item">
+        <div class="prep-body">
+          <div class="prep-title">Chùa Tĩnh An — đặt qua Klook</div>
+          <div class="prep-sub">~50 CNY/người · Đặt online để tránh xếp hàng mua vé tại cổng · Mang QR code vào · Ngày <strong>28/04, slot ~15:45</strong></div>
+          <span class="prep-tag prep-info-tag">~50 CNY/người · Klook</span>
+        </div>
+      </div>
+      <div class="prep-item">
+        <div class="prep-body">
+          <div class="prep-title">Vườn Dự Viên — đặt qua Klook hoặc Dianping</div>
+          <div class="prep-sub">~30 CNY/người · Ngày <strong>28/04, slot ~18:00</strong> · Vào trước 16:30 nếu đặt slot chiều sớm</div>
+          <span class="prep-tag prep-info-tag">~30 CNY/người · Klook / Dianping</span>
+        </div>
+      </div>
+      <div class="prep-item">
+        <div class="prep-body">
+          <div class="prep-title">Green Tea Restaurant — đặt bàn qua Dianping</div>
+          <div class="prep-sub">83 Longjing Rd, Hàng Châu · Ngày <strong>29/04, trưa 11:50</strong> · Cuối tuần rất đông — không đặt trước dễ chờ 1–2 tiếng</div>
+          <span class="prep-tag prep-urgent-tag">Đặt bàn Dianping trước</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ SECTION 5: HÀNH LÝ & SỨC KHOẺ ══ -->
+    <div class="prep-card-section">
+      <div class="prep-section-label">🎒 Hành lý & Sức khoẻ</div>
+
+      <div class="prep-item">
+        <div class="prep-body">
+          <div class="prep-title">Thuốc mang theo</div>
+          <div class="prep-sub">Thuốc cảm, đau bụng, dị ứng, băng cá nhân · Chuẩn bị đủ cho 7 ngày</div>
+        </div>
+      </div>
+      <div class="prep-item">
+        <div class="prep-body">
+          <div class="prep-title">Cân hành lý ký gửi — giới hạn 23 kg/người</div>
+          <div class="prep-sub">Cân trước khi ra sân bay · Để dư ký cho hàng mua tại TQ khi về</div>
+          <span class="prep-tag prep-info-tag">Tối đa 23 kg/người</span>
+        </div>
+      </div>
+      <div class="prep-item">
+        <div class="prep-body">
+          <div class="prep-title">Đổi tiền mặt CNY dự phòng</div>
+          <div class="prep-sub">~500–1.000 CNY/người · TQ dùng QR là chính nhưng một số chợ nhỏ và taxi cũ vẫn cần tiền mặt</div>
+          <span class="prep-tag prep-info-tag">~500–1.000 CNY/người</span>
+        </div>
+      </div>
+      <div class="prep-item">
+        <div class="prep-body">
+          <div class="prep-title">Ổ cắm đa năng / Adapter</div>
+          <div class="prep-sub">TQ dùng 220V, phích 2 chân dẹt (Type A) — tương thích với ổ VN · Nên mang thêm ổ cắm đa năng để sạc nhiều thiết bị cùng lúc</div>
+        </div>
+      </div>
+      <div class="prep-item">
+        <div class="prep-body">
+          <div class="prep-title">Pack hành lý xách tay đúng quy định</div>
+          <div class="prep-sub">Pin dự phòng chỉ được mang trong hành lý xách tay · Chất lỏng ≤ 100 ml/chai · Không mang máy duỗi tóc nhiệt cao ký gửi · Không mang bật lửa trong hành lý ký gửi</div>
+          <span class="prep-tag prep-urgent-tag">⚡ Quan trọng</span>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /mp6 -->
+
+  <!-- ===== CHI TIÊU ===== -->
+  <div class="main-panel" id="mp2">
+    <div class="day-head">
+      <div class="day-num" style="font-size:48px;">💰</div>
+      <div class="day-info">
+        <div class="day-date">Bảng chi tiêu</div>
+        <div class="day-title">7 ngày · 2 người</div>
+        <div class="day-subtitle">Chi phí thực tế · Chia đầu người · Tỷ giá tham khảo 3.859đ/CNY</div>
+      </div>
+    </div>
+
+    <div class="cost-summary" style="grid-template-columns:1fr 1fr;">
+      <div class="cost-card">
+        <div class="cost-card-label">Tổng cả chuyến (2 người)</div>
+        <div class="cost-card-val">51.850.950đ</div>
+        <div class="cost-card-sub">Bao gồm máy bay · Chi phí thực tế</div>
+      </div>
+      <div class="cost-card">
+        <div class="cost-card-label">Mỗi người · bao gồm máy bay</div>
+        <div class="cost-card-val">~25.925.000đ</div>
+        <div class="cost-card-sub">≈ 6.720 CNY/người</div>
+      </div>
+    </div>
+
+    <table class="cost-table">
+      <thead>
+        <tr>
+          <th>Hạng mục</th>
+          <th style="text-align:right;">Tổng (2 người)</th>
+          <th style="text-align:right;">Mỗi người</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td colspan="3" class="cost-divider">✈️ Vé máy bay</td></tr>
+        <tr>
+          <td>
+            <div>Chiều đi — 25/04</div>
+            <div class="cost-note">Thanh toán bằng Travel Credit · Credit dư 1.928.000đ</div>
+          </td>
+          <td>10.238.000đ</td>
+          <td>5.119.000đ</td>
+        </tr>
+        <tr>
+          <td>Chiều về — 01/05</td>
+          <td>10.008.000đ</td>
+          <td>5.004.000đ</td>
+        </tr>
+
+        <tr><td colspan="3" class="cost-divider">🏨 Khách sạn</td></tr>
+        <tr>
+          <td>Pod Inn — 25/04 (1 đêm)</td>
+          <td>828.047đ</td>
+          <td>414.024đ</td>
+        </tr>
+        <tr>
+          <td>HomeInn Selected · 570 Shangcheng Rd — 26–29/04 (3 đêm)</td>
+          <td>3.083.033đ</td>
+          <td>1.541.517đ</td>
+        </tr>
+        <tr>
+          <td>Wuzhen ZELIN — 29/04 (1 đêm)</td>
+          <td>440.128đ</td>
+          <td>220.064đ</td>
+        </tr>
+        <tr>
+          <td>
+            <div>Manli Hotel Pudong Airport — 30/04 (1 đêm)</div>
+            <div class="cost-note">Gần sân bay, tiện checkout sáng 01/05</div>
+          </td>
+          <td>1.225.016đ</td>
+          <td>612.508đ</td>
+        </tr>
+
+        <tr><td colspan="3" class="cost-divider">🎡 Vui chơi & Giải trí</td></tr>
+        <tr>
+          <td>
+            <div>DisneyLand — Entry Pass (27/04)</div>
+          </td>
+          <td>4.394.406đ</td>
+          <td>2.197.203đ</td>
+        </tr>
+        <tr>
+          <td>
+            <div>DisneyLand — EarlyPass (27/04)</div>
+            <div class="cost-note">Vào cổng sớm trước giờ mở cửa chính thức</div>
+          </td>
+          <td>1.583.591đ</td>
+          <td>791.796đ</td>
+        </tr>
+
+        <tr><td colspan="3" class="cost-divider">🚄 Di chuyển nội địa</td></tr>
+        <tr>
+          <td>G-train: Hồng Kiều → Đông Hàng Châu — 29/04</td>
+          <td>780.000đ</td>
+          <td>390.000đ</td>
+        </tr>
+        <tr>
+          <td>G-train: Đông Hàng Châu → Hồng Kiều — 30/04</td>
+          <td>770.000đ</td>
+          <td>385.000đ</td>
+        </tr>
+
+        <tr><td colspan="3" class="cost-divider">🍜 Ăn uống · Metro · Mua sắm · Lặt vặt (Alipay)</td></tr>
+        <tr>
+          <td>
+            <div>Chi tiêu hàng ngày (26/04 → 01/05)</div>
+            <div class="cost-note">Gồm ăn uống 3 bữa, metro, Didi, mua đồ, quà cáp, vé tham quan lẻ</div>
+            <div class="cost-note">Tổng Alipay 2 người: 8.583.000đ + 5.107.579đ = 13.690.579đ (đã gồm phí thẻ)</div>
+          </td>
+          <td>13.690.579đ</td>
+          <td>6.845.290đ</td>
+        </tr>
+
+        <tr><td colspan="3" class="cost-divider">📦 Khác</td></tr>
+        <tr>
+          <td>
+            <div>E-SIM Trung Quốc × 2 + Buffer</div>
+            <div class="cost-note">280.000đ + 186.150đ buffer</div>
+          </td>
+          <td>466.150đ</td>
+          <td>233.075đ</td>
+        </tr>
+        <tr>
+          <td>Visa Trung Quốc (2 người)</td>
+          <td>4.000.000đ</td>
+          <td>2.000.000đ</td>
+        </tr>
+        <tr>
+          <td>Thuốc mang theo</td>
+          <td>279.000đ</td>
+          <td>139.500đ</td>
+        </tr>
+
+        <tr class="cost-total-row">
+          <td>✈️ Tổng thực tế (bao gồm máy bay)</td>
+          <td>51.850.950đ</td>
+          <td><strong>~25.925.000đ</strong></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="note" style="margin-top:8px;">
+      <strong>📊 Phân tích:</strong><br>
+      Chi phí Alipay (ăn uống + metro + lặt vặt) chiếm <strong>26%</strong> tổng chi — khoảng <strong>~2.285.000đ/người/ngày</strong> cho 6 ngày tại TQ. Mức khá hợp lý cho city trip Thượng Hải bao gồm ăn 3 bữa, di chuyển và tham quan.
+    </div>
+  </div><!-- /mp7 -->
+
 </main>
 
 <footer>China Trip · 25 tháng 4 – 01 tháng 5 năm 2026 · Shanghai · Hangzhou · Wuzhen</footer>
 
 <script>
-  function show(i) {
-    document.querySelectorAll('.day-panel').forEach(p => p.classList.remove('visible'));
-    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById('p' + i).classList.add('visible');
-    document.querySelectorAll('.nav-btn')[i].classList.add('active');
-    window.scrollTo({ top: document.querySelector('.nav-wrap').offsetHeight + document.querySelector('.hero').offsetHeight, behavior: 'smooth' });
+  // ── MAIN TAB NAVIGATION ──
+  function showMain(i) {
+    document.querySelectorAll('.main-panel').forEach(function(p) { p.classList.remove('visible'); });
+    document.querySelectorAll('#main-nav .nav-btn').forEach(function(b) { b.classList.remove('active'); });
+    var panel = document.getElementById('mp' + i);
+    if (panel) panel.classList.add('visible');
+    var btns = document.querySelectorAll('#main-nav .nav-btn');
+    if (btns[i]) btns[i].classList.add('active');
+    var navH = document.querySelector('.nav-wrap') ? document.querySelector('.nav-wrap').offsetHeight : 0;
+    var heroH = document.querySelector('.hero') ? document.querySelector('.hero').offsetHeight : 0;
+    window.scrollTo({ top: navH + heroH, behavior: 'smooth' });
   }
 
-  function toggleNote(head) {
-    const card = head.closest('.note-card');
-    card.classList.toggle('open');
+  // ── DAY SUB-TAB NAVIGATION ──
+  function showDay(i) {
+    document.querySelectorAll('.day-sub-panel').forEach(function(p) { p.classList.remove('visible'); });
+    document.querySelectorAll('.sub-btn').forEach(function(b) { b.classList.remove('active'); });
+    var panel = document.getElementById('dp' + i);
+    if (panel) panel.classList.add('visible');
+    var btns = document.querySelectorAll('.sub-btn');
+    if (btns[i]) btns[i].classList.add('active');
   }
 
-  // ===== HỘI THOẠI: TTS =====
-  function speakZh(text, btn) {
-    if (!window.speechSynthesis) { alert('Trình duyệt không hỗ trợ TTS'); return; }
-    window.speechSynthesis.cancel();
-    // Remove playing state from all buttons
-    document.querySelectorAll('.speak-btn.playing').forEach(b => b.classList.remove('playing'));
-    const utt = new SpeechSynthesisUtterance(text);
-    utt.lang = 'zh-CN';
-    utt.rate = 0.65;
-    utt.pitch = 1;
-    // Try to pick a Chinese voice
-    const voices = window.speechSynthesis.getVoices();
-    const zhVoice = voices.find(v => v.lang.startsWith('zh'));
-    if (zhVoice) utt.voice = zhVoice;
-    btn.classList.add('playing');
-    utt.onend = () => btn.classList.remove('playing');
-    utt.onerror = () => btn.classList.remove('playing');
-    window.speechSynthesis.speak(utt);
+  // ── CHECKLIST ──
+  function toggleChk(el) {
+    var isDone = el.classList.toggle('done');
+    el.textContent = isDone ? '✓' : '';
+    var titleEl = document.getElementById(el.id + '-t');
+    if (titleEl) titleEl.classList.toggle('done-text', isDone);
+    var state = {};
+    document.querySelectorAll('.prep-check').forEach(function(c) { state[c.id] = c.classList.contains('done'); });
+    localStorage.setItem('ct26_prep', JSON.stringify(state));
   }
-
-  // ===== HỘI THOẠI: SEARCH + COUNTER =====
-  function filterConvo(q) {
-    q = q.toLowerCase().trim();
-    const panel = document.getElementById('p10');
-    const rows = panel.querySelectorAll('tr:not(thead tr)');
-    let visible = 0, total = 0;
-    rows.forEach(tr => {
-      if (tr.closest('thead')) return;
-      total++;
-      const text = tr.innerText.toLowerCase();
-      if (!q || text.includes(q)) {
-        tr.classList.remove('convo-hidden');
-        visible++;
+  (function() {
+    var saved = localStorage.getItem('ct26_prep');
+    if (!saved) return;
+    var state = JSON.parse(saved);
+    Object.keys(state).forEach(function(id) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      if (state[id]) {
+        el.classList.add('done'); el.textContent = '✓';
+        var t = document.getElementById(id + '-t'); if (t) t.classList.add('done-text');
       } else {
-        tr.classList.add('convo-hidden');
+        el.classList.remove('done'); el.textContent = '';
+        var t = document.getElementById(id + '-t'); if (t) t.classList.remove('done-text');
       }
     });
-    const counter = document.getElementById('convo-counter');
-    if (q) {
-      counter.textContent = visible + ' / ' + total + ' kết quả';
-      counter.style.color = visible === 0 ? 'var(--red)' : 'var(--amber)';
-    } else {
-      counter.textContent = total + ' cụm từ';
-      counter.style.color = 'var(--muted)';
-    }
-  }
+  })();
 
-  // Init counter on page load
-  window.addEventListener('load', () => {
-    // Init voices (some browsers load async)
-    if (window.speechSynthesis) {
-      window.speechSynthesis.getVoices();
-      window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
-    }
-    filterConvo('');
-  });
-
+  // ── NOTE CARDS ──
+  function toggleNote(head) { head.closest('.note-card').classList.toggle('open'); }
   function filterNotes(query) {
-    const q = query.toLowerCase().trim();
-    document.querySelectorAll('.note-card').forEach(card => {
-      const tags = (card.dataset.tags || '').toLowerCase();
-      const text = card.innerText.toLowerCase();
-      if (!q || tags.includes(q) || text.includes(q)) {
-        card.classList.remove('hidden');
-      } else {
-        card.classList.add('hidden');
-      }
+    var q = query.toLowerCase().trim();
+    document.querySelectorAll('.note-card').forEach(function(card) {
+      var match = !q || (card.dataset.tags || '').toLowerCase().includes(q) || card.innerText.toLowerCase().includes(q);
+      card.classList.toggle('hidden', !match);
     });
   }
+
+  // ── HỘI THOẠI SEARCH + COUNTER ──
+  function filterHoithoai(query) {
+    var q = query.toLowerCase().trim();
+    var visible = 0;
+    document.querySelectorAll('.ht-row').forEach(function(row) {
+      var text = (row.dataset.vi || '') + (row.dataset.py || '') + (row.dataset.zh || '') + row.innerText;
+      var show = !q || text.toLowerCase().includes(q);
+      row.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+    var total = document.querySelectorAll('.ht-row').length;
+    var counter = document.getElementById('ht-counter');
+    if (counter) counter.textContent = q ? (visible + ' / ' + total + ' mục') : (total + ' mục');
+    document.querySelectorAll('.ht-section').forEach(function(sec) {
+      var anyVisible = Array.from(sec.querySelectorAll('.ht-row')).some(function(r) { return r.style.display !== 'none'; });
+      sec.style.display = anyVisible ? '' : 'none';
+    });
+    var noResult = document.getElementById('ht-noresult');
+    if (noResult) noResult.style.display = (q && visible === 0) ? 'block' : 'none';
+  }
+
+  // ── TTS SPEAK ──
+  function speakZh(text) {
+    if (!window.speechSynthesis) return;
+    window.speechSynthesis.cancel();
+    var utter = new SpeechSynthesisUtterance(text);
+    utter.lang = 'zh-CN';
+    utter.rate = 0.85;
+    var voices = window.speechSynthesis.getVoices();
+    var zh = voices.find(function(v) { return v.lang && v.lang.startsWith('zh'); });
+    if (zh) utter.voice = zh;
+    window.speechSynthesis.speak(utter);
+  }
+  if (window.speechSynthesis) { window.speechSynthesis.getVoices(); }
+
+  // ── COPY ZH ──
+  function copyZh(el) {
+    var text = el.textContent.trim();
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(text).then(function() {
+        var orig = el.style.background;
+        el.style.background = '#e8f5ee';
+        setTimeout(function() { el.style.background = orig; }, 600);
+      }).catch(function() {});
+    }
+  }
+
+  // ── INIT COUNTER ──
+  document.addEventListener('DOMContentLoaded', function() {
+    var total = document.querySelectorAll('.ht-row').length;
+    var counter = document.getElementById('ht-counter');
+    if (counter) counter.textContent = total + ' mục';
+  });
 </script>
 </body>
-</html>
