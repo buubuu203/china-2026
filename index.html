@@ -4,6 +4,51 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>China Trip — 25/04 → 01/05/2026</title>
+  <!-- SEO & Social Meta -->
+  <meta name="description" content="Lịch trình du lịch Trung Quốc 7 ngày — Thượng Hải, Hàng Châu & Ô Trấn. Chi tiết từng giờ, gợi ý ăn uống, di chuyển metro, chi tiêu thực tế.">
+  <meta name="keywords" content="du lịch Thượng Hải, lịch trình Thượng Hải, Hàng Châu, Ô Trấn, Wuzhen, China trip 2026, Shanghai itinerary, travel Vietnam">
+  <meta name="author" content="@buubuu.u">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="China Trip 2026 · Thượng Hải · Hàng Châu · Ô Trấn">
+  <meta property="og:description" content="Lịch trình du lịch Trung Quốc 7 ngày — chi tiết từng giờ, ăn uống, di chuyển, chi tiêu thực tế.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="vi_VN">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="China Trip 2026 · Thượng Hải · Hàng Châu · Ô Trấn">
+  <meta name="twitter:description" content="Lịch trình du lịch Trung Quốc 7 ngày chi tiết từng giờ.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80">
+  <meta name="twitter:creator" content="@buubuu.u">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://china-2026-chi.vercel.app/">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TravelGuide",
+    "name": "China Trip 2026 — Thượng Hải, Hàng Châu & Ô Trấn",
+    "description": "Lịch trình du lịch Trung Quốc 7 ngày chi tiết từng giờ, gợi ý ăn uống, di chuyển và chi tiêu thực tế.",
+    "author": {
+      "@type": "Person",
+      "name": "Buu",
+      "sameAs": "https://instagram.com/buubuu.u"
+    },
+    "datePublished": "2026-04-25",
+    "touristDestination": [
+      { "@type": "City", "name": "Shanghai", "alternateName": "Thượng Hải" },
+      { "@type": "City", "name": "Hangzhou", "alternateName": "Hàng Châu" },
+      { "@type": "Place", "name": "Wuzhen", "alternateName": "Ô Trấn" }
+    ]
+  }
+  </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -574,6 +619,48 @@
   .loc-type { font-size: 10px; color: var(--muted); }
   .type-food { color: var(--green); }
 
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 28px 20px 20px;
+    border-top: 1px solid var(--border);
+    margin-top: 12px;
+  }
+  .footer-main {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .footer-credit {
+    font-size: 11px;
+    color: var(--muted);
+  }
+  .footer-insta {
+    color: var(--amber);
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.15s;
+  }
+  .footer-insta:hover { opacity: 0.7; }
+
+  /* ── WATERMARK ── */
+  .watermark {
+    position: fixed;
+    bottom: 22px;
+    right: 22px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    color: rgba(0,0,0,0.055);
+    letter-spacing: 1.5px;
+    pointer-events: none;
+    user-select: none;
+    z-index: 1;
+    transform: rotate(-20deg);
+    transform-origin: bottom right;
+  }
 </style>
 </head>
 <body>
@@ -2698,7 +2785,16 @@
 
 </main>
 
-<footer>China Trip · 25 tháng 4 – 01 tháng 5 năm 2026 · Shanghai · Hangzhou · Wuzhen</footer>
+<footer>
+  <div class="footer-main">China Trip · 25 tháng 4 – 01 tháng 5 năm 2026 · Shanghai · Hangzhou · Wuzhen</div>
+  <div class="footer-credit">
+    Made with ♥ by
+    <a href="https://instagram.com/buubuu.u" target="_blank" rel="noopener" class="footer-insta">@buubuu.u</a>
+  </div>
+</footer>
+
+<!-- WATERMARK -->
+<div class="watermark" aria-hidden="true">@buubuu.u</div>
 
 <script>
   // ── MAIN TAB NAVIGATION ──
