@@ -1,9 +1,21 @@
 {
   "version": 2,
   "builds": [
-    { "src": "index.html", "use": "@vercel/static" }
+    { "src": "*.html", "use": "@vercel/static" },
+    { "src": "*.png",  "use": "@vercel/static" },
+    { "src": "*.jpg",  "use": "@vercel/static" },
+    { "src": "*.ico",  "use": "@vercel/static" }
   ],
   "routes": [
+    {
+      "src": "/og-image.png",
+      "dest": "/og-image.png",
+      "headers": {
+        "Cache-Control": "public, max-age=86400",
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "image/png"
+      }
+    },
     { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
