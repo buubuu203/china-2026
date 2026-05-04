@@ -425,8 +425,7 @@
   .cost-card-val { font-size: 26px; font-weight: 300; font-family: 'Cormorant Garamond', serif; color: var(--amber-light); }
   .cost-card-sub { font-size: 11px; color: rgba(250,247,242,0.4); margin-top: 4px; }
 
-  .cost-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 24px; border-radius: 8px; border: 1px solid var(--border); }
-  .cost-table { width: 100%; border-collapse: collapse; min-width: 480px; }
+  .cost-table { width: 100%; border-collapse: collapse; margin-bottom: 24px; }
   .cost-table th {
     text-align: left; font-size: 10px; text-transform: uppercase; letter-spacing: 1px;
     color: var(--muted); font-weight: 500; padding: 7px 10px;
@@ -437,8 +436,7 @@
   .cost-table td { padding: 10px 10px; font-size: 13px; border-bottom: 0.5px solid var(--border); vertical-align: top; line-height: 1.45; }
   .cost-table tr:last-child td { border-bottom: none; }
   .cost-table tr:hover td { background: var(--cream); }
-  .cost-table td:nth-child(2),
-  .cost-table td:nth-child(3) { text-align: right; font-weight: 500; white-space: nowrap; width: 1%; }
+  .cost-table td:last-child { text-align: right; font-weight: 500; white-space: nowrap; }
   .cost-table .cat-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); }
   .cost-split { display: flex; gap: 6px; margin-top: 4px; flex-wrap: wrap; }
   .cost-pp { font-size: 11px; padding: 2px 7px; border-radius: 10px; }
@@ -463,15 +461,6 @@
     .nav { padding: 0 20px; }
     .entry-inner { grid-template-columns: 72px 1fr; gap: 10px; }
     .day-num { font-size: 52px; }
-    /* Chi tiêu mobile fixes */
-    .cost-summary { grid-template-columns: 1fr !important; }
-    .cost-card-val { font-size: 22px; }
-    .cost-table-wrap { border-radius: 8px; }
-    .cost-table { min-width: 440px; }
-    .cost-table td { font-size: 12px; padding: 8px 8px; }
-    .cost-table th { font-size: 9px; padding: 6px 8px; }
-    .cost-note { font-size: 10px; }
-    .cost-total-row td { font-size: 13px; }
   }
 
   /* ── SUB-NAV FOR DAYS ── */
@@ -678,6 +667,9 @@
     white-space: nowrap;
   }
 </style>
+  <!-- Vercel Analytics -->
+  <script defer src="/_vercel/insights/script.js"></script>
+  <script defer src="/_vercel/speed-insights/script.js"></script>
 </head>
 <body>
 <div class="hero">
@@ -2663,7 +2655,7 @@
       </div>
     </div>
 
-    <div class="cost-summary">
+    <div class="cost-summary" style="grid-template-columns:1fr 1fr;">
       <div class="cost-card">
         <div class="cost-card-label">Tổng cả chuyến (2 người)</div>
         <div class="cost-card-val">51.850.950đ</div>
@@ -2676,7 +2668,6 @@
       </div>
     </div>
 
-    <div class="cost-table-wrap">
     <table class="cost-table">
       <thead>
         <tr>
@@ -2793,7 +2784,7 @@
         </tr>
       </tbody>
     </table>
-    </div><!-- /cost-table-wrap -->
+
     <div class="note" style="margin-top:8px;">
       <strong>📊 Phân tích:</strong><br>
       Chi phí Alipay (ăn uống + metro + lặt vặt) chiếm <strong>26%</strong> tổng chi — khoảng <strong>~2.285.000đ/người/ngày</strong> cho 6 ngày tại TQ. Mức khá hợp lý cho city trip Thượng Hải bao gồm ăn 3 bữa, di chuyển và tham quan.
@@ -2815,6 +2806,15 @@
 
 <script>
   // ── MAIN TAB NAVIGATION ──
+  var TAB_NAMES = ['Lịch trình', 'Chuẩn bị', 'Chi tiêu', 'Đặt vé trước', 'Eatery & Cafe', 'Địa điểm', 'Note', 'Hội thoại'];
+  var DAY_NAMES = ['26/04 CN', '27/04 T2 — Disney', '28/04 T3', '29/04 T4', '30/04 T5', '01/05 CN'];
+
+  function track(name, props) {
+    try {
+      if (window.va) window.va('event', { name: name, ...props });
+    } catch(e) {}
+  }
+
   function showMain(i) {
     document.querySelectorAll('.main-panel').forEach(function(p) { p.classList.remove('visible'); });
     document.querySelectorAll('#main-nav .nav-btn').forEach(function(b) { b.classList.remove('active'); });
@@ -2825,6 +2825,7 @@
     var navH = document.querySelector('.nav-wrap') ? document.querySelector('.nav-wrap').offsetHeight : 0;
     var heroH = document.querySelector('.hero') ? document.querySelector('.hero').offsetHeight : 0;
     window.scrollTo({ top: navH + heroH, behavior: 'smooth' });
+    track('tab_click', { tab: TAB_NAMES[i] || ('Tab ' + i) });
   }
 
   // ── DAY SUB-TAB NAVIGATION ──
@@ -2835,6 +2836,7 @@
     if (panel) panel.classList.add('visible');
     var btns = document.querySelectorAll('.sub-btn');
     if (btns[i]) btns[i].classList.add('active');
+    track('day_click', { day: DAY_NAMES[i] || ('Day ' + i) });
   }
 
   // ── CHECKLIST ──
