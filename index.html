@@ -14,28 +14,21 @@
   <meta name="author" content="@buubuu.u">
   <meta name="robots" content="index, follow">
 
-  <!-- Open Graph (Facebook / Messenger / Zalo) -->
+  <!-- Open Graph -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://china-2026-chi.vercel.app/">
-  <meta property="og:site_name" content="China Trip 2026">
   <meta property="og:title" content="China Trip 2026 · Thượng Hải · Hàng Châu · Ô Trấn">
   <meta property="og:description" content="Lịch trình du lịch Trung Quốc 7 ngày — chi tiết từng giờ, ăn uống, di chuyển, chi tiêu thực tế.">
   <meta property="og:image" content="https://china-2026-chi.vercel.app/og-image.png">
-  <meta property="og:image:secure_url" content="https://china-2026-chi.vercel.app/og-image.png">
-  <meta property="og:image:type" content="image/png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Skyline đêm Thượng Hải — The Bund và Pudong">
   <meta property="og:locale" content="vi_VN">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:site" content="@buubuu.u">
-  <meta name="twitter:creator" content="@buubuu.u">
   <meta name="twitter:title" content="China Trip 2026 · Thượng Hải · Hàng Châu · Ô Trấn">
   <meta name="twitter:description" content="Lịch trình du lịch Trung Quốc 7 ngày chi tiết từng giờ.">
   <meta name="twitter:image" content="https://china-2026-chi.vercel.app/og-image.png">
-  <meta name="twitter:image:alt" content="Skyline đêm Thượng Hải — The Bund và Pudong">
+  <meta name="twitter:creator" content="@buubuu.u">
 
   <!-- Canonical -->
   <link rel="canonical" href="https://china-2026-chi.vercel.app/">
@@ -432,7 +425,8 @@
   .cost-card-val { font-size: 26px; font-weight: 300; font-family: 'Cormorant Garamond', serif; color: var(--amber-light); }
   .cost-card-sub { font-size: 11px; color: rgba(250,247,242,0.4); margin-top: 4px; }
 
-  .cost-table { width: 100%; border-collapse: collapse; margin-bottom: 24px; }
+  .cost-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 24px; border-radius: 8px; border: 1px solid var(--border); }
+  .cost-table { width: 100%; border-collapse: collapse; min-width: 480px; }
   .cost-table th {
     text-align: left; font-size: 10px; text-transform: uppercase; letter-spacing: 1px;
     color: var(--muted); font-weight: 500; padding: 7px 10px;
@@ -443,7 +437,8 @@
   .cost-table td { padding: 10px 10px; font-size: 13px; border-bottom: 0.5px solid var(--border); vertical-align: top; line-height: 1.45; }
   .cost-table tr:last-child td { border-bottom: none; }
   .cost-table tr:hover td { background: var(--cream); }
-  .cost-table td:last-child { text-align: right; font-weight: 500; white-space: nowrap; }
+  .cost-table td:nth-child(2),
+  .cost-table td:nth-child(3) { text-align: right; font-weight: 500; white-space: nowrap; width: 1%; }
   .cost-table .cat-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); }
   .cost-split { display: flex; gap: 6px; margin-top: 4px; flex-wrap: wrap; }
   .cost-pp { font-size: 11px; padding: 2px 7px; border-radius: 10px; }
@@ -468,6 +463,15 @@
     .nav { padding: 0 20px; }
     .entry-inner { grid-template-columns: 72px 1fr; gap: 10px; }
     .day-num { font-size: 52px; }
+    /* Chi tiêu mobile fixes */
+    .cost-summary { grid-template-columns: 1fr !important; }
+    .cost-card-val { font-size: 22px; }
+    .cost-table-wrap { border-radius: 8px; }
+    .cost-table { min-width: 440px; }
+    .cost-table td { font-size: 12px; padding: 8px 8px; }
+    .cost-table th { font-size: 9px; padding: 6px 8px; }
+    .cost-note { font-size: 10px; }
+    .cost-total-row td { font-size: 13px; }
   }
 
   /* ── SUB-NAV FOR DAYS ── */
@@ -2659,7 +2663,7 @@
       </div>
     </div>
 
-    <div class="cost-summary" style="grid-template-columns:1fr 1fr;">
+    <div class="cost-summary">
       <div class="cost-card">
         <div class="cost-card-label">Tổng cả chuyến (2 người)</div>
         <div class="cost-card-val">51.850.950đ</div>
@@ -2672,6 +2676,7 @@
       </div>
     </div>
 
+    <div class="cost-table-wrap">
     <table class="cost-table">
       <thead>
         <tr>
@@ -2788,7 +2793,7 @@
         </tr>
       </tbody>
     </table>
-
+    </div><!-- /cost-table-wrap -->
     <div class="note" style="margin-top:8px;">
       <strong>📊 Phân tích:</strong><br>
       Chi phí Alipay (ăn uống + metro + lặt vặt) chiếm <strong>26%</strong> tổng chi — khoảng <strong>~2.285.000đ/người/ngày</strong> cho 6 ngày tại TQ. Mức khá hợp lý cho city trip Thượng Hải bao gồm ăn 3 bữa, di chuyển và tham quan.
